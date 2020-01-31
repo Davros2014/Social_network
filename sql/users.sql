@@ -1,0 +1,12 @@
+DROP TABLE IF EXISTS users;
+
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    first VARCHAR(300) NOT NULL,
+    last VARCHAR(300) NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    password VARCHAR(255) NOT NULL,
+    bioinfo VARCHAR(300),
+    profilepictureurl VARCHAR(300),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

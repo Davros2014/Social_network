@@ -1,0 +1,10 @@
+-- chat message TABLE
+
+DROP TABLE IF EXISTS chat;
+
+CREATE TABLE chat(
+    id SERIAL PRIMARY KEY,
+    messages VARCHAR(255) NOT NULL,
+    user_id INTEGER REFERENCES users(id) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

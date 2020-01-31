@@ -1,0 +1,151 @@
+/* ============== GENERAL STYLES =============== */
+
+body {
+    -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */ /* Firefox < 16 */ /* Internet Explorer */ /* Opera < 12.1 */
+    animation: fadein 1.5s;
+    box-sizing: border-box;
+    margin: 0;
+}
+@keyframes fadein {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+*,
+html {
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 62.5%;
+}
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    text-decoration: none;
+}
+img,
+p {
+    width: 100%;
+    height: auto;
+    vertical-align: middle;
+    display: block;
+}
+
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: black;
+    width: 100vw;
+    height: 100vh;
+    animation-name: fadeIn;
+    animation-duration: 0.4s;
+    animation-fill-mode: forwards;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    z-index: 2000;
+}
+.loader_logo {
+    width: 10vw;
+    height: 10vw;
+}
+.error {
+    font-size: 1rem;
+    color: $primary-color;
+}
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* =============== MAIN STYLES =============== */
+
+body {
+    /* Sets the width of the body */
+    font-size: 1rem;
+    @include BodyTextMain;
+    background: $backgroundColour;
+    color: $primary-font-color;
+    width: 100%;
+    margin: 0 auto;
+}
+// main container in index.html
+.mainHtmlContainer {
+    width: 100vw;
+    overflow: hidden;
+}
+.pageContainer {
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+    @include flex-direction(column);
+    margin: 0 auto;
+    margin-top: 15rem;
+    width: $outerContainer;
+    text-align: center;
+}
+@media all and (max-width: 768px) {
+    .pageContainer {
+        width: $width90;
+    }
+}
+.innerContainer {
+    @include flexbox();
+    @include justify-content(center);
+    @include align-items(center);
+    @include flex-direction(column);
+}
+// move content down
+
+/* FONTS SIZES ETC */
+
+.h1_header {
+    @include H1-Headers;
+}
+.h2_header {
+    @include H2-Headers;
+}
+.h3_header {
+    @include H3-Headers;
+}
+.h4_header {
+    @include H4-Headers;
+}
+.h5_header {
+    @include H5-Headers;
+    color: $primary-color;
+}
+.h6_header {
+    @include H6-Headers;
+}
+.p_bodyTextMain {
+    @include BodyTextMain;
+}
+.p_bodyText {
+    @include bodysmall;
+}
+p {
+    @include bodysmall;
+}
+span {
+    @include bodysmall;
+}
+/* =============== MEDIA EG =============== */
+
+@media screen and (min-width: 767px) {
+}
