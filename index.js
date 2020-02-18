@@ -22,6 +22,15 @@ const bodyParser = require("body-parser");
 
 app.use(express.static("./public"));
 
+function titleCase(str) {
+    var splitStr = str.toLowerCase().split(" ");
+    splitStr.forEach((word, i) => {
+        word[i].charAt(0).toUpperCase() + word[i].substring(1);
+    });
+    return splitStr.join(" ");
+}
+titleCase("hello i love you, wont you tell me your name");
+
 // IMPORT ROUTERS //////////////////////////////
 const _01registerRouter = require("./routers/_01registrationRouter");
 const _02loginRouter = require("./routers/_02loginRouter");
