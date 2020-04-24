@@ -9,7 +9,7 @@ export class Profile extends React.Component {
     }
     render() {
         console.log("state check", this.props);
-
+        const { bio, profilepic } = this.props;
         if (!this.props) {
             return (
                 <div className="loader">
@@ -23,9 +23,9 @@ export class Profile extends React.Component {
                     <h5 className="h5_header">Your profile</h5>
                     <div className="profileContainer">
                         <div className="mainImageProfile">
-                            {this.props.profilepic || "/images/default.svg"}
+                            {profilepic || "/images/default.svg"}
                         </div>
-                        <div className="bioContainer">{this.props.bio}</div>
+                        <div className="bioContainer">{bio}</div>
                     </div>
                 </div>
             </React.Fragment>

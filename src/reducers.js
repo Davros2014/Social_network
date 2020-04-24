@@ -1,5 +1,4 @@
 // reducers.js
-// code from Ivanas lesson
 
 // export default function reducer(state = {}, action) {
 //     if (action.type === "ADD_LIST_ANIMALS") {

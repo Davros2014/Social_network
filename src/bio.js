@@ -5,10 +5,9 @@ export class Bio extends React.Component {
     constructor(props) {
         super(props);
         this.state = { viewable: false };
-        console.log("Bio.props", this.props);
-        console.log("Bio - this.state.bio", this.props.bioinfo);
+        // console.log("Bio.props", this.props);
+        // console.log("Bio - this.state.bio", this.props.bioinfo);
         this.showEditMode = this.showEditMode.bind(this);
-        // This binding is necessary to make `this` work in the callback
         this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleInput({ target }) {
@@ -27,14 +26,15 @@ export class Bio extends React.Component {
     }
     // saves bio on submit
     handleSubmit({ target }) {
-        console.log("this.state - post bio", this.state);
+        // console.log("this.state - post bio", this.state);
+        const { id, bioinfo, first, last, email } = this.state;
         axios
             .post("/bio", {
-                id: this.state.id,
-                bioinfo: this.state.bioinfo,
-                first: this.state.first,
-                last: this.state.last,
-                email: this.state.email
+                id: id,
+                bioinfo: bioinfo,
+                first: first,
+                last: last,
+                email: email
             })
             .then(({ data }) => {
                 if (data.success) {
@@ -48,23 +48,25 @@ export class Bio extends React.Component {
             .catch(err => console.log("error - post bio", err));
     }
     render() {
+        const { first, last, bioinfo } = this.props;
+
         return (
             <React.Fragment>
                 <h4 className="Personal_header">Personal Information</h4>
                 <h3 className="userName p_bodyText">
                     <bold>User:</bold>
                     <span>
-                        {this.props.first} {this.props.last}
+                        {first} {last}
                     </span>
                     <div className="mainLine" />
                 </h3>
 
                 <div className="bioInfo">
-                    {this.props.bioinfo && !this.state.viewable && (
+                    {bioinfo && !this.state.viewable && (
                         <div>
                             <h3 className="Personal_header">BRIEF BIO</h3>
                             <p className="p_bodyText bioTextHolder">
-                                {this.props.bioinfo}
+                                {bioinfo}
                             </p>
                             <button
                                 onClick={e => {
@@ -77,7 +79,7 @@ export class Bio extends React.Component {
                         </div>
                     )}
 
-                    {!this.props.bioinfo && (
+                    {!bioinfo && (
                         <button
                             onClick={e => {
                                 this.showEditMode(e);

@@ -29,13 +29,14 @@ class Chatroom extends React.Component {
     //     console.log("////this.props", this.props);
     // }
     render() {
+        const { allMessages, bioinfo } = this.props;
         return (
             <React.Fragment>
                 <div className="pageContainer">
                     <h2 className="h5_header">Message Board</h2>
                     <div className="chatContainer" ref={this.elemRef}>
-                        {this.props.allMessages &&
-                            this.props.allMessages.map(chatroom => (
+                        {allMessages &&
+                            allMessages.map(chatroom => (
                                 <div className="chatItem" key={chatroom.id}>
                                     <img
                                         className="userProfilePic"
@@ -68,7 +69,7 @@ class Chatroom extends React.Component {
                             <textarea
                                 ref="chatroom_editor"
                                 spellCheck="false"
-                                defaultValue={this.props.bioinfo}
+                                defaultValue={bioinfo}
                                 className="chatEditor"
                                 id="output"
                                 name="chatinfo"

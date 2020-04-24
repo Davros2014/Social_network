@@ -16,7 +16,6 @@ import Friends from "./friends";
 import Chatroom from "./chatroom";
 
 export class App extends Component {
-    // props passes data down to state
     constructor(props) {
         super(props);
         this.state = { uploaderVisible: false };
@@ -28,7 +27,6 @@ export class App extends Component {
         axios
             .get("/user")
             .then(({ data }) => {
-                console.log("App - props", data);
                 this.setState(data);
                 console.log("this.state.id", this.state.id);
             })
@@ -40,14 +38,7 @@ export class App extends Component {
             bioinfo: newBio
         });
     }
-    // clickHandler(e) {
-    //     this.setState(
-    //         this.state.uploaderVisible
-    //             ? { uploaderVisible: false }
-    //             : { uploaderVisible: true }
-    //     );
-    // }
-    clickHandler(e) {
+    clickHandler() {
         this.state.uploaderVisible == true
             ? this.setState({ uploaderVisible: false })
             : this.setState({ uploaderVisible: true });
@@ -58,9 +49,18 @@ export class App extends Component {
             : this.setState({ viewable: true });
     }
     render() {
-        if (!this.state.id) {
+        const {
+            first,
+            last,
+            id,
+            profilepictureurl,
+            email,
+            bioinfo,
+            uploaderVisible
+        } = this.state;
+        if (!id) {
             return <p>Page is loading!</p>;
-        } else
+        } else {
             return (
                 <Router>
                     <Fragment>
@@ -76,7 +76,7 @@ export class App extends Component {
                                             onClick={this.clickHandler}
                                             className="profilePic"
                                             imageUrl={
-                                                this.state.profilepictureurl ||
+                                                profilepictureurl ||
                                                 "/images/default.svg"
                                             }
                                             clickHandler={e =>
@@ -87,8 +87,7 @@ export class App extends Component {
                                             }
                                         />
                                         <p className="welcome">
-                                            Welcome,{" "}
-                                            <span>{this.state.first}</span>
+                                            Welcome, <span>{first}</span>
                                         </p>
                                     </div>
                                 </div>
@@ -111,25 +110,23 @@ export class App extends Component {
                                 path="/"
                                 render={() => (
                                     <Profile
-                                        first={this.state.first}
-                                        last={this.state.last}
+                                        first={first}
+                                        last={last}
                                         profilepic={
                                             <Profilepic
-                                                id={this.state.id}
-                                                first={this.state.first}
-                                                last={this.state.last}
-                                                imageUrl={
-                                                    this.state.profilepictureurl
-                                                }
+                                                id={id}
+                                                first={first}
+                                                last={last}
+                                                imageUrl={profilepictureurl}
                                             />
                                         }
                                         bio={
                                             <Bio
-                                                bioinfo={this.state.bioinfo}
+                                                bioinfo={bioinfo}
                                                 setBio={this.setBio}
-                                                first={this.state.first}
-                                                last={this.state.last}
-                                                email={this.state.email}
+                                                first={first}
+                                                last={last}
+                                                email={email}
                                             />
                                         }
                                         clickHandler={e =>
@@ -153,9 +150,7 @@ export class App extends Component {
                             />
                             <Route
                                 path="/users"
-                                render={() => (
-                                    <Findpeople first={this.state.first} />
-                                )}
+                                render={() => <Findpeople first={first} />}
                             />
                             <Route path="/friends" render={() => <Friends />} />
                             <Route
@@ -170,5 +165,6 @@ export class App extends Component {
                     </Fragment>
                 </Router>
             );
+        }
     } // close render
 } // app close

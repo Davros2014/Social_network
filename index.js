@@ -4,6 +4,8 @@ const app = express();
 // BCRYPT & DB QUERIES ///////////////////////////////
 const db = require("./utils/db");
 // const bc = require("./utils/bc");
+const PORT = 8080 || process.env.PORT;
+
 // COMPRESSION - compresses json and css files etc
 
 // socket.io
@@ -21,15 +23,6 @@ const cookieSession = require("cookie-session");
 const bodyParser = require("body-parser");
 
 app.use(express.static("./public"));
-
-function titleCase(str) {
-    var splitStr = str.toLowerCase().split(" ");
-    splitStr.forEach((word, i) => {
-        word[i].charAt(0).toUpperCase() + word[i].substring(1);
-    });
-    return splitStr.join(" ");
-}
-titleCase("hello i love you, wont you tell me your name");
 
 // IMPORT ROUTERS //////////////////////////////
 const _01registerRouter = require("./routers/_01registrationRouter");
@@ -101,7 +94,6 @@ app.use(_12friendsWannabes);
 // directs to welcome page if not logged in
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
-        // console.log("req.session.userId", req.session.userId);
         res.redirect("/");
     } else {
         res.sendFile(__dirname + "/index.html");
@@ -127,7 +119,7 @@ app.get("*", function(req, res) {
 });
 
 // change from app to server for socket.io
-server.listen(8080, function() {
+server.listen(PORT, function() {
     console.log("Hello, is it me you're looking for...");
 });
 
@@ -155,7 +147,6 @@ io.on("connection", socket => {
             console.log(err);
         });
 
-    console.log("socket.request.session.userId", socket.request.session.userId);
     socket.on("chatMessage", req => {
         db.addChatMessage(req, socket.request.session.userId)
             .then(() => {

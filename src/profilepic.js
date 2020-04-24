@@ -2,12 +2,13 @@ import React from "react";
 
 export function Profilepic(props) {
     console.log("PROFILEPIC imageUrl", props);
+    const { clickHandler, imageUrl, first, last } = props;
     return (
         <img
             className="userProfilePic"
-            onClick={props.clickHandler}
-            src={props.imageUrl ? props.imageUrl : "/images/default.svg"}
-            alt={`${props.first} ${props.last}`}
+            onClick={clickHandler}
+            src={imageUrl ? imageUrl : "/images/default.svg"}
+            alt={`${first} ${last}`}
         />
     );
 }

@@ -1,5 +1,3 @@
-import React from "react";
-
 import * as io from "socket.io-client";
 
 import { allChatMessages, chatMessage } from "./actions";

@@ -56,9 +56,10 @@ export function Friendbutton(props) {
 
     // when page mounts > checkfriendstatus
     useEffect(() => {
-        console.log("HERE I AM", props.otheruserid);
+        const { otheruserid } = props;
+        console.log("HERE I AM", otheruserid);
         axios
-            .get("/checkFriendStatus/" + props.otheruserid)
+            .get("/checkFriendStatus/" + otheruserid)
             .then(results => {
                 console.log("//// RESULTS in checkfriendstatus", results);
                 setButtonName(results.data.buttonName);

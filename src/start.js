@@ -4,8 +4,8 @@ import "../public/css/normalize.css";
 import "../public/css/style.css";
 import { Welcome } from "./welcome";
 import { App } from "./app";
-import * as io from "socket.io-client";
-import { Socket } from "./socket";
+// import * as io from "socket.io-client";
+// import { Socket } from "./socket";
 
 import { Provider } from "react-redux";
 
