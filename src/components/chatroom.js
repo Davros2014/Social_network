@@ -2,22 +2,32 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { allChatMessages, chatMessage } from "./actions";
-import { socket } from "./socket";
+import { allChatMessages, chatMessage } from "../actions";
+import { socket } from "../socket";
 
 class Chatroom extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { disabled: true, chatroom: [] };
         this.elemRef = React.createRef();
     }
     handleInput({ target }) {
-        this.state.chatroom = target.value;
+        this.setState({ chatroom: target.value });
     }
+    // handleInput({ target }) {
+    //     const value = target.value;
+    //     this.setState({
+    //         chatroom: [...this.state.chatroom, value]
+    //     });
+    // }
     handleSubmit() {
         console.log("bang, bang, click, click: ", this.state.chatroom);
         socket.emit("chatMessage", this.state.chatroom);
         document.getElementById("output").value = "";
+    }
+
+    componentDidMount() {
+        this.elemRef.current.scrollTop = this.elemRef.current.scrollHeight;
     }
     componentDidUpdate() {
         this.elemRef.current.scrollTop = this.elemRef.current.scrollHeight;
@@ -30,6 +40,7 @@ class Chatroom extends React.Component {
     // }
     render() {
         const { allMessages, bioinfo } = this.props;
+        const { disabled } = this.state;
         return (
             <React.Fragment>
                 <div className="pageContainer">
@@ -76,17 +87,23 @@ class Chatroom extends React.Component {
                                 onChange={e => this.handleInput(e)}
                                 type="text"
                             />
-                            <button
-                                onClick={e => {
-                                    this.handleSubmit(e);
-                                }}
-                                id="clear"
-                                type="reset"
-                                value="Reset"
-                                className="buttonBasic chatinfoSave"
-                            >
-                                Send
-                            </button>
+                            {!disabled ? (
+                                <button className="buttonBasic chatinfoSave">
+                                    Disabled
+                                </button>
+                            ) : (
+                                <button
+                                    onClick={e => {
+                                        this.handleSubmit(e);
+                                    }}
+                                    id="clear"
+                                    type="reset"
+                                    value="Reset"
+                                    className="buttonBasic chatinfoSave"
+                                >
+                                    Send
+                                </button>
+                            )}
                         </div>
                     </div>
                 </div>

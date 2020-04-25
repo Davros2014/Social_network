@@ -1547,7 +1547,7 @@ input[type=submit]:hover {
   font-weight: 500;
   line-height: 1.2;
   letter-spacing: 0.05rem;
-  color: white;
+  color: rgba(0, 0, 0, 0.5);
 }
 
 .bioTextHolder {

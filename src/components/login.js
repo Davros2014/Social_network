@@ -1,24 +1,24 @@
 import React from "react";
-import axios from "./axios";
+import axios from "../axios";
 import { Link } from "react-router-dom";
 
-export class Registration extends React.Component {
+export class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
     handleChange({ target }) {
         this.setState({ [target.name]: target.value });
-        console.log("[target.name]", [target.name]);
     }
+
     submit() {
-        const { first, last, password, email } = this.state;
+        console.log(this.state);
+        console.log("this.state.password", this.state.password);
+        console.log("this.state.email", this.state.email);
         axios
-            .post("/register", {
-                first: first,
-                last: last,
-                email: email,
-                password: password
+            .post("/login", {
+                email: this.state.email,
+                password: this.state.password
             })
             .then(({ data }) => {
                 if (data.success) {
@@ -26,36 +26,20 @@ export class Registration extends React.Component {
                 } else if (data.error) {
                     this.setState({
                         error: true
+                        // error: "Sorry, an error occured, please try again!"
                     });
                 }
             });
     }
-
     render() {
         return (
-            <React.Fragment>
-                <div className="registrationForm">
+            <div className="startPage">
+                <div className="inputForm">
                     {this.state.error && (
                         <div className="error">
-                            Sorry, an error occured, please try again!
+                            Oops! Something is missing, please try again
                         </div>
                     )}
-                    <input
-                        name="first"
-                        placeholder="First name"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                        onChange={e => this.handleChange(e)}
-                    />
-                    <input
-                        name="last"
-                        placeholder="Last name"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                        onChange={e => this.handleChange(e)}
-                    />
                     <input
                         name="email"
                         placeholder="Email address"
@@ -76,18 +60,18 @@ export class Registration extends React.Component {
                     <button
                         className="submitButton"
                         type="submit"
-                        onClick={this.submit}
+                        onClick={e => this.submit()}
                     >
                         Submit
                     </button>
-                    <h5 className="Link registerText">
-                        Already a member? Log-in
-                        <Link className="Link" to="/login">
+                    <h5 className="registerText">
+                        Registered yet? Register
+                        <Link className="Link" to="/">
                             <span>here</span>
                         </Link>
                     </h5>
                 </div>
-            </React.Fragment>
+            </div>
         );
     }
 }

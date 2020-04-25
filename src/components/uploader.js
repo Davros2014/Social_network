@@ -1,11 +1,12 @@
 import React from "react";
-import axios from "./axios";
+import axios from "../axios";
 
 export class Uploader extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { profile: null, uploaderVisible: false };
+        this.state = { profile: null, uploaderVisible: true };
         this.clickHandler = this.clickHandler.bind(this);
+        this.handleClick = this.handleClick.bind(this);
     }
     handleInput({ target }) {
         this.setState({ [target.name]: target.files[0] });
@@ -20,13 +21,16 @@ export class Uploader extends React.Component {
             ? this.setState({ viewable: false })
             : this.setState({ viewable: true });
     }
-    clickHandler() {
-        console.log("click, click ");
-        this.setState(
-            this.state.uploaderVisible
-                ? { uploaderVisible: false, introVisible: true }
-                : { uploaderVisible: true, introVisible: false }
-        );
+    // clickHandler() {
+    //     console.log("click, click ");
+    //     this.setState(
+    //         this.state.uploaderVisible
+    //             ? { uploaderVisible: false, introVisible: true }
+    //             : { uploaderVisible: true, introVisible: false }
+    //     );
+    // }
+    handleClick() {
+        this.props.clickHandler();
     }
 
     // closeSubmit(e) {
@@ -56,7 +60,7 @@ export class Uploader extends React.Component {
             <div className="uploadOpacity">
                 <div className="uploadContainer">
                     <button
-                        onClick={this.clickHandler}
+                        onClick={this.handleClick}
                         className="closeUploader"
                     >
                         X

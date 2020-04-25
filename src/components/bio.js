@@ -1,12 +1,10 @@
 import React from "react";
-import axios from "./axios";
+import axios from "../axios";
 
 export class Bio extends React.Component {
     constructor(props) {
         super(props);
         this.state = { viewable: false };
-        // console.log("Bio.props", this.props);
-        // console.log("Bio - this.state.bio", this.props.bioinfo);
         this.showEditMode = this.showEditMode.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -16,7 +14,7 @@ export class Bio extends React.Component {
         });
     }
     showEditMode() {
-        this.state.viewable == true
+        this.state.viewable
             ? this.setState({ viewable: false })
             : this.setState({ viewable: true });
     }
@@ -54,8 +52,9 @@ export class Bio extends React.Component {
             <React.Fragment>
                 <h4 className="Personal_header">Personal Information</h4>
                 <h3 className="userName p_bodyText">
-                    <bold>User:</bold>
+                    User:
                     <span>
+                        {" "}
                         {first} {last}
                     </span>
                     <div className="mainLine" />

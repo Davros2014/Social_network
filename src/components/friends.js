@@ -3,7 +3,7 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { friendsWannabes, acceptFriendRequest, unfriend } from "./actions";
+import { friendsWannabes, acceptFriendRequest, unfriend } from "../actions";
 import { Link } from "react-router-dom";
 
 class Friends extends React.Component {
@@ -11,11 +11,10 @@ class Friends extends React.Component {
         this.props.dispatch(friendsWannabes());
     }
     render() {
-        // const { users } = this.props.friends;
-        console.log("this.props.friends", this.props.friends);
-        // console.log("/////////users", users);
+        const { friends, pending } = this.props;
+        console.log("this.props.friends", friends);
 
-        if (!this.props.friends) {
+        if (!friends) {
             return (
                 <div className="loader">
                     <img className="loader_logo" src="/images/zero_logo.svg" />
@@ -27,8 +26,8 @@ class Friends extends React.Component {
                 <div className="pageContainer">
                     <h2 className="h5_header friendsListHeader"> Friends</h2>
                     <div className="friendsEtcContainer">
-                        {this.props.friends &&
-                            this.props.friends.map(friends => (
+                        {friends &&
+                            friends.map(friends => (
                                 <div
                                     className="friendsEtcWrapper"
                                     key={friends.id}
@@ -66,8 +65,8 @@ class Friends extends React.Component {
                     </h2>
 
                     <div className="friendsEtcContainer">
-                        {this.props.pending &&
-                            this.props.pending.map(pending => (
+                        {pending &&
+                            pending.map(pending => (
                                 <div
                                     className="friendsEtcWrapper"
                                     key={pending.id}

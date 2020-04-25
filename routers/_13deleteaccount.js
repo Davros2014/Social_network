@@ -6,12 +6,12 @@ const s3 = require("../utils/s3");
 module.exports = router;
 
 router.route("/deleteaccount").get((req, res) => {
-    console.log("/////// req.session.userId", req.session.userId);
+    // console.log("/////// req.session.userId", req.session.userId);
     let loggedinUserId = req.session.userId;
     console.log("loggedinUserId", loggedinUserId);
-    const imgUrl = db.getS3Image(loggedinUserId);
+    // const imgUrl = db.getS3Image(loggedinUserId);
     // delete images from s3 account
-    s3.deleteImage(imgUrl.rows[0].profilepictureurl);
+    // s3.deleteImage(imgUrl.rows[0].profilepictureurl);
     db.accountDeletion(loggedinUserId)
         .then(() => {
             req.session = null;

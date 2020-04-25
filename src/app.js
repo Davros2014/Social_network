@@ -1,24 +1,31 @@
 import React, { Component, Fragment } from "react";
 import axios from "./axios";
-import { Profilepic } from "./profilepic";
-import { Uploader } from "./uploader";
-import { Logo } from "./logo";
-import { Profile } from "./profile";
-import { Bio } from "./bio";
-import { Nav } from "./nav";
+import { Profilepic } from "./components/profilepic";
+import { Profile } from "./components/profile";
+import { Bio } from "./components/bio";
 
-import { Otherprofile } from "./otherprofile";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { Findpeople } from "./findpeople";
-import { Deleteaccount } from "./deleteaccount";
+import { Otherprofile } from "./components/otherprofile";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Findpeople } from "./components/findpeople";
+import { Deleteaccount } from "./components/deleteaccount";
+// import NavBar from "./components/NavBar";
+// import { Logo } from "./components/logo";
+// import { Uploader } from "./components/uploader";
+import NavBar from "./components/NavBar";
 
-import Friends from "./friends";
-import Chatroom from "./chatroom";
+// import { Link } from "react-router-dom";
+
+import Friends from "./components/friends";
+import Chatroom from "./components/chatroom";
 
 export class App extends Component {
     constructor(props) {
         super(props);
-        this.state = { uploaderVisible: false };
+        this.state = {
+            uploaderVisible: false,
+            viewable: false,
+            loading: true
+        };
         this.setBio = this.setBio.bind(this);
         this.clickHandler = this.clickHandler.bind(this);
         this.showEditMode = this.showEditMode.bind(this);
@@ -31,6 +38,9 @@ export class App extends Component {
                 console.log("this.state.id", this.state.id);
             })
             .catch(err => console.log(err));
+        this.setState({
+            loading: false
+        });
     }
     // see Bio.js for update info
     setBio(newBio) {
@@ -39,16 +49,17 @@ export class App extends Component {
         });
     }
     clickHandler() {
-        this.state.uploaderVisible == true
+        this.state.uploaderVisible
             ? this.setState({ uploaderVisible: false })
             : this.setState({ uploaderVisible: true });
     }
     showEditMode() {
-        this.state.viewable == true
+        this.state.viewable
             ? this.setState({ viewable: false })
             : this.setState({ viewable: true });
     }
     render() {
+        console.log("state in app.js", this.state);
         const {
             first,
             last,
@@ -56,55 +67,26 @@ export class App extends Component {
             profilepictureurl,
             email,
             bioinfo,
-            uploaderVisible
+            uploaderVisible,
+            loading
         } = this.state;
-        if (!id) {
+        if (loading) {
             return <p>Page is loading!</p>;
         } else {
             return (
                 <Router>
                     <Fragment>
-                        <nav className="topNav">
-                            <div className="navWrapper">
-                                <Link to="/">
-                                    <Logo />
-                                </Link>
-                                <div className="navDetails">
-                                    <Nav />
-                                    <div className="navPicContainer">
-                                        <Profilepic
-                                            onClick={this.clickHandler}
-                                            className="profilePic"
-                                            imageUrl={
-                                                profilepictureurl ||
-                                                "/images/default.svg"
-                                            }
-                                            clickHandler={e =>
-                                                this.setState({
-                                                    uploaderVisible: true,
-                                                    introVisible: false
-                                                })
-                                            }
-                                        />
-                                        <p className="welcome">
-                                            Welcome, <span>{first}</span>
-                                        </p>
-                                    </div>
-                                </div>
-                                {this.state.uploaderVisible && (
-                                    <Uploader
-                                        upDateImage={img =>
-                                            this.setState({
-                                                profilepictureurl: img,
-                                                uploaderVisible: false
-                                            })
-                                        }
-                                    />
-                                )}
-                            </div>
-                        </nav>
-
-                        <Fragment>
+                        <NavBar
+                            first={first}
+                            last={last}
+                            id={id}
+                            profilepictureurl={profilepictureurl}
+                            email={email}
+                            bioinfo={bioinfo}
+                            uploaderVisible={uploaderVisible}
+                            clickHandler={this.clickHandler}
+                        />
+                        <Switch>
                             <Route
                                 exact
                                 path="/"
@@ -117,7 +99,10 @@ export class App extends Component {
                                                 id={id}
                                                 first={first}
                                                 last={last}
-                                                imageUrl={profilepictureurl}
+                                                profilepictureurl={
+                                                    profilepictureurl
+                                                }
+                                                clickHandler={this.clickHandler}
                                             />
                                         }
                                         bio={
@@ -150,7 +135,12 @@ export class App extends Component {
                             />
                             <Route
                                 path="/users"
-                                render={() => <Findpeople first={first} />}
+                                render={() => (
+                                    <Findpeople
+                                        first={first}
+                                        profilepictureurl={profilepictureurl}
+                                    />
+                                )}
                             />
                             <Route path="/friends" render={() => <Friends />} />
                             <Route
@@ -161,7 +151,7 @@ export class App extends Component {
                                 path="/deleteaccount"
                                 render={() => <Deleteaccount />}
                             />
-                        </Fragment>
+                        </Switch>
                     </Fragment>
                 </Router>
             );

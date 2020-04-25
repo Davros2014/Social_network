@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "./axios";
+import axios from "../axios";
 
 export function Friendbutton(props) {
     const [buttonName, setButtonName] = useState("_");
@@ -71,10 +71,8 @@ export function Friendbutton(props) {
     }, []);
 
     return (
-        <React.Fragment>
-            <button className="buttonBasic friendButton" onClick={submit}>
-                {buttonName}
-            </button>
-        </React.Fragment>
+        <button className="buttonBasic friendButton" onClick={submit}>
+            {buttonName}
+        </button>
     );
 }
