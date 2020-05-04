@@ -1,22 +1,29 @@
-import React, { Component, Fragment } from "react";
-import { Logo } from "./logo";
-import { Profilepic } from "./profilepic";
-import { Uploader } from "./uploader";
-
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
+
+// components
+import Logo from "./logo";
+import Profilepic from "./profilepic";
+import Uploader from "./uploader";
 
 export default class NavBar extends Component {
     constructor(props) {
         super(props);
         this.state = {};
+        this.handleClick = this.handleClick.bind(this);
+    }
+    handleClick() {
+        this.props.handleUploader();
     }
     render() {
-        console.log("bio props", this.props);
+        // console.log("navbar props", this.props);
         const {
             uploaderVisible,
-            introVisible,
             profilepictureurl,
-            first
+            first,
+            viewable,
+            showEditMode,
+            handleUploader
         } = this.props;
         return (
             <header className="topNav">
@@ -47,24 +54,16 @@ export default class NavBar extends Component {
                         </nav>
                         <div className="navPicContainer">
                             <Profilepic
-                                onClick={this.clickHandler}
+                                handleClick={this.handleClick}
                                 className="profilePic"
-                                profilepictureurl={
-                                    profilepictureurl || "/images/default.svg"
-                                }
-                                clickHandler={e =>
-                                    this.setState({
-                                        uploaderVisible: true,
-                                        introVisible: false
-                                    })
-                                }
+                                profilepictureurl={profilepictureurl}
                             />
                             <p className="welcome">
                                 Welcome, <span>{first}</span>
                             </p>
                         </div>
                     </div>
-                    {this.state.uploaderVisible && (
+                    {uploaderVisible && (
                         <Uploader
                             upDateImage={img =>
                                 this.setState({
@@ -72,7 +71,8 @@ export default class NavBar extends Component {
                                     uploaderVisible: false
                                 })
                             }
-                            clickHandler={this.clickHandler}
+                            viewable={viewable}
+                            handleUploader={handleUploader}
                         />
                     )}
                 </div>

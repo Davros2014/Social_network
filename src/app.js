@@ -1,24 +1,19 @@
 import React, { Component, Fragment } from "react";
 import axios from "./axios";
-import { Profilepic } from "./components/profilepic";
-import { Profile } from "./components/profile";
-import { Bio } from "./components/bio";
-
-import { Otherprofile } from "./components/otherprofile";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+
+// components
+import Profilepic from "./components/profilepic";
+import Profile from "./components/Profile";
+import { Bio } from "./components/bio";
+import { Otherprofile } from "./components/otherprofile";
 import { Findpeople } from "./components/findpeople";
 import { Deleteaccount } from "./components/deleteaccount";
-// import NavBar from "./components/NavBar";
-// import { Logo } from "./components/logo";
-// import { Uploader } from "./components/uploader";
 import NavBar from "./components/NavBar";
-
-// import { Link } from "react-router-dom";
-
 import Friends from "./components/friends";
 import Chatroom from "./components/chatroom";
 
-export class App extends Component {
+export default class App extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -27,7 +22,7 @@ export class App extends Component {
             loading: true
         };
         this.setBio = this.setBio.bind(this);
-        this.clickHandler = this.clickHandler.bind(this);
+        this.handleUploader = this.handleUploader.bind(this);
         this.showEditMode = this.showEditMode.bind(this);
     }
     componentDidMount() {
@@ -35,7 +30,6 @@ export class App extends Component {
             .get("/user")
             .then(({ data }) => {
                 this.setState(data);
-                console.log("this.state.id", this.state.id);
             })
             .catch(err => console.log(err));
         this.setState({
@@ -48,15 +42,16 @@ export class App extends Component {
             bioinfo: newBio
         });
     }
-    clickHandler() {
-        this.state.uploaderVisible
-            ? this.setState({ uploaderVisible: false })
-            : this.setState({ uploaderVisible: true });
+    //open.close modal window
+    handleUploader() {
+        console.log("click, click - clickHandler", this.state.uploaderVisible);
+        this.setState({
+            uploaderVisible: !this.state.uploaderVisible
+        });
     }
     showEditMode() {
-        this.state.viewable
-            ? this.setState({ viewable: false })
-            : this.setState({ viewable: true });
+        console.log("click, click - showeditMode", this.state.uploaderVisible);
+        this.setState({ viewable: !this.state.viewable });
     }
     render() {
         console.log("state in app.js", this.state);
@@ -67,8 +62,8 @@ export class App extends Component {
             profilepictureurl,
             email,
             bioinfo,
-            uploaderVisible,
-            loading
+            loading,
+            uploaderVisible
         } = this.state;
         if (loading) {
             return <p>Page is loading!</p>;
@@ -83,8 +78,9 @@ export class App extends Component {
                             profilepictureurl={profilepictureurl}
                             email={email}
                             bioinfo={bioinfo}
+                            showEditMode={this.showEditMode}
+                            handleUploader={this.handleUploader}
                             uploaderVisible={uploaderVisible}
-                            clickHandler={this.clickHandler}
                         />
                         <Switch>
                             <Route
@@ -102,7 +98,9 @@ export class App extends Component {
                                                 profilepictureurl={
                                                     profilepictureurl
                                                 }
-                                                clickHandler={this.clickHandler}
+                                                handleUploader={
+                                                    this.handleUploader
+                                                }
                                             />
                                         }
                                         bio={
@@ -124,6 +122,7 @@ export class App extends Component {
                                 )}
                             />
                             <Route
+                                exact
                                 path="/user/:id"
                                 render={props => (
                                     <Otherprofile
@@ -134,6 +133,7 @@ export class App extends Component {
                                 )}
                             />
                             <Route
+                                exact
                                 path="/users"
                                 render={() => (
                                     <Findpeople
@@ -142,12 +142,18 @@ export class App extends Component {
                                     />
                                 )}
                             />
-                            <Route path="/friends" render={() => <Friends />} />
                             <Route
+                                exact
+                                path="/friends"
+                                render={() => <Friends />}
+                            />
+                            <Route
+                                exact
                                 path="/chatroom"
                                 render={() => <Chatroom />}
                             />
                             <Route
+                                exact
                                 path="/deleteaccount"
                                 render={() => <Deleteaccount />}
                             />

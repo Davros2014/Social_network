@@ -2,7 +2,7 @@ import React from "react";
 import axios from "../axios";
 import { Link } from "react-router-dom";
 
-export class Login extends React.Component {
+export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -10,11 +10,7 @@ export class Login extends React.Component {
     handleChange({ target }) {
         this.setState({ [target.name]: target.value });
     }
-
     submit() {
-        console.log(this.state);
-        console.log("this.state.password", this.state.password);
-        console.log("this.state.email", this.state.email);
         axios
             .post("/login", {
                 email: this.state.email,
@@ -60,14 +56,14 @@ export class Login extends React.Component {
                     <button
                         className="submitButton"
                         type="submit"
-                        onClick={e => this.submit()}
+                        onClick={() => this.submit()}
                     >
                         Submit
                     </button>
                     <h5 className="registerText">
                         Registered yet? Register
                         <Link className="Link" to="/">
-                            <span>here</span>
+                            <span> here</span>
                         </Link>
                     </h5>
                 </div>

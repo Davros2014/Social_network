@@ -1,11 +1,12 @@
-import React from "react";
-import { HashRouter, Route } from "react-router-dom";
-import { Registration } from "./registration";
-import { Login } from "./login";
-import { Logo } from "./logo";
-import { Link } from "react-router-dom";
+import React, { Fragment } from "react";
+import { HashRouter, Route, Link } from "react-router-dom";
 
-export function Welcome() {
+// components
+import Registration from "./registration";
+import Login from "./login";
+import Logo from "./logo";
+
+export default function Welcome() {
     // if (!req.session == null) {
     //     return (
     //         <div className="loader">
@@ -18,7 +19,7 @@ export function Welcome() {
             <div className="mainContent">
                 <div className="mainContentWrapper">
                     <HashRouter>
-                        <React.Fragment>
+                        <Fragment>
                             <Link to="/">
                                 <Logo />
                             </Link>
@@ -30,7 +31,7 @@ export function Welcome() {
                             </div>
                             <Route exact path="/" component={Registration} />
                             <Route path="/login" component={Login} />
-                        </React.Fragment>
+                        </Fragment>
                     </HashRouter>
                 </div>
             </div>

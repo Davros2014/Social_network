@@ -1,15 +1,14 @@
 import React from "react";
-import { Profilepic } from "./profilepic";
+import Profilepic from "./Profilepic";
 
-export class Profile extends React.Component {
+export default class Profile extends React.Component {
     constructor(props) {
-        console.log("props", props);
         super(props);
         this.state = {};
     }
     render() {
-        console.log("state check", this.props);
-        const { bio, profilepic } = this.props;
+        // console.log("state check in profile component", this.props);
+        const { bio, profilepic, handleUploader } = this.props;
         if (!this.props) {
             return (
                 <div className="loader">

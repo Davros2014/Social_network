@@ -14,12 +14,6 @@ class Chatroom extends React.Component {
     handleInput({ target }) {
         this.setState({ chatroom: target.value });
     }
-    // handleInput({ target }) {
-    //     const value = target.value;
-    //     this.setState({
-    //         chatroom: [...this.state.chatroom, value]
-    //     });
-    // }
     handleSubmit() {
         console.log("bang, bang, click, click: ", this.state.chatroom);
         socket.emit("chatMessage", this.state.chatroom);

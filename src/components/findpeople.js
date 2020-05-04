@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
-import { Profilepic } from "./profilepic";
+import Profilepic from "./profilepic";
 import axios from "../axios";
 
 export function Findpeople(props) {

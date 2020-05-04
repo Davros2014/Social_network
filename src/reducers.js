@@ -1,21 +1,5 @@
 // reducers.js
 
-// export default function reducer(state = {}, action) {
-//     if (action.type === "ADD_LIST_ANIMALS") {
-//         console.log("reducer action", action);
-//         // here i would tell reducer how to add list of animals to global state
-//         // spread operator (...)
-//         // Object.assign()
-//         return { ...state, testList: action.testList };
-//     }
-//
-//     console.log("state", state);
-//     console.log("action", action);
-//     return state;
-// }
-
-// in src create file called 'reducers.js'
-
 export default function reducer(state = {}, action) {
     if (action.type === "RECEIVE_FRIENDS_WANNABES") {
         console.log("reducer action - friends wannabees", action);
@@ -45,10 +29,10 @@ export default function reducer(state = {}, action) {
         };
     }
     if (action.type === "ALL_CHAT_MESSAGES") {
-        console.log(
-            "reducer action - ALL_CHAT_MESSAGES",
-            action.allChatMessages
-        );
+        // console.log(
+        //     "reducer action - ALL_CHAT_MESSAGES",
+        //     action.allChatMessages
+        // );
         return { ...state, allChatMessages: action.allChatMessages };
     }
     if (action.type === "CHAT_MESSAGE") {

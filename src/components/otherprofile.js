@@ -1,7 +1,7 @@
 //otherprofile.js
 import React from "react";
 import axios from "../axios";
-import { Profilepic } from "./profilepic";
+import Profilepic from "./profilepic";
 import { Friendbutton } from "./friendbutton";
 
 export class Otherprofile extends React.Component {

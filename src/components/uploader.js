@@ -1,12 +1,14 @@
 import React from "react";
 import axios from "../axios";
 
-export class Uploader extends React.Component {
+export default class Uploader extends React.Component {
     constructor(props) {
         super(props);
         this.state = { profile: null, uploaderVisible: true };
-        this.clickHandler = this.clickHandler.bind(this);
-        this.handleClick = this.handleClick.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+        // this.clickHandler = this.clickHandler.bind(this);
+        // this.handleClick = this.handleClick.bind(this);
+        // this.showEditMode = this.showEditMode.bind(this);
     }
     handleInput({ target }) {
         this.setState({ [target.name]: target.files[0] });
@@ -17,10 +19,9 @@ export class Uploader extends React.Component {
         target.files[0].name;
     }
     showEditMode() {
-        this.state.viewable == true
-            ? this.setState({ viewable: false })
-            : this.setState({ viewable: true });
+        this.setState({ viewable: !this.props.viewable });
     }
+
     // clickHandler() {
     //     console.log("click, click ");
     //     this.setState(
@@ -37,18 +38,15 @@ export class Uploader extends React.Component {
     //     this.showEditMode(e);
     //     this.handleInput(e);
     // }
-
+    closeModal() {
+        this.props.handleUploader();
+    }
     submit() {
-        console.log("this.state", this.state);
         let formData = new FormData();
-        console.log("////// formData ///// ", formData);
         formData.append("file", this.state.file);
-        console.log("////// formData after ///// ", formData);
-        console.log("UPLOAD BUTTON CLICKED");
         axios
             .post("/upload", formData)
             .then(results => {
-                console.log("///////// results", results.data.url);
                 this.props.upDateImage(results.data.url);
             })
             .catch(function(err) {
@@ -59,10 +57,7 @@ export class Uploader extends React.Component {
         return (
             <div className="uploadOpacity">
                 <div className="uploadContainer">
-                    <button
-                        onClick={this.handleClick}
-                        className="closeUploader"
-                    >
+                    <button onClick={this.closeModal} className="closeUploader">
                         X
                     </button>
                     <div className="uploadWrapper">

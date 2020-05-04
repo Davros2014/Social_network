@@ -1,8 +1,8 @@
-import React from "react";
+import React, { Fragment } from "react";
 import axios from "../axios";
 import { Link } from "react-router-dom";
 
-export class Registration extends React.Component {
+export default class Registration extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -32,12 +32,13 @@ export class Registration extends React.Component {
     }
 
     render() {
+        const { error } = this.state;
         return (
-            <React.Fragment>
+            <Fragment>
                 <div className="registrationForm">
-                    {this.state.error && (
+                    {error && (
                         <div className="error">
-                            Sorry, an error occured, please try again!
+                            Sorry, an error occured, {error}, please try again!
                         </div>
                     )}
                     <input
@@ -83,11 +84,11 @@ export class Registration extends React.Component {
                     <h5 className="Link registerText">
                         Already a member? Log-in
                         <Link className="Link" to="/login">
-                            <span>here</span>
+                            <span> here</span>
                         </Link>
                     </h5>
                 </div>
-            </React.Fragment>
+            </Fragment>
         );
     }
 }
