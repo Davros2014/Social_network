@@ -1,5 +1,5 @@
 import React from "react";
-import Profilepic from "./Profilepic";
+import Profilepicture from "./Profilepicture";
 
 export default class Profile extends React.Component {
     constructor(props) {

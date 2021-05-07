@@ -7,22 +7,16 @@ module.exports = router;
 
 router.route("/login").post((req, res) => {
     console.log(" ===========  LOGIN POST =========== ");
-    // console.log("req.body", req.body);
     let { email, password } = req.body;
-    // check if email and password are true (input)
+    console.log("req.body", email, password);
+
     if (email && password) {
         db.getUserInfo(email)
             .then(result => {
-                // console.log("RESULT ++++ ", result);
-                // console.log("results are: ", result.rows[0].email);
-                // checks if data contains an email address
+                console.log("result ++++ ", result);
+                console.log("email, password ++++ ", email, password);
                 if (result.rows.length == 1) {
                     // console.log("results are", result.rows[0].password);
-                    // console.log(
-                    //     "passwordInput: result.rows[0].password",
-                    //     result.rows[0].password
-                    // );
-                    // bc - bcrpyt checks password in database matches password user inputs (utils > bc.js)
                     const passwordInput = result.rows[0].password;
                     bc.checkPassword(password, passwordInput)
                         .then(pwCheck => {

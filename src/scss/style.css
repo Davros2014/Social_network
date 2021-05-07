@@ -1,9 +1,6 @@
 /* =================================
 IMPORTED STYLES
 ================================= */
-@import url("/fonts/montserrat/montserrat_stylesheet.css");
-@import url("/fonts/montserrat/montserrat_stylesheet.css");
-@import url("/fonts/playfair_display/playfair_stylesheet.css");
 /* ========================= MIXINS =============================== */
 /* @include transition(all,0.2s,ease-out); */
 /* ============== GENERAL STYLES =============== */
@@ -92,7 +89,7 @@ p {
 body {
   /* Sets the width of the body */
   font-size: 1rem;
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.6rem;
   color: #4c4c4c;
   font-weight: 100;
@@ -162,16 +159,16 @@ body {
 
 /* FONTS SIZES ETC */
 .h1_header {
-  font-family: "montserratregular", Helvetica, sans-serif;
-  font-size: 2.8rem;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-size: 3.6rem;
   color: #f44a41;
-  font-weight: 100;
-  line-height: 1.07;
-  letter-spacing: 0.001rem;
+  font-weight: 700;
+  line-height: 0.95;
+  letter-spacing: 0.05rem;
 }
 
 .h2_header {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2.8rem;
   color: #4c4c4c;
   font-weight: 700;
@@ -180,45 +177,45 @@ body {
 }
 
 .h3_header {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2.4rem;
   color: #4c4c4c;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 0.7;
   letter-spacing: 0.05rem;
 }
 
 .h4_header {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2.2rem;
   color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.05rem;
 }
 
 .h5_header {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2rem;
   color: #4c4c4c;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.05rem;
   color: #f44a41;
 }
 
 .h6_header {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.6rem;
   color: #4c4c4c;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 0.7;
   letter-spacing: 0.05rem;
   text-transform: uppercase;
 }
 
 .p_bodyTextMain {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.6rem;
   color: #4c4c4c;
   font-weight: 100;
@@ -227,7 +224,7 @@ body {
 }
 
 .p_bodyText {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -236,7 +233,7 @@ body {
 }
 
 p {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -245,7 +242,7 @@ p {
 }
 
 span {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -396,7 +393,7 @@ span {
 
 .navLink {
   position: relative;
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -524,7 +521,7 @@ span {
 
 .welcome {
   margin-top: 0.5rem;
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -534,7 +531,7 @@ span {
 }
 
 .welcome span {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -754,10 +751,10 @@ input[type=submit]:hover {
 }
 
 .mainH1 h3 {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2.4rem;
   color: #4c4c4c;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 0.7;
   letter-spacing: 0.05rem;
   margin-top: 1rem;
@@ -793,10 +790,10 @@ input[type=submit]:hover {
 }
 
 .regContainer h3 {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2.4rem;
   color: #4c4c4c;
-  font-weight: 300;
+  font-weight: 400;
   line-height: 0.7;
   letter-spacing: 0.05rem;
   margin-top: 1rem;
@@ -949,20 +946,20 @@ input[type=submit]:hover {
 }
 
 .registerText {
-  font-family: "montserratlight", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.4rem;
   color: #4c4c4c;
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0.0025rem;
   margin-top: 2rem;
 }
 
 .registerText span {
-  font-family: "montserratlight", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.4rem;
   color: #4c4c4c;
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0.0025rem;
   -webkit-transition: all 0.2s ease-out;
@@ -973,10 +970,10 @@ input[type=submit]:hover {
 }
 
 .registerText span:hover {
-  font-family: "montserratlight", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.4rem;
   color: #4c4c4c;
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0.0025rem;
   color: #f44a41;
@@ -1031,10 +1028,10 @@ input[type=submit]:hover {
   }
 }
 .uploadWrapper h4 {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2.2rem;
   color: rgba(255, 255, 255, 0.5);
-  font-weight: 300;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.05rem;
 }
@@ -1432,7 +1429,7 @@ input[type=submit]:hover {
 
 .friendsEtcText {
   text-align: center;
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -1491,7 +1488,7 @@ input[type=submit]:hover {
   width: 100%;
   height: 10rem;
   padding: 2rem;
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: calc(0.75rem + 0.25vw);
   color: rgba(230, 228, 223, 0.75);
   font-weight: 100;
@@ -1541,10 +1538,10 @@ input[type=submit]:hover {
 }
 
 .userName {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2rem;
   color: #4c4c4c;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.05rem;
   color: rgba(0, 0, 0, 0.5);
@@ -1565,10 +1562,10 @@ input[type=submit]:hover {
 }
 
 .userName span {
-  font-family: "montserratregular", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 2rem;
   color: #4c4c4c;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 1.2;
   letter-spacing: 0.05rem;
   color: #f44a41;
@@ -1579,10 +1576,10 @@ hr {
 }
 
 .buttonBasic {
-  font-family: "montserratlight", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.4rem;
   color: #4c4c4c;
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0.0025rem;
   color: #4c4c4c;
@@ -1613,10 +1610,10 @@ hr {
 }
 
 .submitButton {
-  font-family: "montserratlight", Helvetica, sans-serif;
+  font-family: "Montserrat", Helvetica, sans-serif;
   font-size: 1.4rem;
   color: #4c4c4c;
-  font-weight: 100;
+  font-weight: 300;
   line-height: 1.35;
   letter-spacing: 0.0025rem;
   padding: 0.5rem 1rem;

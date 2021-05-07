@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Profilepic(props) {
+export default function Profilepicture(props) {
     // console.log("profilepic props", props);
     const { clickHandler, profilepictureurl, handleClick, first, last } = props;
     return (

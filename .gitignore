@@ -2,9 +2,6 @@ node_modules
 .DS_Store
 secrets.json
 REACT_LEARNING_MD
-normalize.css
-style.css.map
-style.scss
 /.sass-cache/*
 /01_plugins/*
 /02_variables/*

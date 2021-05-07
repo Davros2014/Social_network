@@ -3,12 +3,12 @@ import axios from "./axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // components
-import Profilepic from "./components/profilepic";
+import Profilepicture from "./components/Profilepicture";
 import Profile from "./components/Profile";
-import { Bio } from "./components/bio";
-import { Otherprofile } from "./components/otherprofile";
-import { Findpeople } from "./components/findpeople";
-import { Deleteaccount } from "./components/deleteaccount";
+import Bio from "./components/bio";
+import Otherprofile from "./components/otherprofile";
+import Findpeople from "./components/findpeople";
+import Deleteaccount from "./components/deleteaccount";
 import NavBar from "./components/NavBar";
 import Friends from "./components/friends";
 import Chatroom from "./components/chatroom";
@@ -44,13 +44,11 @@ export default class App extends Component {
     }
     //open.close modal window
     handleUploader() {
-        console.log("click, click - clickHandler", this.state.uploaderVisible);
         this.setState({
             uploaderVisible: !this.state.uploaderVisible
         });
     }
     showEditMode() {
-        console.log("click, click - showeditMode", this.state.uploaderVisible);
         this.setState({ viewable: !this.state.viewable });
     }
     render() {
@@ -69,7 +67,7 @@ export default class App extends Component {
             return <p>Page is loading!</p>;
         } else {
             return (
-                <Router>
+                <Router class="mainHtmlContainer">
                     <Fragment>
                         <NavBar
                             first={first}
@@ -91,7 +89,7 @@ export default class App extends Component {
                                         first={first}
                                         last={last}
                                         profilepic={
-                                            <Profilepic
+                                            <Profilepicture
                                                 id={id}
                                                 first={first}
                                                 last={last}
@@ -112,7 +110,7 @@ export default class App extends Component {
                                                 email={email}
                                             />
                                         }
-                                        clickHandler={e =>
+                                        clickHandler={() =>
                                             this.setState({
                                                 uploaderVisible: true,
                                                 introVisible: false
@@ -162,5 +160,5 @@ export default class App extends Component {
                 </Router>
             );
         }
-    } // close render
-} // app close
+    }
+}

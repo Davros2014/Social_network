@@ -25,7 +25,7 @@ export default function Welcome() {
                             </Link>
                             <div className="logRegWrapper">
                                 <h2 className="h4_header logoTitle">
-                                    Welcome to the Zero<span>&#176;</span>{" "}
+                                    Welcome to the Zero<span>&#176;</span>
                                     community,
                                 </h2>
                             </div>

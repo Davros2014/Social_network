@@ -13,7 +13,7 @@ export default class Uploader extends React.Component {
     handleInput({ target }) {
         this.setState({ [target.name]: target.files[0] });
         console.log(
-            "///// button clicked > profile pic: ",
+            "///// handleInput button clicked > profile pic: ",
             target.files[0].name
         );
         target.files[0].name;
@@ -42,11 +42,17 @@ export default class Uploader extends React.Component {
         this.props.handleUploader();
     }
     submit() {
+        console.log("UPLOAD BUTTON CLICKED");
+
         let formData = new FormData();
+
+        // console.log("////// formData ///// ", formData);
         formData.append("file", this.state.file);
+        // console.log("////// formData after ///// ", formData);
         axios
             .post("/upload", formData)
             .then(results => {
+                // console.log("///////// results", results.data.url);
                 this.props.upDateImage(results.data.url);
             })
             .catch(function(err) {
@@ -54,6 +60,7 @@ export default class Uploader extends React.Component {
             });
     }
     render() {
+        const { error } = this.state;
         return (
             <div className="uploadOpacity">
                 <div className="uploadContainer">
@@ -64,7 +71,7 @@ export default class Uploader extends React.Component {
                         <h5 className="h5_header">
                             Would you like to change your profile image?
                         </h5>
-                        {this.state.error && (
+                        {error && (
                             <div className="error">
                                 Oops, something went wrong!
                             </div>

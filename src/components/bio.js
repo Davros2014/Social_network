@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "../axios";
 
-export class Bio extends React.Component {
+export default class Bio extends React.Component {
     constructor(props) {
         super(props);
         this.state = { viewable: false };
@@ -49,7 +49,7 @@ export class Bio extends React.Component {
         const { first, last, bioinfo } = this.props;
 
         return (
-            <React.Fragment>
+            <>
                 <h4 className="Personal_header">Personal Information</h4>
                 <h3 className="userName p_bodyText">
                     User:
@@ -110,7 +110,7 @@ export class Bio extends React.Component {
                         </div>
                     )}
                 </div>
-            </React.Fragment>
+            </>
         );
     }
 }

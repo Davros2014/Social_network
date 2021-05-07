@@ -1,10 +1,10 @@
 //otherprofile.js
 import React from "react";
 import axios from "../axios";
-import Profilepic from "./profilepic";
-import { Friendbutton } from "./friendbutton";
+import Profilepicture from "./Profilepicture";
+import Friendbutton from "./friendbutton";
 
-export class Otherprofile extends React.Component {
+export default class Otherprofile extends React.Component {
     constructor(props) {
         console.log("OTHER PROFILE > PROPS", props);
         super(props);
@@ -25,16 +25,17 @@ export class Otherprofile extends React.Component {
         console.log("success: false");
     }
     render() {
+        const { profilepicture } = this.state;
+        console.log("state in friends profiles", this.state);
         return (
             <React.Fragment>
                 <div className="pageContainer">
-                    <h1 className="h5_header">Other Profiles</h1>
+                    <h1 className="h5_header">Friend Profiles</h1>
                     <div className="otherprofileContainer">
                         <div className="mainImageProfile">
-                            <Profilepic
-                                imageUrl={
-                                    this.state.profilepicture ||
-                                    "/images/default.svg"
+                            <Profilepicture
+                                profilepictureurl={
+                                    profilepicture || "/images/default.svg"
                                 }
                             />
                         </div>

@@ -1,29 +1,68 @@
 // EXPRESS //////////////////////////////////////////
 const express = require("express");
 const app = express();
+const bodyParser = require("body-parser");
+const cookieSession = require("cookie-session");
+const cookieParser = require("cookie-parser");
+
 // BCRYPT & DB QUERIES ///////////////////////////////
 const db = require("./utils/db");
-// const bc = require("./utils/bc");
-const PORT = 8080 || process.env.PORT;
 
-// COMPRESSION - compresses json and css files etc
+const PORT = 8080 || process.env.PORT;
+const cors = require("cors");
+
+const corsOptions = {
+    origin: "http://localhost:8080",
+    credentials: true
+};
+app.use(cors(corsOptions));
+app.set("trust proxy", true);
 
 // socket.io
-
 const server = require("http").Server(app);
 // const io = require("socket.io")(server, { origins: "localhost:8080" funkychicken.heroku.com:*});
 const io = require("socket.io")(server, { origins: "localhost:8080" });
 
-// const compression = require("compression");
-// var multer = require("multer");
-// var uidSafe = require("uid-safe");
-// var path = require("path");
-const csurf = require("csurf");
-const cookieSession = require("cookie-session");
-const bodyParser = require("body-parser");
+const cookieSessionMiddleware = cookieSession({
+    secret: `I'm always angry.`,
+    maxAge: 1000 * 60 * 60 * 24 * 14
+});
+const csrf = require("csurf");
 
 app.use(express.static("./public"));
+// FIRST BODYPARSER ////////////////////////////////////////
+app.use(bodyParser.json());
+app.use(
+    bodyParser.urlencoded({
+        extended: true
+    })
+);
+app.use(cookieParser());
 
+// THEN COOKIE SESSION AFTER BODY-P ////////////////////////
+app.use(cookieSessionMiddleware);
+
+io.use(function(socket, next) {
+    cookieSessionMiddleware(socket.request, socket.request.res, next);
+});
+
+// CSURF TOKEN /////////////////////////////////////////////
+app.use(csrf());
+app.use((req, res, next) => {
+    res.cookie("mytoken", req.csrfToken());
+    res.setHeader("x-frame-options", "DENY");
+    next();
+});
+if (process.env.NODE_ENV != "production") {
+    app.use(
+        "/bundle.js",
+        require("http-proxy-middleware")({
+            target: "http://localhost:8081/"
+        })
+    );
+} else {
+    app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
+}
 // IMPORT ROUTERS //////////////////////////////
 const _01registerRouter = require("./routers/_01registrationRouter");
 const _02loginRouter = require("./routers/_02loginRouter");
@@ -39,41 +78,7 @@ const _11deletefriendrequest = require("./routers/_11deletefriendrequest");
 const _12friendsWannabes = require("./routers/_12friendsWannabes");
 // const _13deleteaccount = require("./routers/_13deleteaccount");
 
-// FIRST BODYPARSER ////////////////////////////////////////
-app.use(bodyParser.json());
-// THEN COOKIE SESSION AFTER BODY-P ////////////////////////
-const cookieSessionMiddleware = cookieSession({
-    secret: `I'm always angry.`,
-    maxAge: 1000 * 60 * 60 * 24 * 14
-});
-
-app.use(cookieSessionMiddleware);
-io.use(function(socket, next) {
-    cookieSessionMiddleware(socket.request, socket.request.res, next);
-});
-// CSURF TOKEN /////////////////////////////////////////////
-app.use(csurf());
-app.use((req, res, next) => {
-    res.cookie("mytoken", req.csrfToken());
-    res.setHeader("x-frame-options", "DENY");
-    next();
-});
-///////////
-if (process.env.NODE_ENV != "production") {
-    app.use(
-        "/bundle.js",
-        require("http-proxy-middleware")({
-            target: "http://localhost:8081/"
-        })
-    );
-} else {
-    app.use("/bundle.js", (req, res) => res.sendFile(`${__dirname}/bundle.js`));
-}
-
-//////////////////////////////////////////////////////
-// GET/POST ROUTES ///////////////////////////////////
-//////////////////////////////////////////////////////
-
+// ROUTES ///////////////////////////////////
 app.use(_01registerRouter);
 app.use(_02loginRouter);
 app.use(_03userRouter);
@@ -88,10 +93,7 @@ app.use(_11deletefriendrequest);
 app.use(_12friendsWannabes);
 // app.use(_13deleteaccount);
 
-//////////////////////////////////////////////////////
 // GET /WELCOME //////////////////////////////////////
-//////////////////////////////////////////////////////
-// directs to welcome page if not logged in
 app.get("/welcome", function(req, res) {
     if (req.session.userId) {
         res.redirect("/");
@@ -102,14 +104,12 @@ app.get("/welcome", function(req, res) {
 
 // LOG OUT
 app.get("/logout", (req, res) => {
+    // res.locals.csrfToken = null;
     req.session = null;
     res.redirect("/welcome");
 });
 
-//////////////////////////////////////////////////
-// FOR ALL OTHER ROUTES                         //
-//////////////////////////////////////////////////
-
+// FOR ALL OTHER ROUTES ///////////////////////////
 app.get("*", function(req, res) {
     if (!req.session.userId) {
         res.redirect("/welcome");
@@ -120,7 +120,9 @@ app.get("*", function(req, res) {
 
 // change from app to server for socket.io
 server.listen(PORT, function() {
-    console.log("Hello, is it me you're looking for...");
+    console.log(
+        `Hello, is it me you're looking for...listening on PORT: ${PORT}`
+    );
 });
 
 io.on("connection", socket => {

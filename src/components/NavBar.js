@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 // components
 import Logo from "./logo";
-import Profilepic from "./profilepic";
+import Profilepicture from "./Profilepicture";
 import Uploader from "./uploader";
 
 export default class NavBar extends Component {
@@ -53,7 +53,7 @@ export default class NavBar extends Component {
                             </Link>
                         </nav>
                         <div className="navPicContainer">
-                            <Profilepic
+                            <Profilepicture
                                 handleClick={this.handleClick}
                                 className="profilePic"
                                 profilepictureurl={profilepictureurl}

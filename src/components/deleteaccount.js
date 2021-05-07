@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "../axios";
 
-export class Deleteaccount extends React.Component {
+export default class Deleteaccount extends React.Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -17,10 +17,26 @@ export class Deleteaccount extends React.Component {
 
     render() {
         return (
-            <div className="delete">
+            <div
+                style={{
+                    height: "100vh",
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100vw",
+                    justifyContent: "center",
+                    textAlign: "center",
+                    alignItems: "center"
+                }}
+                className="delete"
+            >
                 <div className="deleteIcon">
                     <h2>Do you really want to leave us?</h2>
-                    <img id="delete-icon" src="/images/sad_face.svg" alt="" />
+                    <img
+                        style={{ height: "10rem" }}
+                        id="delete-icon"
+                        src="/images/sad_face.svg"
+                        alt=""
+                    />
                 </div>
                 <button className="buttonBasic" onClick={this.delete}>
                     Delete Account

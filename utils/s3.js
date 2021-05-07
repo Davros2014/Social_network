@@ -10,7 +10,8 @@ if (process.env.NODE_ENV == "production") {
 const client = knox.createClient({
     key: secrets.AWS_KEY,
     secret: secrets.AWS_SECRET,
-    bucket: "spicedling" // david's creds
+    // bucket: "spicedling"  david's creds
+    bucket: "socialnetworkapp19"
 });
 
 module.exports.upload = function(req, res, next) {
@@ -19,8 +20,8 @@ module.exports.upload = function(req, res, next) {
     }
     const s3Request = client.put(req.file.filename, {
         "Content-Type": req.file.mimetype,
-        "Content-Length": req.file.size,
-        "x-amz-acl": "public-read"
+        "Content-Length": req.file.size
+        // "x-amz-acl": "public-read"
     });
     const readStream = fs.createReadStream(req.file.path);
     readStream.pipe(s3Request);

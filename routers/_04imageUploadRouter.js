@@ -24,7 +24,7 @@ const diskStorage = multer.diskStorage({
     }
 });
 var uploader = multer({
-    // responsible for for what we upload and where
+    // responsible for what we upload and where
     storage: diskStorage,
     limits: {
         // filesize limit - in this case 2MB
@@ -37,7 +37,8 @@ router
     .post(uploader.single("file"), s3.upload, function(req, res) {
         if (req.file) {
             let userProfileUrl =
-                "https://s3.amazonaws.com/spicedling/" + req.file.filename;
+                "https://s3.amazonaws.com/socialnetworkapp19/" +
+                req.file.filename;
             // console.log("userProfileUrl", userProfileUrl);
             // console.log("POST REQUEST - req.file:", req.file);
             // console.log("req.session", req.session);

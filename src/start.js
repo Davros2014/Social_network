@@ -1,8 +1,7 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { render } from "react-dom";
 //styles
-import "../public/css/normalize.css";
-import "../public/css/style.css";
+import "./scss/style.css";
 
 //components
 import Welcome from "./components/welcome";
@@ -35,5 +34,4 @@ if (location.pathname == "/welcome") {
         </Provider>
     );
 }
-// main being the element in index.html
-ReactDOM.render(elem, document.querySelector("main"));
+render(elem, document.querySelector("main"));

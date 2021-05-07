@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 
 import { Link } from "react-router-dom";
-import Profilepic from "./profilepic";
+import Profilepicture from "./Profilepicture";
 import axios from "../axios";
 
-export function Findpeople(props) {
+export default function Findpeople(props) {
     const [user, setUser] = useState([]);
     const [name, setName] = useState("");
 
@@ -56,7 +56,7 @@ export function Findpeople(props) {
                                     key={user.id}
                                 >
                                     <Link to={`/user/${user.id}`}>
-                                        <Profilepic
+                                        <Profilepicture
                                             profilepictureurl={
                                                 user.profilepictureurl
                                             }

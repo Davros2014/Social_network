@@ -5,7 +5,7 @@ const db = require("../utils/db");
 module.exports = router;
 
 router.route("/acceptfriendship").post((req, res) => {
-    // console.log("/////// ACCEPT FRIENDS POST REQUEST");
+    console.log("/////// ACCEPT FRIENDS POST REQUEST");
     // console.log("req.body.otheruserid", req.body.otheruserid);
     // console.log("req.session.userId", req.session.userId);
 
@@ -15,6 +15,7 @@ router.route("/acceptfriendship").post((req, res) => {
 
     db.updateFriends(ownerId, loggedinUserId)
         .then(results => {
+            console.log("results", results);
             // console.log(
             //     "//////////// Accept request sent & add unfriend request"
             // );

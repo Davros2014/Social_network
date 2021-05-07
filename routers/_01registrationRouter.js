@@ -4,35 +4,25 @@ const db = require("../utils/db");
 const bc = require("../utils/bc");
 const expressSanitizer = require("express-sanitizer");
 
-module.exports = router;
-
 router.use(expressSanitizer());
 
 router.route("/register").post((req, res) => {
-    // console.log("POST /register - do you read me, over");
-    // console.log("req.session", req.session);
-    // console.log("req.body.first", req.body.first);
-    // console.log("req.body.last", req.body.last);
-    // console.log("req.body.email", req.body.email);
-    // console.log("req.body.password", req.body.password);
+    console.log("register here");
     let { first, last, email, password } = req.body;
+    console.log("req.body", req.body);
     if (first && last && email && password) {
-        bc.hashPassword(req.body.password)
+        bc.hashPassword(password)
             .then(hashedPassword => {
-                // console.log("#### HASHED PASSWORD", hashedPassword);
-                db.registration(
-                    req.body.first,
-                    req.body.last,
-                    req.body.email,
-                    hashedPassword
-                )
+                console.log("hashedPassword", hashedPassword);
+                db.registration(first, last, email, hashedPassword)
                     .then(results => {
-                        // req.session adds to cookies
+                        console.log("req.session.userId", req.session.userId);
+
                         req.session.userId = results.rows[0].id;
-                        // console.log("req.session", req.session);
                         res.json({
                             success: true
                         });
+                        console.log("results", results);
                     })
                     .catch(err => {
                         console.log(err);
@@ -52,3 +42,5 @@ router.route("/register").post((req, res) => {
         });
     }
 });
+
+module.exports = router;

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "../axios";
 
-export function Friendbutton(props) {
+export default function Friendbutton(props) {
     const [buttonName, setButtonName] = useState("_");
 
     const submit = () => {

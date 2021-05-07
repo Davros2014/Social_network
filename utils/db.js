@@ -20,6 +20,7 @@ module.exports.registration = function registration(
     email,
     password
 ) {
+    console.log("in DB registration");
     return db.query(
         `
         INSERT INTO users (first, last, email, password)
@@ -47,6 +48,7 @@ module.exports.getUserData = function getUserData(id) {
 
 // select all user info from registration fields
 module.exports.getUserInfo = function getUserInfo(email) {
+    console.log("getuserdata", email);
     return db.query(
         `
         SELECT id, first, last, email, password, bioinfo, profilepictureurl FROM users
