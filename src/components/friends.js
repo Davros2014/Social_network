@@ -1,105 +1,109 @@
-// FROM HOT OR NOT EG
-
-import React from "react";
-// import { Link } from "react-router-dom";
+import React, { Component, Fragment } from "react";
 import { connect } from "react-redux";
-import { friendsWannabes, acceptFriendRequest, unfriend } from "../actions";
+import {
+    friendsWannabes,
+    acceptFriendRequest,
+    unfriend
+} from "../actions/actions";
 import { Link } from "react-router-dom";
+import PageContainer from "./PageContainer";
+import Loader from "./Loader";
 
-class Friends extends React.Component {
+class Friends extends Component {
     componentDidMount() {
         this.props.dispatch(friendsWannabes());
     }
     render() {
         const { friends, pending } = this.props;
-        console.log("this.props.friends", friends);
-
-        if (!friends) {
-            return (
-                <div className="loader">
-                    <img className="loader_logo" src="/images/zero_logo.svg" />
-                </div>
-            );
-        }
+        // console.log("this.props.friends", friends);
         return (
-            <React.Fragment>
-                <div className="pageContainer">
-                    <h2 className="h5_header friendsListHeader"> Friends</h2>
-                    <div className="friendsEtcContainer">
-                        {friends &&
-                            friends.map(friends => (
-                                <div
-                                    className="friendsEtcWrapper"
-                                    key={friends.id}
-                                >
-                                    <Link to={`/user/${friends.id}`}>
-                                        <img
-                                            className="userProfilePic"
-                                            src={friends.profilepictureurl}
-                                            alt=""
-                                            onError={e => {
-                                                e.target.src =
-                                                    "/images/default.svg";
-                                            }}
-                                        />
-                                    </Link>
-                                    <p className="h5_header friendsEtcText">
-                                        {friends.first} {friends.last}
-                                    </p>
-                                    <button
-                                        className="buttonBasic friendButton"
-                                        onClick={e =>
-                                            this.props.dispatch(
-                                                unfriend(friends.id)
-                                            )
-                                        }
+            <Fragment>
+                {!friends ? (
+                    <Loader />
+                ) : (
+                    <PageContainer>
+                        <h2 className="h5_header friendsListHeader">
+                            {" "}
+                            Friends
+                        </h2>
+                        <div className="friendsEtcContainer">
+                            {friends &&
+                                friends.map(friends => (
+                                    <div
+                                        className="friendsEtcWrapper"
+                                        key={friends.id}
                                     >
-                                        Unfriend User
-                                    </button>
-                                </div>
-                            ))}
-                    </div>
-                    <h2 className="h5_header pendingListHeader">
-                        {" "}
-                        Friends pending
-                    </h2>
+                                        <Link to={`/user/${friends.id}`}>
+                                            <img
+                                                className="userProfilePic"
+                                                src={friends.profilepictureurl}
+                                                alt=""
+                                                onError={e => {
+                                                    e.target.src =
+                                                        "/images/default.svg";
+                                                }}
+                                            />
+                                        </Link>
+                                        <p className="h5_header friendsEtcText">
+                                            {friends.first} {friends.last}
+                                        </p>
+                                        <button
+                                            className="buttonBasic friendButton"
+                                            onClick={e =>
+                                                this.props.dispatch(
+                                                    unfriend(friends.id)
+                                                )
+                                            }
+                                        >
+                                            Unfriend User
+                                        </button>
+                                    </div>
+                                ))}
+                        </div>
+                        <h2 className="h5_header pendingListHeader">
+                            {" "}
+                            Friends pending
+                        </h2>
 
-                    <div className="friendsEtcContainer">
-                        {pending &&
-                            pending.map(pending => (
-                                <div
-                                    className="friendsEtcWrapper"
-                                    key={pending.id}
-                                >
-                                    <Link to={`/user/${pending.id}`}>
-                                        <img
-                                            className="userProfilePic"
-                                            src={pending.profilepictureurl}
-                                            alt=""
-                                            onError={e => {
-                                                e.target.src =
-                                                    "/images/default.svg";
-                                            }}
-                                        />
-                                    </Link>
-                                    <p className="h4_header friendsEtcText">
-                                        {pending.first} {pending.last}
-                                    </p>
-                                    <button
-                                        className="friendButton buttonBasic"
-                                        onClick={e =>
-                                            this.props.dispatch(
-                                                acceptFriendRequest(pending.id)
-                                            )
-                                        }
+                        <div className="friendsEtcContainer">
+                            {pending &&
+                                pending.map(pending => (
+                                    <div
+                                        className="friendsEtcWrapper"
+                                        key={pending.id}
                                     >
-                                        Accept User Invite
-                                    </button>
-                                </div>
-                            ))}
-                    </div>
-                </div>
-            </React.Fragment>
+                                        <Link to={`/user/${pending.id}`}>
+                                            <img
+                                                className="userProfilePic"
+                                                src={pending.profilepictureurl}
+                                                alt=""
+                                                onError={e => {
+                                                    e.target.src =
+                                                        "/images/default.svg";
+                                                }}
+                                            />
+                                        </Link>
+                                        <p className="h4_header friendsEtcText">
+                                            {pending.first} {pending.last}
+                                        </p>
+                                        <button
+                                            className="friendButton buttonBasic"
+                                            onClick={e =>
+                                                this.props.dispatch(
+                                                    acceptFriendRequest(
+                                                        pending.id
+                                                    )
+                                                )
+                                            }
+                                        >
+                                            Accept User Invite
+                                        </button>
+                                    </div>
+                                ))}
+                        </div>
+                    </PageContainer>
+                )}
+            </Fragment>
         );
     }
 }

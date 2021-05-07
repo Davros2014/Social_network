@@ -1,16 +1,22 @@
 import React from "react";
 import axios from "../axios";
-import PageContainer from "./PageContainer";
 
-const Deleteaccount = () => {
-    const deleteAccount = () => {
+export default class Deleteaccount extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {};
+        this.delete = this.delete.bind(this);
+    }
+
+    delete() {
         axios.post("/deleteaccount").then(response => {
             console.log(response);
             location.replace("/welcome");
         });
-    };
-    return (
-        <PageContainer>
+    }
+
+    render() {
+        return (
             <div
                 style={{
                     height: "100vh",
@@ -26,17 +32,16 @@ const Deleteaccount = () => {
                 <div className="deleteIcon">
                     <h2>Do you really want to leave us?</h2>
                     <img
-                        style={{ height: "15rem" }}
+                        style={{ height: "10rem" }}
                         id="delete-icon"
                         src="/images/sad_face.svg"
                         alt=""
                     />
                 </div>
-                <button className="buttonBasic" onClick={deleteAccount}>
+                <button className="buttonBasic" onClick={this.delete}>
                     Delete Account
                 </button>
             </div>
-        </PageContainer>
-    );
-};
-export default Deleteaccount;
+        );
+    }
+}

@@ -1,6 +1,6 @@
 import * as io from "socket.io-client";
 
-import { allChatMessages, chatMessage } from "./actions";
+import { allChatMessages, chatMessage } from "./actions/actions";
 
 export let socket;
 

@@ -56,8 +56,6 @@
         "redux": "^3.7.1",
         "redux-devtools-extension": "^2.13.2",
         "redux-promise": "^0.5.3",
-        "sass": "^1.32.12",
-        "sass-loader": "^10",
         "serialize-javascript": "^2.1.2",
         "set-value": "^3.0.2",
         "socket.io": "^2.4.1",
@@ -85,6 +83,8 @@
     "description": "",
     "devDependencies": {
         "css-loader": "^2.1.1",
+        "sass": "^1.32.12",
+        "sass-loader": "^10",
         "style-loader": "^0.23.1",
         "uglifyjs-webpack-plugin": "^2.2.0"
     }

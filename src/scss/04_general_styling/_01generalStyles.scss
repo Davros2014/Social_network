@@ -39,7 +39,7 @@ p {
     vertical-align: middle;
     display: block;
 }
-
+// in loader component //////
 .loader {
     position: fixed;
     top: 0;
@@ -55,11 +55,12 @@ p {
     align-items: center;
     margin: auto;
     z-index: 2000;
+    &__logo {
+        width: 10vw;
+        height: 10vw;
+    }
 }
-.loader_logo {
-    width: 10vw;
-    height: 10vw;
-}
+//////////////////////////
 .error {
     font-size: 1rem;
     color: $primary-color;
@@ -96,9 +97,10 @@ body {
     @include align-items(center);
     @include flex-direction(column);
     margin: 0 auto;
-    margin-top: 15rem;
-    width: $outerContainer;
+    width: 100vw;
+    height: 100vh;
     text-align: center;
+    // background: blue;
 }
 @media all and (max-width: 768px) {
     .pageContainer {
@@ -145,8 +147,4 @@ p {
 }
 span {
     @include bodysmall;
-}
-/* =============== MEDIA EG =============== */
-
-@media screen and (min-width: 767px) {
 }

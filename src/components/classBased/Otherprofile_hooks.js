@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import axios from "../axios";
 import Profilepicture from "./Profilepicture";
 import Friendbutton from "./Friendbutton";
+import PageContainer from "./PageContainer";
 
 const Otherprofile = props => {
     // componentDidMount() {
@@ -36,7 +37,7 @@ const Otherprofile = props => {
     const { profilepicture } = props;
     // console.log("state in friendiess profiles", this.state);
     return (
-        <div className="pageContainer">
+        <PageContainer>
             <h1 className="h5_header">Friend Profiles</h1>
             <div className="otherprofileContainer">
                 <div className="mainImageProfile">
@@ -47,7 +48,7 @@ const Otherprofile = props => {
                     />
                 </div>
                 <h3 className="userName p_bodyText otherprofileHeader">
-                    <bold>User &#x23;{this.state.id} </bold>
+                    <strong>User &#x23;{this.state.id} </strong>
                     <span>
                         {this.state.first} {this.state.last}
                     </span>
@@ -62,7 +63,7 @@ const Otherprofile = props => {
                     <Friendbutton otheruserid={this.props.match.params.id} />
                 </div>
             </div>
-        </div>
+        </PageContainer>
     );
 };
 export default Otherprofile;

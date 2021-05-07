@@ -2,8 +2,9 @@
 import React from "react";
 // import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { allChatMessages, chatMessage } from "../actions";
+import { allChatMessages, chatMessage } from "../actions/actions";
 import { socket } from "../socket";
+import PageContainer from "./PageContainer";
 
 class Chatroom extends React.Component {
     constructor(props) {
@@ -36,72 +37,69 @@ class Chatroom extends React.Component {
         const { allMessages, bioinfo } = this.props;
         const { disabled } = this.state;
         return (
-            <React.Fragment>
-                <div className="pageContainer">
-                    <h2 className="h5_header">Message Board</h2>
-                    <div className="chatContainer" ref={this.elemRef}>
-                        {allMessages &&
-                            allMessages.map(chatroom => (
-                                <div className="chatItem" key={chatroom.id}>
-                                    <img
-                                        className="userProfilePic"
-                                        src={
-                                            chatroom.profilepictureurl ||
-                                            "/images/default.svg"
-                                        }
-                                        alt=""
-                                    />
-                                    <div className="chatDetails">
-                                        <div className="chatHeader">
-                                            <div className="chatInfo">
-                                                User&#x23; {chatroom.user_id}{" "}
-                                                {chatroom.first} {chatroom.last}{" "}
-                                                commented on{" "}
-                                                {chatroom.created_at}
-                                            </div>
-                                        </div>
-                                        <div className="h4_header">
-                                            <p className="h4_header chatMessage">
-                                                {chatroom.messages}
-                                            </p>
+            <PageContainer>
+                <h2 className="h5_header">Message Board</h2>
+                <div className="chatContainer" ref={this.elemRef}>
+                    {allMessages &&
+                        allMessages.map(chatroom => (
+                            <div className="chatItem" key={chatroom.id}>
+                                <img
+                                    className="userProfilePic"
+                                    src={
+                                        chatroom.profilepictureurl ||
+                                        "/images/default.svg"
+                                    }
+                                    alt=""
+                                />
+                                <div className="chatDetails">
+                                    <div className="chatHeader">
+                                        <div className="chatInfo">
+                                            User&#x23; {chatroom.user_id}{" "}
+                                            {chatroom.first} {chatroom.last}{" "}
+                                            commented on {chatroom.created_at}
                                         </div>
                                     </div>
+                                    <div className="h4_header">
+                                        <p className="h4_header chatMessage">
+                                            {chatroom.messages}
+                                        </p>
+                                    </div>
                                 </div>
-                            ))}
-                    </div>
-                    <div className="chatInputField">
-                        <div className="messaging_container">
-                            <textarea
-                                ref="chatroom_editor"
-                                spellCheck="false"
-                                defaultValue={bioinfo}
-                                className="chatEditor"
-                                id="output"
-                                name="chatinfo"
-                                onChange={e => this.handleInput(e)}
-                                type="text"
-                            />
-                            {!disabled ? (
-                                <button className="buttonBasic chatinfoSave">
-                                    Disabled
-                                </button>
-                            ) : (
-                                <button
-                                    onClick={e => {
-                                        this.handleSubmit(e);
-                                    }}
-                                    id="clear"
-                                    type="reset"
-                                    value="Reset"
-                                    className="buttonBasic chatinfoSave"
-                                >
-                                    Send
-                                </button>
-                            )}
-                        </div>
+                            </div>
+                        ))}
+                </div>
+                <div className="chatInputField">
+                    <div className="messaging_container">
+                        <textarea
+                            ref="chatroom_editor"
+                            spellCheck="false"
+                            defaultValue={bioinfo}
+                            className="chatEditor"
+                            id="output"
+                            name="chatinfo"
+                            onChange={e => this.handleInput(e)}
+                            type="text"
+                        />
+                        {!disabled ? (
+                            <button className="buttonBasic chatinfoSave">
+                                Disabled
+                            </button>
+                        ) : (
+                            <button
+                                onClick={e => {
+                                    this.handleSubmit(e);
+                                }}
+                                id="clear"
+                                type="reset"
+                                value="Reset"
+                                className="buttonBasic chatinfoSave"
+                            >
+                                Send
+                            </button>
+                        )}
                     </div>
                 </div>
-            </React.Fragment>
+            </PageContainer>
         );
     }
 }

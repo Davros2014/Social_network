@@ -1,10 +1,10 @@
-import React, { Component } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 // components
-import Logo from "./logo";
+import Logo from "./Logo";
 import Profilepicture from "./Profilepicture";
-import Uploader from "./uploader";
+import Uploader from "./Uploader";
 
 const NavBar = ({
     uploaderVisible,
@@ -17,7 +17,7 @@ const NavBar = ({
 }) => {
     return (
         <header className="topNav">
-            <div className="navWrapper">
+            <div className="topNav__wrapper">
                 <Link to="/">
                     <Logo />
                 </Link>

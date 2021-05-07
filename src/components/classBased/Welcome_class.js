@@ -5,12 +5,14 @@ import { HashRouter, Route, Link } from "react-router-dom";
 import Registration from "./Registration";
 import Login from "./Login";
 import Logo from "./Logo";
-// import Loader from "./Loader";
+import Loader from "./Loader";
 
-const Welcome = props => {
+export default function Welcome(props) {
     console.log("props", props);
     // if (!req.session == null) {
-    //     return <Loader />;
+    //     return (
+    //			<Loader/>
+    //     );
     // }
     return (
         <div className="registerLoginScreen">
@@ -35,5 +37,4 @@ const Welcome = props => {
             </div>
         </div>
     );
-};
-export default Welcome;
+}

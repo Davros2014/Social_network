@@ -1,10 +1,10 @@
 import React from "react";
 
-const Logo = () => {
+const Loader = () => {
     return (
         <div className="loader">
-            <img className="loader_logo" src="/images/zero_logo.svg" />
+            <img className="loader__logo" src="/images/zero_logo.svg" />
         </div>
     );
 };
-export default Logo;
+export default Loader;

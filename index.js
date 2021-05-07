@@ -142,7 +142,7 @@ io.on("connection", socket => {
     db.getRecentChatMessages()
         .then(results => {
             if (!results.rows.length == 0) {
-                console.log("+++++ results.rows", results.rows);
+                // console.log("+++++ results.rows", results.rows);
                 socket.emit("allChatMessages", results.rows.reverse());
             }
         })
@@ -156,10 +156,10 @@ io.on("connection", socket => {
                 db.getRecentChatMessages()
                     .then(results => {
                         if (!results.rows.length == 0) {
-                            console.log(
-                                "after add message+++++ results.rows",
-                                results.rows
-                            );
+                            // console.log(
+                            //     "after add message+++++ results.rows",
+                            //     results.rows
+                            // );
                             io.sockets.emit(
                                 "allChatMessages",
                                 results.rows.reverse()
