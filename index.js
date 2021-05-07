@@ -53,6 +53,7 @@ app.use((req, res, next) => {
     res.setHeader("x-frame-options", "DENY");
     next();
 });
+
 if (process.env.NODE_ENV != "production") {
     app.use(
         "/bundle.js",

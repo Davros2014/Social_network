@@ -1,7 +1,7 @@
 import React from "react";
 import { render } from "react-dom";
 //styles
-import "./scss/style.css";
+import "./scss/style.scss";
 
 //components
 import Welcome from "./components/welcome";

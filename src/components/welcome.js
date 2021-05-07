@@ -2,16 +2,16 @@ import React, { Fragment } from "react";
 import { HashRouter, Route, Link } from "react-router-dom";
 
 // components
-import Registration from "./registration";
-import Login from "./login";
-import Logo from "./logo";
+import Registration from "./Registration";
+import Login from "./Login";
+import Logo from "./Logo";
+import Loader from "./Loader";
 
-export default function Welcome() {
+export default function Welcome(props) {
+    console.log("props", props);
     // if (!req.session == null) {
     //     return (
-    //         <div className="loader">
-    //             <img className="loader_logo" src="/images/zero_logo.svg" />
-    //         </div>
+    //			<Loader/>
     //     );
     // }
     return (

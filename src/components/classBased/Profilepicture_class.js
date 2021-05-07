@@ -1,6 +1,8 @@
 import React from "react";
 
-const Profilepicture = ({ handleUploader, profilepictureurl, first, last }) => {
+export default function Profilepicture(props) {
+    // console.log("profilepic props", props);
+    const { handleUploader, profilepictureurl, first, last } = props;
     return (
         <img
             className="userProfilePic"
@@ -9,5 +11,4 @@ const Profilepicture = ({ handleUploader, profilepictureurl, first, last }) => {
             alt={`${first} ${last}`}
         />
     );
-};
-export default Profilepicture;
+}

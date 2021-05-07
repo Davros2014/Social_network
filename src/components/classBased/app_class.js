@@ -1,68 +1,72 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { Component, Fragment } from "react";
 import axios from "./axios";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 // components
 import Profilepicture from "./components/Profilepicture";
 import Profile from "./components/Profile";
-import Bio from "./components/Bio";
-import Otherprofile from "./components/Otherprofile";
-import Findpeople from "./components/Findpeople";
-import Deleteaccount from "./components/Deleteaccount";
+import Bio from "./components/bio";
+import Otherprofile from "./components/otherprofile";
+import Findpeople from "./components/findpeople";
+import Deleteaccount from "./components/deleteaccount";
 import NavBar from "./components/NavBar";
-import Friends from "./components/Friends";
-import Chatroom from "./components/Chatroom";
-import Loader from "./components/Loader";
+import Friends from "./components/friends";
+import Chatroom from "./components/chatroom";
 
-const App = () => {
-    const [loading, setLoading] = useState(true);
-    const [viewable, setViewable] = useState(false);
-    const [uploaderVisible, setUploaderVisible] = useState(false);
-    const [first, setFirst] = useState("");
-    const [last, setLast] = useState("");
-    const [id, setId] = useState("");
-    const [profilepictureurl, setProfilepictureurl] = useState("");
-    const [email, setEmail] = useState("");
-    const [bioinfo, setBioinfo] = useState("");
-
-    useEffect(() => {
+export default class App extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            uploaderVisible: false,
+            viewable: false,
+            loading: true
+        };
+        this.setBio = this.setBio.bind(this);
+        this.handleUploader = this.handleUploader.bind(this);
+        this.showEditMode = this.showEditMode.bind(this);
+    }
+    componentDidMount() {
         axios
             .get("/user")
             .then(({ data }) => {
-                const {
-                    first,
-                    last,
-                    id,
-                    profilepictureurl,
-                    email,
-                    bioinfo
-                } = data;
-                setFirst(first);
-                setLast(last);
-                setId(id);
-                setProfilepictureurl(profilepictureurl);
-                setEmail(email);
-                setBioinfo(bioinfo);
+                this.setState(data);
             })
             .catch(err => console.log(err));
-        setLoading(false);
-    }, []);
-
+        this.setState({
+            loading: false
+        });
+    }
     // see Bio.js for update info
-    const setBio = newBio => {
-        setBioinfo(newBio);
-    };
-    const handleUploader = () => {
-        setUploaderVisible(!uploaderVisible);
-    };
-    const showEditMode = () => {
-        setViewable(!viewable);
-    };
-    return (
-        <Fragment>
-            {loading ? (
-                <Loader />
-            ) : (
+    setBio(newBio) {
+        this.setState({
+            bioinfo: newBio
+        });
+    }
+    //open.close modal window
+    handleUploader() {
+        this.setState({
+            uploaderVisible: !this.state.uploaderVisible
+        });
+    }
+    showEditMode() {
+        this.setState({ viewable: !this.state.viewable });
+    }
+    render() {
+        console.log("state in app.js", this.state);
+        const {
+            first,
+            last,
+            id,
+            profilepictureurl,
+            email,
+            bioinfo,
+            loading,
+            uploaderVisible
+        } = this.state;
+        if (loading) {
+            return <p>Page is loading!</p>;
+        } else {
+            return (
                 <Router class="mainHtmlContainer">
                     <Fragment>
                         <NavBar
@@ -72,11 +76,9 @@ const App = () => {
                             profilepictureurl={profilepictureurl}
                             email={email}
                             bioinfo={bioinfo}
-                            showEditMode={showEditMode}
-                            handleUploader={handleUploader}
+                            showEditMode={this.showEditMode}
+                            handleUploader={this.handleUploader}
                             uploaderVisible={uploaderVisible}
-                            setProfilepictureurl={setProfilepictureurl}
-                            setUploaderVisible={setUploaderVisible}
                         />
                         <Switch>
                             <Route
@@ -94,21 +96,26 @@ const App = () => {
                                                 profilepictureurl={
                                                     profilepictureurl
                                                 }
-                                                handleUploader={handleUploader}
+                                                handleUploader={
+                                                    this.handleUploader
+                                                }
                                             />
                                         }
                                         bio={
                                             <Bio
                                                 bioinfo={bioinfo}
-                                                setBio={setBio}
+                                                setBio={this.setBio}
                                                 first={first}
                                                 last={last}
                                                 email={email}
-                                                viewable={viewable}
-                                                showEditMode={showEditMode}
                                             />
                                         }
-                                        handleUploader={handleUploader}
+                                        clickHandler={() =>
+                                            this.setState({
+                                                uploaderVisible: true,
+                                                introVisible: false
+                                            })
+                                        }
                                     />
                                 )}
                             />
@@ -151,8 +158,7 @@ const App = () => {
                         </Switch>
                     </Fragment>
                 </Router>
-            )}
-        </Fragment>
-    );
-};
-export default App;
+            );
+        }
+    }
+}

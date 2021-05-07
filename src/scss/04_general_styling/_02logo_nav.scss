@@ -68,6 +68,7 @@
     background: $complimentary-color;
     height: 8rem;
     position: fixed;
+    top: 0;
     width: 100vw;
     margin: 0 auto;
     @include flexbox();
