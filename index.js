@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 // BCRYPT & DB QUERIES ///////////////////////////////
 const db = require("./utils/db");
 
-const PORT = 8080 || process.env.PORT;
+const PORT = process.env.PORT || 8080;
 const cors = require("cors");
 
 const corsOptions = {
