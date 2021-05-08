@@ -6,22 +6,22 @@ export default class Registration extends Component {
     constructor(props) {
         super(props);
         this.state = {};
-        // this.submit = this.submit.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
+        this.submit = this.submit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
     }
     handleChange({ target }) {
         this.setState({ [target.name]: target.value });
         console.log("target.name", ([target.name], target.value));
     }
     submit() {
-        const { first, last, password, email } = this.state;
+        // const { first, last, password, email } = this.state;
         console.log("password in this.state", this.state);
         axios
             .post("/register", {
-                first,
-                last,
-                email,
-                password
+                first: this.state.first,
+                last: this.state.last,
+                email: this.state.email,
+                password: this.state.password
             })
             .then(({ data }) => {
                 if (data.success) {
@@ -34,8 +34,9 @@ export default class Registration extends Component {
                 }
             });
     }
-
     render() {
+        console.log("this.state", this.state);
+
         const { error } = this.state;
         return (
             <div className="registrationForm">
