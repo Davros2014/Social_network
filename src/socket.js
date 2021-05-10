@@ -15,10 +15,14 @@ export let socket;
 //     }
 // };
 
+// const socketURL =
+//     process.env.NODE_ENV === "production"
+//         ? window.location.hostname
+//         : "http://localhost:8080";
 const socketURL =
     process.env.NODE_ENV === "production"
-        ? window.location.hostname
-        : "https://localhost:8080";
+        ? "http://zero-socialnetwork.herokuapp.com/"
+        : "http://localhost:8080";
 console.log("socketURL", socketURL);
 export const init = store => {
     if (!socket) {
