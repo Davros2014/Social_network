@@ -22,7 +22,7 @@ app.set("trust proxy", true);
 const server = require("http").Server(app);
 // const io = require("socket.io")(server, { origins: "localhost:8080" funkychicken.heroku.com:*});
 const io = require("socket.io")(server, {
-    origins: "localhost:8080 zero-socialnetwork.herokuapp.com"
+    origins: "localhost:8080 zero-socialnetwork.herokuapp.com:*"
 });
 
 // const io = require("socket.io")(server, { origins: "localhost:8080" });
