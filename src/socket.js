@@ -4,6 +4,7 @@ import { allChatMessages, chatMessage } from "./actions/actions";
 
 export let socket;
 
+//old
 // export const init = store => {
 //     if (!socket) {
 //         socket = io.connect();
@@ -13,11 +14,15 @@ export let socket;
 //         socket.on("chatMessage", msg => store.dispatch(chatMessage(msg)));
 //     }
 // };
+
+const socketURL =
+    process.env.NODE_ENV === "production"
+        ? window.location.hostname
+        : "https://localhost:8080";
+
 export const init = store => {
     if (!socket) {
-        socket = io.connect("https://zero-socialnetwork.herokuapp.com/", {
-            secure: true
-        });
+        socket = io.connect(socketURL, { secure: true });
         socket.on("allChatMessages", msgs =>
             store.dispatch(allChatMessages(msgs))
         );

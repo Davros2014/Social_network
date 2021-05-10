@@ -34,4 +34,5 @@ if (location.pathname == "/welcome") {
         </Provider>
     );
 }
+
 render(elem, document.querySelector("main"));
