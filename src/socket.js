@@ -19,7 +19,7 @@ const socketURL =
     process.env.NODE_ENV === "production"
         ? window.location.hostname
         : "https://localhost:8080";
-
+console.log("socketURL", socketURL);
 export const init = store => {
     if (!socket) {
         socket = io.connect(socketURL, { secure: true });
