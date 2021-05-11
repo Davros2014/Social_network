@@ -23,6 +23,7 @@ const diskStorage = multer.diskStorage({
         });
     }
 });
+
 var uploader = multer({
     // responsible for what we upload and where
     storage: diskStorage,
@@ -56,13 +57,12 @@ router
                         message:
                             " Sorry, you did not upload an image or the image is too big"
                     });
-                    // console.log("ERROR: ", err);
+                    console.log("ERROR: ", err.message);
                 });
         } else {
             console.log(err);
             res.json({
-                success: false,
-                error: err
+                success: false
             });
         }
     });

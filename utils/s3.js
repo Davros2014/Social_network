@@ -20,10 +20,10 @@ module.exports.upload = function(req, res, next) {
     }
     const s3Request = client.put(req.file.filename, {
         "Content-Type": req.file.mimetype,
-        "Content-Length": req.file.size
-        // "x-amz-acl": "public-read"
+        "Content-Length": req.file.size,
+        "x-amz-acl": "public-read"
     });
-    const readStream = fs.createReadStream(req.file.path);
+    const readStream = fs.createReadStream(req.file.path); // readstream = stream to Amazon
     readStream.pipe(s3Request);
 
     s3Request.on("response", s3Response => {
@@ -39,5 +39,4 @@ module.exports.upload = function(req, res, next) {
             // });
         }
     });
-    // readstream = stream to Amazon
-}; // end upload
+};
