@@ -1,62 +1,116 @@
-////////////////////////////////////////////////////
-// UPLOADER ////////////////////////////////////////
-////////////////////////////////////////////////////
-.uploadOpacity {
-    background: rgba(0, 0, 0, 0.5);
+// UPLOADER ///////////////////////////////
+
+.modalBackground {
+    background: rgba(0, 0, 0, 0.85);
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-}
-// wraps all content
-.uploadWrapper {
-    @include flexbox();
-    @include flex-direction(column);
-    @include justify-content(center);
-    @include align-items(center);
-    animation-name: fadeInbounceIn;
-    animation-duration: 0.35s;
-    animation-fill-mode: forwards;
-}
-@keyframes fadeInbounceIn {
-    0% {
-        opacity: 0;
-        transform: scale(0.8);
-    }
-
-    100% {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-.uploadWrapper h4 {
-    @include H4-Headers;
-}
-// wraps upload button and submit
-.uploadContainer {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: $width50;
-    height: $height50;
-    background: rgba(0, 0, 0, 0.85);
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
-    opacity: 1;
+    transition: all 0.5s ease-in-out;
+}
+.modalContainer {
+    width: $width90;
+    background: $primary-color-50;
+    box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+    opacity: 0;
     border-radius: 1rem;
     z-index: 200;
-    padding: 3rem 5rem 3rem 5rem;
-}
-//
-.upload-btn-wrapper {
-    position: relative;
-    overflow: hidden;
-    display: inline-block;
-    @include flexbox();
-    @include flex-direction(column);
+    padding: 3rem;
+    padding-bottom: 0;
+    @include minMq($mobileBreak) {
+        width: $width30;
+    }
+    &.active {
+        animation: 0.5s bounceIn forwards ease-in-out;
+    }
+    &.remove {
+        animation: 0.2s minimise linear;
+    }
+    &::before {
+        @include pseudoContent();
+        background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+        opacity: 0.45;
+        background-blend-mode: multiply;
+    }
+    .modalCloseBtn {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        width: clamp(1.5rem, 2vw, 1.75rem);
+        height: clamp(1.5rem, 2vw, 1.75rem);
+        border-radius: 100%;
+        @include flexbox();
+        @include align-items(center);
+        @include justify-content(center);
+        background: $light-accent-color;
+        color: $accent-color;
+        font-size: 1.15rem;
+        font-weight: 700;
+        padding: 0.5vw;
+        border: none;
+        transition: all 0.25s ease-in-out;
+        &:hover {
+            transition: all 0.25s ease-in-out;
+            color: $light-accent-color;
+            background: $accent-color;
+            cursor: pointer;
+        }
+    }
+    .modalWrapper {
+        transform: scale(0.8);
+        @include flexbox();
+        @include flex-direction(column);
+        @include justify-content(center);
+        @include align-items(center);
+        .h5_header {
+            color: $light-accent-color;
+        }
+        .uploadFileContainer {
+            margin: 2rem 0 0 0;
+            .userProfilePic {
+                width: 15rem;
+                height: 15rem;
+                text-align: center;
+                margin: 0 auto;
+            }
+            .inputFileWrapper {
+                padding: 1rem;
+                figure {
+                    margin-bottom: 2rem;
+                }
+                .inputfile {
+                    opacity: 0;
+                    display: none;
+                }
+                label {
+                    font-weight: 400;
+                    color: $light-accent-color;
+                }
+                .uploadFile {
+                    width: 15%;
+                    height: auto;
+                    vertical-align: middle;
+                    display: block;
+                    margin: 0 auto;
+                    cursor: pointer;
+                    opacity: 0.5;
+                    @include transition(all, 0.2s, ease-out);
+                    margin-bottom: 1rem;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+            }
+            .error {
+                margin: 2rem 0 1rem 0;
+            }
+        }
+    }
 }
 .inputField {
     position: relative;
@@ -64,142 +118,40 @@
     height: 6rem;
     cursor: pointer;
 }
-// input field
-.uploadButton {
-    background: blue;
-    height: 2rem;
-}
-// .inputField input[type="file"] {
-//     font-size: 100px;
-//     position: absolute;
-//     left: 0;
-//     top: 0;
-//     opacity: 0;
-//     background: blue;
-// }
 
-// LABEL > INPUT BUTTON ////
-.inputButton {
-    position: absolute;
-    left: 50%;
-    right: 50%;
-    width: 100%;
-    height: 100%;
-    transform: translate(-50%, -50%);
-    color: gray;
-    background-color: red;
-    padding: 0.25rem 1rem;
-    border-radius: 8px;
-    font-size: 20px;
-    font-weight: bold;
-    transition: 0.25s all ease-in-out;
-    cursor: pointer;
-    border: none;
-    width: 20rem;
-    height: 2rem;
-    line-height: 10rem;
+@keyframes fadeInbounceIn {
+    100% {
+        opacity: 1;
+        transform: scale(1);
+        transform-origin: center;
+    }
 }
 
-// SUBMIT BUTTON ////
-.uploadProfileButton {
-    background: red;
-    background: $complimentary-color;
-    color: $light-accent-color;
-    outline: 0;
-    border: 0;
-    @include transition(all, 0.2s, ease-out);
-    font-size: 1rem;
-    padding: 0.5rem;
-    width: 8rem;
-    margin: 0 auto;
-    margin-top: 3rem;
+@-webkit-keyframes bounceIn {
+    0% {
+        transform: scale(0.9);
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+    }
+    55% {
+        transform: scale(1.08);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
+    }
+    75% {
+        transform: scale(0.95);
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+    }
 }
-.uploadProfileButton:hover {
-    cursor: pointer;
-    background: $primary-color;
-    color: white;
-    width: 10rem;
-}
-
-.closeUploader {
-    position: absolute;
-    top: 5%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: calc(0.5rem + 0.5vw);
-    height: calc(0.5rem + 0.5vw);
-    border-radius: 100%;
-}
-
-// /* style 5 */
-.inputfile {
-    opacity: 0;
-}
-// .inputfile-5 + label {
-//     color: #d3394c;
-// }
-//
-// .inputfile-5:focus + label,
-// .inputfile-5.has-focus + label,
-// .inputfile-5 + label:hover {
-//     color: #722040;
-// }
-//
-// .inputfile-5 + label figure {
-//     width: 100px;
-//     height: 135px;
-//     background-color: #d3394c;
-//     display: block;
-//     position: relative;
-//     padding: 30px;
-//     margin: 0 auto 10px;
-// }
-//
-// .inputfile-5:focus + label figure,
-// .inputfile-5.has-focus + label figure,
-// .inputfile-5 + label:hover figure {
-//     background-color: #722040;
-// }
-//
-// .inputfile-5 + label figure::before,
-// .inputfile-5 + label figure::after {
-//     width: 0;
-//     height: 0;
-//     content: "";
-//     position: absolute;
-//     top: 0;
-//     right: 0;
-// }
-//
-// .inputfile-5 + label figure::before {
-//     border-top: 20px solid #dfc8ca;
-//     border-left: 20px solid transparent;
-// }
-//
-// .inputfile-5 + label figure::after {
-//     border-bottom: 20px solid #722040;
-//     border-right: 20px solid transparent;
-// }
-//
-// .inputfile-5:focus + label figure::after,
-// .inputfile-5.has-focus + label figure::after,
-// .inputfile-5 + label:hover figure::after {
-//     border-bottom-color: #d3394c;
-// }
-.file-5 {
-    opacity: 0;
-}
-.uploadFile {
-    width: 15%;
-    height: auto;
-    vertical-align: middle;
-    display: block;
-    margin: 0 auto;
-    cursor: pointer;
-    opacity: 0.5;
-    @include transition(all, 0.2s, ease-out);
-    margin-bottom: 1rem;
-}
-.uploadFile:hover {
-    opacity: 1;
+@-webkit-keyframes minimise {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: scale(0.7);
+        opacity: 0;
+    }
 }

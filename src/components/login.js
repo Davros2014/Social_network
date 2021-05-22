@@ -1,74 +1,67 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import axios from "../axios";
 import { Link } from "react-router-dom";
 
-export default class Login extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-    handleChange({ target }) {
-        this.setState({ [target.name]: target.value });
-    }
-    submit() {
+import useStateInputs from "../hooks/useStateInputs";
+
+const Login = props => {
+    const [email, setEmail] = useStateInputs("");
+    const [password, setPassword] = useStateInputs("");
+    const [error, setError] = useState("");
+
+    const submit = () => {
         axios
             .post("/login", {
-                email: this.state.email,
-                password: this.state.password
+                email: email,
+                password: password
             })
             .then(({ data }) => {
-                console.log("data", data);
                 if (data.success) {
                     location.replace("/");
                 } else if (data.error) {
-                    this.setState({
-                        error: true
-                        // error: "Sorry, an error occured, please try again!"
-                    });
+                    setError(data.error);
                 }
-            });
-    }
-    render() {
-        return (
-            <div className="startPage">
-                <div className="inputForm">
-                    {this.state.error && (
-                        <div className="error">
-                            Oops! Something is missing, please try again
-                        </div>
-                    )}
-                    <input
-                        name="email"
-                        placeholder="Email address"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                        onChange={e => this.handleChange(e)}
-                    />
-                    <input
-                        name="password"
-                        placeholder="Password"
-                        type="password"
-                        autoComplete="off"
-                        autoCorrect="off"
-                        spellCheck="false"
-                        onChange={e => this.handleChange(e)}
-                    />
-                    <button
-                        className="submitButton"
-                        type="submit"
-                        onClick={() => this.submit()}
-                    >
-                        Submit
-                    </button>
-                    <h5 className="registerText">
-                        Registered yet? Register
-                        <Link className="Link" to="/">
-                            <span> here</span>
-                        </Link>
-                    </h5>
-                </div>
+            })
+            .catch(err => console.log(err.message));
+    };
+    return (
+        <div className="startPage">
+            <div className="inputForm">
+                {error && <div className="error">{error}</div>}
+                <input
+                    name="email"
+                    placeholder="Email address"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    value={email}
+                    spellCheck="false"
+                    onChange={e => setEmail(e)}
+                />
+                <input
+                    name="password"
+                    placeholder="Password"
+                    type="password"
+                    autoComplete="off"
+                    autoCorrect="off"
+                    value={password}
+                    spellCheck="false"
+                    onChange={e => setPassword(e)}
+                />
+                <button
+                    className="submitButton"
+                    type="submit"
+                    onClick={() => submit()}
+                >
+                    Submit
+                </button>
+                <h5 className="registerText">
+                    Registered yet? Register
+                    <Link className="Link" to="/">
+                        <span> here</span>
+                    </Link>
+                </h5>
             </div>
-        );
-    }
-}
+        </div>
+    );
+};
+export default Login;

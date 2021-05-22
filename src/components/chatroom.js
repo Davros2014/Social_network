@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { allChatMessages, chatMessage } from "../actions/actions";
 import { socket } from "../socket";
 import PageContainer from "./PageContainer";
+import PageWrapper from "./PageWrapper";
 
 class Chatroom extends React.Component {
     constructor(props) {
@@ -14,77 +15,78 @@ class Chatroom extends React.Component {
     }
     handleInput({ target }) {
         this.setState({ chatroom: target.value });
+        target.value.length > 0
+            ? this.setState({ disabled: false })
+            : this.setState({ disabled: true });
     }
     handleSubmit() {
         console.log("bang, bang, click, click: ", this.state.chatroom);
         socket.emit("chatMessage", this.state.chatroom);
         document.getElementById("output").value = "";
     }
-
     componentDidMount() {
         this.elemRef.current.scrollTop = this.elemRef.current.scrollHeight;
     }
     componentDidUpdate() {
         this.elemRef.current.scrollTop = this.elemRef.current.scrollHeight;
     }
-    // componentDidMount() {
-    //     console.log("/////state in CHATROOM ", this.state);
-    //     console.log("this.props.allChatMessages", this.props.allChatMessages);
-    //     this.props.dispatch(allChatMessages());
-    //     console.log("////this.props", this.props);
-    // }
     render() {
-        const { allMessages, bioinfo } = this.props;
+        const { allMessages, id } = this.props;
+        console.log("id", id);
         const { disabled } = this.state;
         return (
             <PageContainer>
-                <h2 className="h5_header">Message Board</h2>
-                <div className="chatContainer" ref={this.elemRef}>
-                    {allMessages &&
-                        allMessages.map(chatroom => (
-                            <div className="chatItem" key={chatroom.id}>
-                                <img
-                                    className="userProfilePic"
-                                    src={
-                                        chatroom.profilepictureurl ||
-                                        "/images/default.svg"
-                                    }
-                                    alt=""
-                                />
-                                <div className="chatDetails">
-                                    <div className="chatHeader">
-                                        <div className="chatInfo">
-                                            User&#x23; {chatroom.user_id}{" "}
-                                            {chatroom.first} {chatroom.last}{" "}
-                                            commented on {chatroom.created_at}
+                <PageWrapper>
+                    <section id="MessageBoardContainer">
+                        <h2 className="h5_header">Message Board</h2>
+                        <div className="chatContainer" ref={this.elemRef}>
+                            {allMessages &&
+                                allMessages.map(chatroom => (
+                                    <div
+                                        className={`chatItem ${
+                                            chatroom.id !== id
+                                                ? "rightAlign"
+                                                : ""
+                                        } `}
+                                        key={chatroom.id}
+                                    >
+                                        <img
+                                            className="userProfilePic"
+                                            src={
+                                                chatroom.profilepictureurl ||
+                                                "/images/default.svg"
+                                            }
+                                            alt=""
+                                        />
+                                        <div className="chatDetails">
+                                            <div className="chatHeader">
+                                                <div className="chatInfo">
+                                                    User&#x23;{" "}
+                                                    {chatroom.user_id}{" "}
+                                                    {chatroom.first}{" "}
+                                                    {chatroom.last} commented @{" "}
+                                                    {chatroom.created_at}
+                                                </div>
+                                            </div>
+                                            <div className="h4_header">
+                                                <p className="h4_header chatMessage">
+                                                    {chatroom.messages}
+                                                </p>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div className="h4_header">
-                                        <p className="h4_header chatMessage">
-                                            {chatroom.messages}
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                </div>
-                <div className="chatInputField">
-                    <div className="messaging_container">
-                        <textarea
-                            ref="chatroom_editor"
-                            spellCheck="false"
-                            defaultValue={bioinfo}
-                            className="chatEditor"
-                            id="output"
-                            name="chatinfo"
-                            onChange={e => this.handleInput(e)}
-                            type="text"
-                        />
-                        {!disabled ? (
-                            <button className="buttonBasic chatinfoSave">
-                                Disabled
-                            </button>
-                        ) : (
+                                ))}
+                        </div>
+                        <div className="messageInputContainer">
+                            <textarea
+                                spellCheck="false"
+                                placholder="We're waiting to hear all about it..."
+                                className="chatInputField"
+                                id="output"
+                                name="chatinfo"
+                                onChange={e => this.handleInput(e)}
+                                type="text"
+                            />
                             <button
                                 onClick={e => {
                                     this.handleSubmit(e);
@@ -92,13 +94,16 @@ class Chatroom extends React.Component {
                                 id="clear"
                                 type="reset"
                                 value="Reset"
-                                className="buttonBasic chatinfoSave"
+                                className={`messagingSubmit ${
+                                    disabled ? "disabled" : ""
+                                } `}
+                                disabled={disabled ? true : false}
                             >
-                                Send
+                                {disabled ? "Disabled" : "Send"}
                             </button>
-                        )}
-                    </div>
-                </div>
+                        </div>
+                    </section>
+                </PageWrapper>
             </PageContainer>
         );
     }

@@ -1,5 +1,4 @@
 var spicedPg = require("spiced-pg");
-// var db = spicedPg("postgres:postgres:postgres@localhost:5432/salt-petition");
 
 const dbUrl =
     process.env.DATABASE_URL ||
@@ -7,12 +6,11 @@ const dbUrl =
 
 const db = spicedPg(dbUrl);
 
-//////////////////////////////////////////////////////
 //// DB QUERIES >>> USERS.SQL TABLE //////////////////
 
 //////////////////////////////////////////////////////
 // POST /REGISTER > REGISTRATION /////////////////////
-//////////////////////////////////////////////////////
+
 // select all user info from registration fields
 module.exports.registration = function registration(
     first,
@@ -32,7 +30,6 @@ module.exports.registration = function registration(
 
 //////////////////////////////////////////////////////
 // GET /USER > GET-USER-DATA /////////////////////////
-//////////////////////////////////////////////////////
 
 module.exports.getUserData = function getUserData(id) {
     return db.query(
@@ -44,7 +41,6 @@ module.exports.getUserData = function getUserData(id) {
 
 //////////////////////////////////////////////////////
 // POST /LOGIN > GET-USER-INFO ///////////////////////
-//////////////////////////////////////////////////////
 
 // select all user info from registration fields
 module.exports.getUserInfo = function getUserInfo(email) {

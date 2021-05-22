@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import axios from "../axios";
+import { Link } from "react-router-dom";
 
 const Bio = ({
     showEditMode,
@@ -22,8 +23,6 @@ const Bio = ({
     };
     // saves bio on submit
     const handleSubmit = ({ target }) => {
-        // console.log("this.state - post bio", this.state);
-        // const { id, bioinfo, first, last, email } = props;
         axios
             .post("/bio", {
                 id: id,
@@ -47,10 +46,11 @@ const Bio = ({
 
     return (
         <Fragment>
-            <h4 className="Personal_header">Personal Information</h4>
+            <h4 className="h3_header">Personal Information</h4>
             <h3 className="userName p_bodyText">
                 User:
                 <span>
+                    {" "}
                     {first} {last}
                 </span>
                 <div className="mainLine" />
@@ -58,22 +58,16 @@ const Bio = ({
 
             <div className="bioInfo">
                 {bioinfo && !viewable && (
-                    <div>
-                        <h3 className="Personal_header">BRIEF BIO</h3>
+                    <>
+                        <h3 className="h3_header">BRIEF BIO</h3>
                         <p className="p_bodyText bioTextHolder">{bioinfo}</p>
-                        <button
-                            onClick={() => showEditMode()}
-                            className="buttonBasic bioinfoAdd"
-                        >
-                            Edit your bio now
-                        </button>
-                    </div>
+                    </>
                 )}
 
-                {!bioinfo && (
+                {!bioinfo && !viewable && (
                     <button
                         onClick={() => showEditMode()}
-                        className="bioinfoAdd buttonBasic"
+                        className="bioInfoBtn"
                     >
                         Add your bio now
                     </button>
@@ -83,7 +77,7 @@ const Bio = ({
                         <textarea
                             spellCheck="false"
                             defaultValue={bioinfo}
-                            className=" bioTextArea"
+                            className="bioTextArea"
                             name="bioinfo"
                             onChange={e => handleInput(e)}
                         />
@@ -92,18 +86,29 @@ const Bio = ({
                             onClick={e => {
                                 closeSubmit(e);
                             }}
-                            className="buttonBasic bioinfoSave"
+                            className="bioInfoBtn"
                         >
                             Save and close
                         </button>
                         <button
                             onClick={() => showEditMode()}
-                            className="buttonBasic bioinfoSave"
+                            className="bioInfoBtn"
                         >
-                            CLOSE
+                            Close
                         </button>
                     </div>
                 )}
+            </div>
+            <div className="btnContainerRow deleteBtns">
+                <button onClick={() => showEditMode()} className="editAccount">
+                    <i class="far fa-edit"></i>
+                </button>
+                <Link className="deleteAccount" to="/deleteaccount">
+                    <i
+                        className="far fa-trash-alt"
+                        onClick={() => showEditMode()}
+                    ></i>
+                </Link>
             </div>
         </Fragment>
     );

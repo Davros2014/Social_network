@@ -38,9 +38,6 @@ const NavBar = ({
                         <a className="navLink" href="/logout">
                             Logout
                         </a>
-                        <Link className="navLink" to="/deleteaccount">
-                            Delete Account
-                        </Link>
                     </nav>
                     <div className="navPicContainer">
                         <Profilepicture
@@ -61,6 +58,7 @@ const NavBar = ({
                         }}
                         viewable={viewable}
                         handleUploader={handleUploader}
+                        profilepictureurl={profilepictureurl}
                     />
                 )}
             </div>

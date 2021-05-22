@@ -23,29 +23,25 @@ const diskStorage = multer.diskStorage({
         });
     }
 });
-
+let maxSize = 2097152;
 var uploader = multer({
     // responsible for what we upload and where
     storage: diskStorage,
     limits: {
         // filesize limit - in this case 2MB
-        fileSize: 2097152
+        fileSize: maxSize
     }
 });
 
 router
     .route("/upload")
     .post(uploader.single("file"), s3.upload, function(req, res) {
-        if (req.file) {
+        if (req.file || req.file <= maxSize) {
             let userProfileUrl =
                 "https://s3.amazonaws.com/socialnetworkapp19/" +
                 req.file.filename;
-            // console.log("userProfileUrl", userProfileUrl);
-            // console.log("POST REQUEST - req.file:", req.file);
-            // console.log("req.session", req.session);
             db.addUserProfilePic(req.session.userId, userProfileUrl)
-                .then(results => {
-                    // console.log("Results are..", results);
+                .then(() => {
                     res.json({
                         success: true,
                         url: userProfileUrl
@@ -55,14 +51,26 @@ router
                     res.json({
                         success: false,
                         message:
-                            " Sorry, you did not upload an image or the image is too big"
+                            "Sorry, we could not upload your image, perhaps it is too large, please upload files less than 2mb in size"
                     });
                     console.log("ERROR: ", err.message);
                 });
         } else {
-            console.log(err);
             res.json({
-                success: false
+                success: false,
+                message:
+                    "Sorry, we could not upload your image, perhaps it is too large, please only upload files less than 2mb in size"
             });
         }
     });
+
+// => {
+// 	if (data.success) {
+// 		location.replace("/");
+// 	} else if (data.error) {
+// 		this.setState({
+// 			error: true
+// 		});
+// 		console.log("error", data.error);
+// 	}
+// });

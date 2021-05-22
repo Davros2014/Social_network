@@ -14,8 +14,6 @@ export default class Registration extends Component {
         console.log("target.name", ([target.name], target.value));
     }
     submit() {
-        // const { first, last, password, email } = this.state;
-        console.log("password in this.state", this.state);
         axios
             .post("/register", {
                 first: this.state.first,
@@ -35,8 +33,6 @@ export default class Registration extends Component {
             });
     }
     render() {
-        console.log("this.state", this.state);
-
         const { error } = this.state;
         return (
             <div className="registrationForm">

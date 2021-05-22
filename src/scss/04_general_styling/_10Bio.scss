@@ -1,79 +1,96 @@
 .bioContainer {
-    // width: 80vw;
     margin: 0 auto;
     width: 100%;
     text-align: center;
     @include flexbox();
     @include align-items(center);
-    @include justify-content(space-between);
+    @include justify-content(flex-start);
     @include flex-direction(column);
-    margin-top: 5rem;
+    margin-top: 7rem;
+    .userName {
+        @include H5-Headers;
+        color: rgba(0, 0, 0, 0.5);
+        & span {
+            @include H5-Headers;
+            color: $primary-color;
+        }
+    }
+    .bioInfo {
+        margin: 0 auto;
+        width: 100%;
+        text-align: center;
+        // .bioTextHolder {
+        //     height: 100px;
+        //     padding: 2rem;
+        //     background: rgba($complimentary-color, 0.15);
+        //     border-radius: 5px;
+        //     margin: 0 auto;
+        //     margin-top: 1rem;
+        //     width: 100%;
+        //     text-align: left;
+        //     font-size: calc(1rem + 0.35vw);
+        //     color: $complimentary-color;
+        //     overflow: hidden;
+        // }
+        .bioTextHolder {
+            height: auto;
+            // padding: 0.25rem 2rem;
+            // border-left: 2px solid $complimentary-color;
+            // background: rgba($complimentary-color, 0.15);
+            // border-radius: 5px;
+            margin: 0 auto;
+            margin-top: 1rem;
+            width: 100%;
+            text-align: left;
+            font-size: clamp(1.2rem, 2vw, 1.4rem);
+            @include bodysmall;
+            color: $complimentary-color;
+            overflow: hidden;
+            margin-bottom: 4rem;
+        }
+        .bioTextArea {
+            width: 100%;
+            height: 10rem;
+            padding: 2rem;
+            @include bodysmall;
+            background: $complimentary-color;
+            outline: 0;
+            border: 0;
+            margin-top: 1rem;
+            border-radius: 5px;
+            color: yellow;
+            &:focus {
+                color: yellow;
+            }
+        }
+    }
 }
-.bioContainer .h4_header {
-    margin-bottom: 1rem;
+.deleteAccount,
+.editAccount {
+    font-size: clamp(1.4rem, 2vw, 1.6rem);
+    color: $primary-color;
+    border: none;
+    background: none !important;
+    cursor: pointer;
+    &:hover {
+        transition: color 0.25s ease-in-out;
+        color: $complimentary-color;
+    }
 }
-.bioTextArea {
-    width: 100%;
-    height: 10rem;
-    padding: 2rem;
-    @include bodysmall;
-    background: $complimentary-color;
-    outline: 0;
-    border: 0;
-    margin-top: 1rem;
-    border-radius: 5px;
+.editAccount {
+    margin-right: 1rem;
 }
-.bioInfoText {
-    outline: none;
-    text-transform: uppercase;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    text-align: center;
+.deleteBtns {
+    position: absolute;
+    bottom: 2rem;
+    right: 3rem;
 }
-.bioinfoAdd {
-    background: $complimentary-color;
-    padding: 0.5rem 1rem !important;
-}
-.bioinfoAdd:hover {
-    background: black;
-}
-.bioInfo {
-    margin: 0 auto;
-    width: 100%;
-    text-align: center;
-}
-.Personal_header {
+.h3_header {
     color: $complimentary-color;
     font-size: 1rem;
     text-transform: uppercase;
+    text-align: left;
     margin-bottom: 0.5rem;
     margin-top: 2rem;
-}
-.bioHeader {
-    font-size: 1.35rem;
-    margin-top: 3rem;
-}
-.userName {
-    @include H5-Headers;
-    color: rgba(0, 0, 0, 0.5);
-}
-.bioTextHolder {
-    height: 100px;
-    padding: 2rem;
-    background: rgba($complimentary-color, 0.15);
-    border-radius: 5px;
-    margin: 0 auto;
-    margin-top: 1rem;
-    width: 100%;
-    text-align: left;
-    font-size: calc(1rem + 0.35vw);
-    color: $complimentary-color;
-    overflow: hidden;
-}
-.userName span {
-    @include H5-Headers;
-    color: $primary-color;
-}
-hr {
-    border-top: 1px solid $primary-color;
+    font-weight: 700;
 }

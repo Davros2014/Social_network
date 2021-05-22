@@ -3,9 +3,6 @@ node_modules
 secrets.json
 REACT_LEARNING_MD
 /.sass-cache/*
-/01_plugins/*
-/02_variables/*
-/03_mixins/*
-/04_general_styling/*
+
 REACT_LEARNING_MD
 src/hooks_examples

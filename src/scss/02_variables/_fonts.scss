@@ -218,8 +218,8 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
     }
 }
 @mixin bodysmall(
-    $size: calc(0.75rem + 0.25vw),
-    $colour: $light-accent-color,
+    $size: clamp(1.4rem, 2vw, 1.6rem),
+    $colour: $complimentary-color,
     $weight: 100,
     $lh: 1.15,
     $ls: 0.05rem

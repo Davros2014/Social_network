@@ -24,10 +24,10 @@ router.route("/bio").post((req, res) => {
             // console.log("results...", results);
         })
         .catch(err => {
-            // console.log("ERROR: ", err);
+            console.log("ERROR: ", err);
             res.json({
                 success: false,
-                message: " Sorry, an error occured, please try again"
+                message: "Sorry, an error occured, please try again"
             });
         });
 });

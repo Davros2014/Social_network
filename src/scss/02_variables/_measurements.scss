@@ -2,22 +2,21 @@
 // MEASUREMENTS ETC //////////////////
 //////////////////////////////////////
 
+$mobileBreak: 768px;
+$laptopBreak: 980px;
+$desktopBreak: 1400px;
+
 // MEDIA QUERIES
 @mixin minMq($from) {
     @media (min-width: $from) {
         @content;
     }
 }
-
 @mixin maxMq($from) {
     @media (max-width: $from) {
         @content;
     }
 }
-
-$mobileBreak: 768px;
-$laptopBreak: 980px;
-$desktopBreak: 1400px;
 
 @mixin pseudoContent() {
     content: "";
@@ -32,13 +31,18 @@ $desktopBreak: 1400px;
 
 //WIDTHS
 $width100: 100vw;
+$width95: 95vw;
 $width90: 90vw;
 $width80: 80vw;
 $width75: 75vw;
 $width60: 60vw;
 $width50: 50vw;
-$width30: 30vw;
+$width40: 30vw;
+$width30: 40vw;
 $width25: 25vw;
+$width20: 20vw;
+$width10: 10vw;
+$width5: 5vw;
 
 //HEIGHTS
 $height100: 100vh;

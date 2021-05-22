@@ -8,14 +8,27 @@
     @include justify-content(center);
     @include flex-direction(column);
     padding: 3rem 3rem 2rem 3rem;
-    width: $width50;
+    width: $width90;
     background: $light-accent-color;
+    // border: 2px solid blue;
     margin: 0 auto;
     position: relative;
     border-radius: 10px;
     margin-top: 12rem;
+    @include minMq($laptopBreak) {
+        width: $width30;
+        // border: 2px solid red;
+    }
+}
+.mainImageProfile {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    transition: all 0.25s ease-in-out;
 }
 .profileWrapper {
+    // background: red;
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
@@ -23,12 +36,7 @@
     width: 100%;
     margin-top: 4rem;
 }
-.mainImageProfile {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translate(-50%, -50%);
-}
+
 .profileInfo {
     @include flexbox();
     @include flex-direction(column);
@@ -59,20 +67,29 @@
 // }
 
 // .mainImageProfile::before {
-//     content: "theres a better way";
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
+//     transition: all 0.25s ease-in-out;
+// }
+// .mainImageProfile:hover::before {
+//     content: "Click to upload new profile image";
 //     position: absolute;
 //     left: 50%;
 //     top: 50%;
+//     width: 100%;
+//     height: 100%;
+//     @include flexbox();
+//     @include align-items(center);
+//     @include justify-content(center);
+//     border-radius: 50%;
 //     transform: translate(-50%, -50%);
 //     text-align: center;
 //     background: #000;
-//     opacity: 1;
-//     font-size: 12px;
+//     opacity: 0.75;
+//     font-size: 1.25rem;
 //     z-index: 20;
-//     cursor pointer
+//     cursor: pointer;
+//     font-weight: 700;
+//     padding: 2rem;
+//     transition: all 0.25s ease-in-out;
 // }
 
 @keyframes fadeDown {

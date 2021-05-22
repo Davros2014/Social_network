@@ -1,11 +1,5 @@
 /* ============== GENERAL STYLES =============== */
 
-body {
-    -webkit-animation: fadein 1.5s; /* Safari, Chrome and Opera > 12.1 */ /* Firefox < 16 */ /* Internet Explorer */ /* Opera < 12.1 */
-    animation: fadein 1.5s;
-    box-sizing: border-box;
-    margin: 0;
-}
 @keyframes fadein {
     from {
         opacity: 0;
@@ -20,7 +14,6 @@ html {
     box-sizing: border-box;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 62.5%;
 }
 *,
 *:before,
@@ -38,6 +31,9 @@ p {
     height: auto;
     vertical-align: middle;
     display: block;
+}
+html {
+    font-size: 62.5%;
 }
 // in loader component //////
 .loader {
@@ -64,6 +60,7 @@ p {
 .error {
     font-size: 1rem;
     color: $primary-color;
+    font-weight: 700;
 }
 @keyframes fadeIn {
     from {
@@ -78,13 +75,18 @@ p {
 
 body {
     /* Sets the width of the body */
-    font-size: 1rem;
+    font-size: 1.6rem;
     @include BodyTextMain;
     background: $backgroundColour;
     color: $primary-font-color;
     width: 100%;
     margin: 0 auto;
+    -webkit-animation: fadein 1.5s;
+    animation: fadein 1.5s;
+    box-sizing: border-box;
+    margin: 0;
 }
+
 // main container in index.html
 .mainHtmlContainer {
     width: 100vw;
@@ -100,13 +102,20 @@ body {
     width: 100vw;
     height: 100vh;
     text-align: center;
-    // background: blue;
-}
-@media all and (max-width: 768px) {
-    .pageContainer {
+    overflow: hidden;
+    @include minMq($mobileBreak) {
         width: $width90;
     }
 }
+.PageWrapper {
+    margin-top: 80px;
+    padding-top: 5rem;
+    height: 100vh;
+    width: 100vw;
+    @include flexStartCenteredColumn;
+    overflow: hidden;
+}
+
 .innerContainer {
     @include flexbox();
     @include justify-content(center);

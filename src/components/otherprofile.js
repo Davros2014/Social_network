@@ -4,10 +4,11 @@ import axios from "../axios";
 import Profilepicture from "./Profilepicture";
 import Friendbutton from "./Friendbutton";
 import PageContainer from "./PageContainer";
+import PageWrapper from "./PageWrapper";
 
 export default class Otherprofile extends React.Component {
     constructor(props) {
-        console.log("OTHER PROFILE > PROPS", props);
+        // console.log("OTHER PROFILE > PROPS", props);
         super(props);
         this.state = {};
     }
@@ -30,33 +31,35 @@ export default class Otherprofile extends React.Component {
         console.log("state in friends profiles", this.state);
         return (
             <PageContainer>
-                <h1 className="h5_header">Friend Profiles</h1>
-                <div className="otherprofileContainer">
-                    <div className="mainImageProfile">
-                        <Profilepicture
-                            profilepictureurl={
-                                profilepicture || "/images/default.svg"
-                            }
-                        />
-                    </div>
-                    <h3 className="userName p_bodyText otherprofileHeader">
-                        <strong>User &#x23;{this.state.id} </strong>
-                        <span>
-                            {this.state.first} {this.state.last}
-                        </span>
-                        <div className="mainLine" />
-                    </h3>
-                    <div className="bioInfo">
-                        <h3 className="Personal_header">BRIEF BIO</h3>
-                        <p className="p_bodyText bioTextHolder">
-                            {this.state.bioinfo}
-                        </p>
+                <PageWrapper>
+                    <h1 className="h5_header">Friend Profiles</h1>
+                    <div className="otherprofileContainer">
+                        <div className="mainImageProfile">
+                            <Profilepicture
+                                profilepictureurl={
+                                    profilepicture || "/images/default.svg"
+                                }
+                            />
+                        </div>
+                        <h3 className="userName p_bodyText otherprofileHeader">
+                            <strong>User &#x23;{this.state.id - 1} </strong>
+                            <span>
+                                {this.state.first} {this.state.last}
+                            </span>
+                            <div className="mainLine" />
+                        </h3>
+                        <div className="bioInfo">
+                            <h3 className="Personal_header">BRIEF BIO</h3>
+                            <p className="p_bodyText bioTextHolder">
+                                {this.state.bioinfo}
+                            </p>
 
-                        <Friendbutton
-                            otheruserid={this.props.match.params.id}
-                        />
+                            <Friendbutton
+                                otheruserid={this.props.match.params.id}
+                            />
+                        </div>
                     </div>
-                </div>
+                </PageWrapper>
             </PageContainer>
         );
     }

@@ -1,6 +1,6 @@
 import React from "react";
 
 const PageContainer = ({ children }) => {
-    return <section className="pageContainer">{children}</section>;
+    return <div className="pageContainer">{children}</div>;
 };
 export default PageContainer;

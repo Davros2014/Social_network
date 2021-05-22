@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
-
 import { Link } from "react-router-dom";
-import Profilepicture from "./Profilepicture";
-import axios from "../axios";
-import PageContainer from "./PageContainer";
 
-export default function Findpeople(props) {
+import axios from "../axios";
+
+//components
+import Profilepicture from "./Profilepicture";
+import PageContainer from "./PageContainer";
+import PageWrapper from "./PageWrapper";
+import Loader from "./Loader";
+
+const Findpeople = ({ first }) => {
     const [user, setUser] = useState([]);
     const [name, setName] = useState("");
 
@@ -27,45 +31,48 @@ export default function Findpeople(props) {
             })
             .catch(err => console.log(err));
     }, [name]);
-    if (!user.length < 0) {
-        return (
-            <div className="loader">
-                <img className="loader_logo" src="/images/zero_logo.svg" />
-            </div>
-        );
-    }
     return (
         <PageContainer>
-            <h5 className="h5_header">Find People</h5>
-            <p className="p_bodyTextMain subheader">
-                Hello, <span>{props.first}</span> find other Zero° users
-            </p>
-            <input
-                type="text"
-                name="name"
-                className="findPeople"
-                onChange={e => setName(e.target.value)}
-                defaultValue="Search for friends"
-            />
-            <div id="findPeopleContainer">
-                <div className="friendsEtcContainer">
-                    {user.length &&
-                        user.map(user => (
-                            <div className="friendsEtcWrapper" key={user.id}>
-                                <Link to={`/user/${user.id}`}>
-                                    <Profilepicture
-                                        profilepictureurl={
-                                            user.profilepictureurl
-                                        }
-                                    />
-                                </Link>
-                                <p className="h5_header friendsEtcText">
-                                    {user.first} {user.last}
-                                </p>
-                            </div>
-                        ))}
-                </div>
-            </div>
+            {!user.length < 0 ? (
+                <Loader />
+            ) : (
+                <PageWrapper>
+                    <h5 className="h5_header">Find People</h5>
+                    <p className="p_bodyTextMain subheader">
+                        Hello, <span>{first}</span> find other Zero° users
+                    </p>
+                    <input
+                        type="text"
+                        name="name"
+                        className="findPeople"
+                        onChange={e => setName(e.target.value)}
+                        placeholder="Search for friends"
+                    />
+                    <div id="findPeopleContainer">
+                        <div className="friendsEtcContainer">
+                            {user.length &&
+                                user.map(user => (
+                                    <div
+                                        className="friendsEtcWrapper"
+                                        key={user.id}
+                                    >
+                                        <Link to={`/user/${user.id}`}>
+                                            <Profilepicture
+                                                profilepictureurl={
+                                                    user.profilepictureurl
+                                                }
+                                            />
+                                        </Link>
+                                        <p className="h5_header friendsEtcText">
+                                            {user.first} {user.last}
+                                        </p>
+                                    </div>
+                                ))}
+                        </div>
+                    </div>
+                </PageWrapper>
+            )}
         </PageContainer>
     );
-}
+};
+export default Findpeople;

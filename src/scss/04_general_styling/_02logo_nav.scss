@@ -1,14 +1,11 @@
 .logoContainer {
     width: $width100;
     height: $height90;
-    @include flexbox();
-    @include justify-content(center);
-    @include align-items(center);
+    @include flexRowCentered;
     @include push--auto;
     @media (max-width: 768px) {
         width: $width90;
     }
-    background: red;
 }
 
 // NAVBAR //////////////////////////////////
@@ -19,9 +16,7 @@
     top: 0;
     width: 100vw;
     margin: 0 auto;
-    @include flexbox();
-    @include justify-content(center);
-    @include align-items(center);
+    @include flexRowCentered;
     overflow: hidden;
     z-index: 1000;
     &::before {
@@ -39,7 +34,7 @@
         object-fit: contain;
     }
     &__wrapper {
-        width: 80vw;
+        width: $width95;
         text-align: center;
         @include flexbox();
         @include align-items(center);
@@ -60,6 +55,7 @@
                     margin-right: 3rem;
                     color: white;
                     font-weight: 400;
+                    font-size: clamp(0.8rem, 2vw, 1rem);
                     @include transition(all, 0.2s, ease-out);
                     &:hover {
                         color: $primary-color;
@@ -114,18 +110,19 @@
 .navPicContainer {
     height: 100%;
     border-left: 1px solid $line-color;
-    border-right: 1px solid $line-color;
     text-align: center;
     margin: 0 auto;
-    padding-left: 3rem;
-    padding-right: 3rem;
+    padding-left: 2.5vw;
     @include flexColumnCentered;
     .welcome {
         margin-top: 0.5rem;
         @include bodysmall;
+        font-weight: 400;
+        font-size: clamp(0.8rem, 2vw, 1rem);
         color: $light-accent-color;
         span {
-            @include bodysmall;
+            font-size: inherit;
+            font-weight: inherit;
             color: $primary-color;
         }
     }

@@ -1,111 +1,120 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "../axios";
 
-export default class Uploader extends React.Component {
+//components
+import ModalBackground from "./ModalBackground";
+import Profilepicture from "./Profilepicture";
+
+export default class Uploader extends Component {
     constructor(props) {
         super(props);
-        this.state = { profile: null, uploaderVisible: true };
+        this.state = {
+            profile: null,
+            uploaderVisible: true,
+            tempImage: "",
+            error: ""
+        };
         this.closeModal = this.closeModal.bind(this);
-        // this.clickHandler = this.clickHandler.bind(this);
-        // this.handleClick = this.handleClick.bind(this);
-        // this.showEditMode = this.showEditMode.bind(this);
     }
     handleInput({ target }) {
         this.setState({ [target.name]: target.files[0] });
-        console.log(
-            "///// handleInput button clicked > profile pic: ",
-            target.files[0].name
-        );
-        target.files[0].name;
+        this.setState({ tempImage: URL.createObjectURL(target.files[0]) });
     }
     showEditMode() {
         this.setState({ viewable: !this.props.viewable });
     }
-
-    // clickHandler() {
-    //     console.log("click, click ");
-    //     this.setState(
-    //         this.state.uploaderVisible
-    //             ? { uploaderVisible: false, introVisible: true }
-    //             : { uploaderVisible: true, introVisible: false }
-    //     );
-    // }
     handleClick() {
         this.props.clickHandler();
     }
-
-    // closeSubmit(e) {
-    //     this.showEditMode(e);
-    //     this.handleInput(e);
-    // }
     closeModal() {
         this.props.handleUploader();
     }
+    cancelImage() {
+        this.setState({ tempImage: "" });
+        this.setState({ error: "" });
+    }
     submit() {
-        console.log("UPLOAD BUTTON CLICKED");
-
         let formData = new FormData();
-
-        // console.log("////// formData ///// ", formData);
         formData.append("file", this.state.file);
-        // console.log("////// formData after ///// ", formData);
         axios
             .post("/upload", formData)
             .then(results => {
-                // console.log("///////// results", results.data.url);
                 this.props.upDateImage(results.data.url);
+                console.log("results ", results);
             })
-            .catch(function(err) {
-                console.log("error ", err);
+            .catch(error => {
+                console.log("error ", error);
+                this.setState({ error: error.message });
             });
     }
     render() {
-        const { error } = this.state;
+        const { error, tempImage, uploaderVisible } = this.state;
+        console.log("this.state;", this.state);
         return (
-            <div className="uploadOpacity">
-                <div className="uploadContainer">
-                    <button onClick={this.closeModal} className="closeUploader">
+            <ModalBackground>
+                <div
+                    className={`modalContainer ${
+                        uploaderVisible ? "active" : "remove"
+                    } `}
+                >
+                    <button onClick={this.closeModal} className="modalCloseBtn">
                         X
                     </button>
-                    <div className="uploadWrapper">
+                    <div className="modalWrapper">
                         <h5 className="h5_header">
                             Would you like to change your profile image?
                         </h5>
-                        {error && (
-                            <div className="error">
-                                Oops, something went wrong!
-                            </div>
-                        )}
-                        <div className="uploadsContainer">
-                            <div className="box">
-                                <input
-                                    type="file"
-                                    name="file"
-                                    id="file"
-                                    className="inputfile inputfile-4"
-                                    onChange={e => this.handleInput(e)}
-                                />
-                                <label htmlFor="file">
-                                    <figure>
-                                        <img
-                                            className="uploadFile"
-                                            src="/images/file_upload.png"
-                                            alt="upload image"
-                                        />
-                                    </figure>
-                                    <span>Choose a file&hellip;</span>
-                                </label>
-                            </div>
-                            <button
-                                className="uploadProfileButton"
-                                onClick={e => this.submit(e)}
-                            >
-                                SUBMIT
-                            </button>
+
+                        <div className="uploadFileContainer">
+                            {tempImage ? (
+                                <Profilepicture profilepictureurl={tempImage} />
+                            ) : (
+                                <div className="inputFileWrapper">
+                                    <input
+                                        type="file"
+                                        name="file"
+                                        id="file"
+                                        className="inputfile"
+                                        onChange={e => this.handleInput(e)}
+                                    />
+                                    <label htmlFor="file">
+                                        <figure>
+                                            <img
+                                                className="uploadFile"
+                                                src="/images/file_upload.png"
+                                                alt="upload image"
+                                            />
+                                        </figure>
+                                        Click icon to upload&hellip;
+                                    </label>
+                                </div>
+                            )}
+                            {tempImage && (
+                                <div className="btnContainerRow">
+                                    <button
+                                        className="submitButton"
+                                        onClick={() => this.cancelImage()}
+                                    >
+                                        Change
+                                    </button>
+                                    <button
+                                        className={`buttonBasic ${
+                                            !tempImage
+                                                ? "disabled"
+                                                : "submitButton"
+                                        } `}
+                                        onClick={e => this.submit(e)}
+                                        disabled={!tempImage ? true : false}
+                                    >
+                                        Submit
+                                    </button>
+                                </div>
+                            )}
+                            {error && <div className="error">{error}</div>}
                         </div>
                     </div>
                 </div>
-            </div>
+            </ModalBackground>
         );
     }
 }

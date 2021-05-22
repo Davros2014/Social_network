@@ -1,42 +1,73 @@
+// ALL BUTTONS /////////////////
+
 .buttonBasic {
     @include LightText;
-    color: $complimentary-color;
-
-    // background: $complimentary-color;
-    // background: rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.15);
     border: 0;
     outline: 0;
-    padding: 0.35rem 0.65rem;
+    padding: 1rem 1.25rem;
+    border-radius: 4px;
     @include transition(all, 0.2s, ease-out);
-    color: $primary-color;
-    // color: white;
+    color: $complimentary-color;
     background: rgba($complimentary-color, 0.2);
-    font-size: 0.8rem;
+    font-weight: 400;
+    font-size: clamp(1.1rem, 2vw, 1.3rem);
+    &:hover {
+        transition: all 0.15s ease-in-out;
+        color: white;
+        background: rgba($complimentary-color, 0.7);
+        cursor: pointer;
+    }
 }
-.buttonBasic:hover {
-    color: $primary-color;
-    color: white;
-
-    background: rgba(0, 0, 0, 0.7);
-    cursor: pointer;
-}
-.bioinfoAdd,
-.bioinfoSave {
-    margin: 2rem 0 1rem 0;
+.bioInfoBtn {
+    @extend .buttonBasic;
+    margin: 2rem 1rem 1rem 1rem;
 }
 .submitButton {
-    @include LightText;
-    padding: 0.5rem 1rem;
-    background: $complimentary-color;
-    color: $light-grey-color;
-    border: 0;
-    outline: 0;
+    @extend .buttonBasic;
     margin-top: 2rem;
-    @include transition(all, 0.2s, ease-out);
-    text-transform: uppercase;
-    font-size: calc(1rem + 0.25vw);
+    &:hover {
+        cursor: pointer;
+        background: $primary-color;
+        color: white;
+    }
 }
-.submitButton:hover {
-    color: $primary-color;
+
+.messagingSubmit {
+    @extend .buttonBasic;
+    width: 15rem;
+    margin: 0 auto;
+    margin-top: 2rem;
+    text-align: center;
+}
+.uploadProfileButton {
+    @extend .buttonBasic;
+    &:hover {
+        cursor: pointer;
+        background: $primary-color;
+        color: white;
+    }
+}
+.disabled {
+    opacity: 0.25;
+    &:hover {
+        color: $complimentary-color;
+        background: rgba($complimentary-color, 0.2);
+        transition: 0.25s all ease-in-out;
+        opacity: 0.25;
+    }
+}
+.btnContainerRow {
+    @include flexbox();
+    @include justify-content(center);
+    #stayBtn,
+    .submitButton {
+        margin-right: 1rem;
+        background: $light-accent-color;
+        color: $accent-color;
+        &:hover {
+            cursor: pointer;
+            background: $primary-color;
+            color: white;
+        }
+    }
 }

@@ -8,13 +8,13 @@ import Profile from "./components/Profile";
 import Bio from "./components/Bio";
 import Otherprofile from "./components/Otherprofile";
 import Findpeople from "./components/Findpeople";
-import Deleteaccount from "./components/Deleteaccount";
+import DeleteAccount from "./components/Deleteaccount";
 import NavBar from "./components/NavBar";
 import Friends from "./components/Friends";
 import Chatroom from "./components/Chatroom";
 import Loader from "./components/Loader";
 
-const App = () => {
+const App = props => {
     const [loading, setLoading] = useState(true);
     const [viewable, setViewable] = useState(false);
     const [uploaderVisible, setUploaderVisible] = useState(false);
@@ -47,7 +47,6 @@ const App = () => {
             .catch(err => console.log(err));
         setLoading(false);
     }, []);
-
     // see Bio.js for update info
     const setBio = newBio => {
         setBioinfo(newBio);
@@ -141,12 +140,12 @@ const App = () => {
                             <Route
                                 exact
                                 path="/chatroom"
-                                render={() => <Chatroom />}
+                                render={() => <Chatroom id={id} />}
                             />
                             <Route
                                 exact
                                 path="/deleteaccount"
-                                render={() => <Deleteaccount />}
+                                render={() => <DeleteAccount first={first} />}
                             />
                         </Switch>
                     </Fragment>
