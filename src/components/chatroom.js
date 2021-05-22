@@ -38,7 +38,7 @@ class Chatroom extends React.Component {
             <PageContainer>
                 <PageWrapper>
                     <section id="MessageBoardContainer">
-                        <h2 className="h5_header">Message Board</h2>
+                        <h2 className="h2_headers">Message Board</h2>
                         <div className="chatContainer" ref={this.elemRef}>
                             {allMessages &&
                                 allMessages.map(chatroom => (

@@ -23,7 +23,7 @@ class Friends extends Component {
                 ) : (
                     <PageContainer>
                         <PageWrapper>
-                            <h2 className="h5_header friendsListHeader">
+                            <h2 className="h2_headers friendsListHeader">
                                 Friends
                             </h2>
                             {!friends.length && (
@@ -74,7 +74,7 @@ class Friends extends Component {
                                         </div>
                                     ))}
                             </div>
-                            <h2 className="h5_header pendingListHeader">
+                            <h2 className="h2_headers pendingListHeader">
                                 {" "}
                                 Friends pending
                             </h2>

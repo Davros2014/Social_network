@@ -37,7 +37,7 @@ const Findpeople = ({ first }) => {
                 <Loader />
             ) : (
                 <PageWrapper>
-                    <h5 className="h5_header">Find People</h5>
+                    <h2 className="h2_headers">Find People</h2>
                     <p className="p_bodyTextMain subheader">
                         Hello, <span>{first}</span> find other Zero° users
                     </p>

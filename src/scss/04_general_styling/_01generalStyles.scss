@@ -126,24 +126,24 @@ body {
 
 /* FONTS SIZES ETC */
 
-.h1_header {
-    @include H1-Headers;
+.h1_headers {
+    @include h1-Headers;
 }
-.h2_header {
-    @include H2-Headers;
+.h2_headers {
+    @include h2-Headers;
 }
-.h3_header {
-    @include H3-Headers;
+.h3_headers {
+    @include h3-Headers;
 }
-.h4_header {
-    @include H4-Headers;
+.h4_headers {
+    @include h4-Headers;
 }
-.h5_header {
-    @include H5-Headers;
+.h5_headers {
+    @include h5-Headers;
     color: $primary-color;
 }
-.h6_header {
-    @include H6-Headers;
+.h6_headers {
+    @include h6-Headers;
 }
 .p_bodyTextMain {
     @include BodyTextMain;

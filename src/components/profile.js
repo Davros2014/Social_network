@@ -7,7 +7,7 @@ const Profile = ({ bio, profilepic }) => {
     return (
         <PageContainer>
             <PageWrapper>
-                <h5 className="h5_header">Your profile</h5>
+                <h2 className="h2_headers">Your profile</h2>
                 <div className="profileContainer">
                     <div className="mainImageProfile">{profilepic}</div>
                     <div className="bioContainer">{bio}</div>

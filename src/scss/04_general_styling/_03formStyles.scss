@@ -180,7 +180,7 @@ input[type="submit"]:hover {
 }
 
 .mainH1 h3 {
-    @include H3-Headers;
+    @include h3-Headers;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }
@@ -206,7 +206,7 @@ input[type="submit"]:hover {
     padding: calc(1rem + 1vw);
 }
 .regContainer h3 {
-    @include H3-Headers;
+    @include h3-Headers;
     margin-top: 1rem;
     margin-bottom: 1rem;
 }

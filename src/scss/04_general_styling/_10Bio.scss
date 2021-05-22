@@ -7,12 +7,22 @@
     @include justify-content(flex-start);
     @include flex-direction(column);
     margin-top: 7rem;
-    .userName {
-        @include H5-Headers;
-        color: rgba(0, 0, 0, 0.5);
+    .infoHeader {
+        // text-transform: lowercase;
+    }
+    .bioSubHead {
+        @include h5-Headers;
+        text-align: left;
+        width: 100%;
+        text-transform: uppercase;
+        font-weight: 700;
+        margin-top: 2rem;
+
         & span {
-            @include H5-Headers;
-            color: $primary-color;
+            text-align: left;
+            font-size: clamp(1.2, 2vw, 1.4vw);
+            color: $complimentary-color;
+            text-transform: capitalize;
         }
     }
     .bioInfo {
@@ -32,18 +42,14 @@
         //     color: $complimentary-color;
         //     overflow: hidden;
         // }
-        .bioTextHolder {
+        .bioInfoText {
             height: auto;
-            // padding: 0.25rem 2rem;
-            // border-left: 2px solid $complimentary-color;
-            // background: rgba($complimentary-color, 0.15);
-            // border-radius: 5px;
             margin: 0 auto;
-            margin-top: 1rem;
             width: 100%;
             text-align: left;
-            font-size: clamp(1.2rem, 2vw, 1.4rem);
             @include bodysmall;
+            font-size: clamp(1.2rem, 2vw, 1.4rem);
+            line-height: 1.6;
             color: $complimentary-color;
             overflow: hidden;
             margin-bottom: 4rem;
@@ -58,9 +64,9 @@
             border: 0;
             margin-top: 1rem;
             border-radius: 5px;
-            color: yellow;
+            color: $primary-color;
             &:focus {
-                color: yellow;
+                color: $primary-color;
             }
         }
     }

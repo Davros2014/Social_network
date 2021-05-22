@@ -19,8 +19,8 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
 ////////////////////////////////////////////////////////////
 
 // MAIN HEADERS ////////////////////////////////////////////
-@mixin H1-Headers(
-    $size: 3.6rem,
+@mixin h1-Headers(
+    $size: clamp(2.4rem, 2vw, 3.8rem),
     $colour: $primary-color,
     $weight: 700,
     $lh: 0.95,
@@ -43,11 +43,11 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
         letter-spacing: $ls;
     }
 }
-@mixin H2-Headers(
-    $size: 2.8rem,
-    $colour: $complimentary-color,
-    $weight: 700,
-    $lh: 0.95,
+@mixin h2-Headers(
+    $size: clamp(2rem, 2vw, 3.8rem),
+    $colour: $primary-color,
+    $weight: 400,
+    $lh: 1.45,
     $ls: 0.05rem
 ) {
     font-family: $mainFont;
@@ -67,8 +67,9 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
         letter-spacing: $ls;
     }
 }
-@mixin H3-Headers(
-    $size: 2.4rem,
+
+@mixin h3-Headers(
+    $size: clamp(1.6rem, 2vw, 1.8rem),
     $colour: $complimentary-color,
     $weight: 400,
     $lh: 0.7,
@@ -91,7 +92,7 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
         letter-spacing: $ls;
     }
 }
-@mixin H4-Headers(
+@mixin h4-Headers(
     $size: 2.2rem,
     $colour: $off-white,
     $weight: 400,
@@ -115,11 +116,11 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
         letter-spacing: $ls;
     }
 }
-@mixin H5-Headers(
-    $size: 2rem,
+@mixin h5-Headers(
+    $size: clamp(1rem, 2vw, 1.2rem),
     $colour: $complimentary-color,
     $weight: 400,
-    $lh: 1.2,
+    $lh: 1.5,
     $ls: 0.05rem
 ) {
     font-family: $mainFont;
@@ -139,7 +140,7 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
         letter-spacing: $ls;
     }
 }
-@mixin H6-Headers(
+@mixin h6-Headers(
     $size: 1.6rem,
     $colour: $complimentary-color,
     $weight: 400,

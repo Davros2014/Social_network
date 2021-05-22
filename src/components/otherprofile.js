@@ -32,7 +32,7 @@ export default class Otherprofile extends React.Component {
         return (
             <PageContainer>
                 <PageWrapper>
-                    <h1 className="h5_header">Friend Profiles</h1>
+                    <h2 className="h2_headers">Friend Profiles</h2>
                     <div className="otherprofileContainer">
                         <div className="mainImageProfile">
                             <Profilepicture

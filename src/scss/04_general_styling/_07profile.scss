@@ -10,14 +10,13 @@
     padding: 3rem 3rem 2rem 3rem;
     width: $width90;
     background: $light-accent-color;
-    // border: 2px solid blue;
     margin: 0 auto;
     position: relative;
     border-radius: 10px;
     margin-top: 12rem;
-    @include minMq($laptopBreak) {
+    box-shadow: 0px 4px 8px 4px rgba(0, 0, 0, 0.25);
+    @include minMq($mobileBreak) {
         width: $width30;
-        // border: 2px solid red;
     }
 }
 .mainImageProfile {
@@ -28,7 +27,6 @@
     transition: all 0.25s ease-in-out;
 }
 .profileWrapper {
-    // background: red;
     @include flexbox();
     @include align-items(center);
     @include justify-content(center);
@@ -55,7 +53,7 @@
 .profileContainer .userProfilePic {
     width: calc(11rem + 4vw);
     height: calc(11rem + 4vw);
-    border-width: 6px;
+    border-width: clamp(2px, 2vw, 5px);
     animation-name: fadeDown;
     animation-duration: 0.25s;
     opacity: 1;

@@ -46,21 +46,21 @@ const Bio = ({
 
     return (
         <Fragment>
-            <h4 className="h3_header">Personal Information</h4>
-            <h3 className="userName p_bodyText">
+            <h3 className="h3_headers infoHeader">Personal Information</h3>
+            <h5 className="bioSubHead">
                 User:
+                <br />
                 <span>
                     {" "}
                     {first} {last}
                 </span>
-                <div className="mainLine" />
-            </h3>
+            </h5>
 
             <div className="bioInfo">
                 {bioinfo && !viewable && (
                     <>
-                        <h3 className="h3_header">BRIEF BIO</h3>
-                        <p className="p_bodyText bioTextHolder">{bioinfo}</p>
+                        <h5 className="bioSubHead">Short Bio: </h5>
+                        <p className="p_bodyText bioInfoText">{bioinfo}</p>
                     </>
                 )}
 
