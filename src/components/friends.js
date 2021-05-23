@@ -38,11 +38,11 @@ class Friends extends Component {
                                     here. Add more in Find friends section
                                 </p>
                             )}
-                            <div className="friendsEtcContainer">
+                            <div className="friendsContainer">
                                 {friends &&
                                     friends.map(friends => (
                                         <div
-                                            className="friendsEtcWrapper"
+                                            className="friendsCard"
                                             key={friends.id}
                                         >
                                             <Link to={`/user/${friends.id}`}>
@@ -58,7 +58,7 @@ class Friends extends Component {
                                                     }}
                                                 />
                                             </Link>
-                                            <p className="h5_header friendsEtcText">
+                                            <p className="h5_header friendsNameHeader">
                                                 {friends.first} {friends.last}
                                             </p>
                                             <button
@@ -85,11 +85,11 @@ class Friends extends Component {
                                     on the Find section
                                 </p>
                             )}
-                            <div className="friendsEtcContainer">
+                            <div className="friendsContainer">
                                 {pending &&
                                     pending.map(pending => (
                                         <div
-                                            className="friendsEtcWrapper"
+                                            className="friendsCard"
                                             key={pending.id}
                                         >
                                             <Link to={`/user/${pending.id}`}>
@@ -105,7 +105,7 @@ class Friends extends Component {
                                                     }}
                                                 />
                                             </Link>
-                                            <p className="h4_header friendsEtcText">
+                                            <p className="h4_header friendsNameHeader">
                                                 {pending.first} {pending.last}
                                             </p>
                                             <button

@@ -49,11 +49,11 @@ const Findpeople = ({ first }) => {
                         placeholder="Search for friends"
                     />
                     <div id="findPeopleContainer">
-                        <div className="friendsEtcContainer">
+                        <div className="friendsContainer">
                             {user.length &&
                                 user.map(user => (
                                     <div
-                                        className="friendsEtcWrapper"
+                                        className="friendsCard"
                                         key={user.id}
                                     >
                                         <Link to={`/user/${user.id}`}>
@@ -63,7 +63,7 @@ const Findpeople = ({ first }) => {
                                                 }
                                             />
                                         </Link>
-                                        <p className="h5_header friendsEtcText">
+                                        <p className="h5_header friendsNameHeader">
                                             {user.first} {user.last}
                                         </p>
                                     </div>

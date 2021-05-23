@@ -13,47 +13,43 @@
         }
     }
 }
-.friendsEtcContainer {
-    @include flexRowCentered;
+// .friendsContainer {
+//     @include flexRowCentered;
+//     text-align: center;
+//     width: 80vw;
+//     flex-wrap: wrap;
+//     margin: 0 auto;
+// }
+.friendsCard {
+    @include flexColumnCentered;
     text-align: center;
-    width: 80vw;
-    flex-wrap: wrap;
-    margin: 0 auto;
-}
-.friendsEtcWrapper {
-    @include flexStartCenteredColumn;
-    text-align: center;
-    margin: 0 0.5rem;
-    padding: 1rem 1.5rem;
-    height: calc(15 + 5vh);
+    padding: 1rem;
     cursor: pointer;
+    grid-row: span 2;
+    grid-column: span 2;
     background: $light-accent-color;
-    margin-bottom: calc(1rem + 0.5vw);
-    margin-left: calc(0.5rem + 0.25vw);
-    margin-right: calc(0.5rem + 0.25vw);
     @include transition(all, 0.3s, ease-out);
-    &::hover {
-        transform: scale(1.075);
-        background: rgba($primary-color, 0.125);
+    &:hover {
+        transform: scale(1.05);
+        background: rgba($primary-color, 0.25);
         box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.075);
     }
 }
 
-.friendsEtcText {
+.friendsNameHeader {
     text-align: center;
     @include bodysmall;
     color: $primary-color;
-    margin-top: 1rem;
+    margin-top: 2rem;
     margin-bottom: 0.5rem;
 }
 .pendingListHeader {
     margin-top: 3rem;
     margin-bottom: 2rem;
 }
-.friendsEtcWrapper .userProfilePic {
-    width: calc(4rem + 1vw);
-    height: calc(4rem + 1vw);
-    margin-top: 1rem;
+.friendsCard .userProfilePic {
+    width: 10rem;
+    height: 10rem;
 }
 
 // other users button

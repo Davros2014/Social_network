@@ -44,9 +44,9 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
     }
 }
 @mixin h2-Headers(
-    $size: clamp(2rem, 2vw, 3.8rem),
+    $size: clamp(2rem, 2vw, 3rem),
     $colour: $primary-color,
-    $weight: 400,
+    $weight: 300,
     $lh: 1.45,
     $ls: 0.05rem
 ) {

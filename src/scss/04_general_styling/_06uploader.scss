@@ -112,6 +112,22 @@
         }
     }
 }
+.uploading {
+    @extend .modalContainer;
+    color: $primary-color;
+}
+
+@keyframes loading {
+    0% {
+        content: "Loading.";
+    }
+    50% {
+        content: "Loading..";
+    }
+    100% {
+        content: "Loading...";
+    }
+}
 .inputField {
     position: relative;
     width: 100%;

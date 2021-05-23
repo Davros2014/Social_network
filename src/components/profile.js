@@ -3,7 +3,6 @@ import PageWrapper from "./PageWrapper";
 import PageContainer from "./PageContainer";
 
 const Profile = ({ bio, profilepic }) => {
-    // const { bio, profilepic } = props;
     return (
         <PageContainer>
             <PageWrapper>
