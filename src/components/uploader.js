@@ -61,7 +61,7 @@ export default class Uploader extends Component {
                         X
                     </button>
                     <div className="modalWrapper">
-                        <h3 className="h3_headers">
+                        <h3 className="h4_headers">
                             Would you like to change your profile image?
                         </h3>
 

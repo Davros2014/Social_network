@@ -93,10 +93,10 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
     }
 }
 @mixin h4-Headers(
-    $size: 2.2rem,
-    $colour: $off-white,
+    $size: clamp(1.8rem, 2vw, 2rem),
+    $colour: $light-accent-color,
     $weight: 400,
-    $lh: 1.2,
+    $lh: 1.6,
     $ls: 0.05rem
 ) {
     font-family: $mainFont;
