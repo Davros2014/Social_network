@@ -24,6 +24,7 @@ const App = props => {
     const [profilepictureurl, setProfilepictureurl] = useState("");
     const [email, setEmail] = useState("");
     const [bioinfo, setBioinfo] = useState("");
+    const [showDeleteModal, setShowDeleteModal] = useState(false);
 
     useEffect(() => {
         axios
@@ -83,8 +84,7 @@ const App = props => {
                                 path="/"
                                 render={() => (
                                     <Profile
-                                        first={first}
-                                        last={last}
+                                        loading={loading}
                                         profilepic={
                                             <Profilepicture
                                                 id={id}
@@ -105,6 +105,12 @@ const App = props => {
                                                 email={email}
                                                 viewable={viewable}
                                                 showEditMode={showEditMode}
+                                                setShowDeleteModal={
+                                                    setShowDeleteModal
+                                                }
+                                                showDeleteModal={
+                                                    showDeleteModal
+                                                }
                                             />
                                         }
                                         handleUploader={handleUploader}
@@ -145,7 +151,9 @@ const App = props => {
                             <Route
                                 exact
                                 path="/deleteaccount"
-                                render={() => <DeleteAccount first={first} />}
+                                render={() => (
+                                    <DeleteAccount id={id} first={first} />
+                                )}
                             />
                         </Switch>
                     </Fragment>

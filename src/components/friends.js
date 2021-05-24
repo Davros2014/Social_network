@@ -34,7 +34,8 @@ class Friends extends Component {
                             )}
                             {friends.length > 0 && (
                                 <p>
-                                    You have {friends.length} friends listed
+                                    You have {friends.length} friend
+                                    {friends.length === 1 ? "" : "s"} listed
                                     here. Add more in Find friends section
                                 </p>
                             )}

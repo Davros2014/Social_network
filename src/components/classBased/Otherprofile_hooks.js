@@ -40,7 +40,7 @@ const Otherprofile = props => {
         <PageContainer>
             <h1 className="h5_header">Friend Profiles</h1>
             <div className="otherprofileContainer">
-                <div className="mainImageProfile">
+                <div className="generalProfileImage">
                     <Profilepicture
                         profilepictureurl={
                             profilepicture || "/images/default.svg"

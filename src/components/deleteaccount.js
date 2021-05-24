@@ -5,8 +5,9 @@ import PageWrapper from "./PageWrapper";
 import { Link } from "react-router-dom";
 
 const DeleteAccount = ({ first }) => {
-    const deleteAccount = () => {
+    const deleteUser = () => {
         axios.post("/deleteaccount").then(response => {
+            console.log("error", response.error);
             console.log(response);
             location.replace("/welcome");
         });
@@ -56,7 +57,7 @@ const DeleteAccount = ({ first }) => {
                         <Link id="stayBtn" className="buttonBasic" to="/">
                             Stay
                         </Link>
-                        <button className="buttonBasic" onClick={deleteAccount}>
+                        <button className="buttonBasic" onClick={deleteUser}>
                             Leave
                         </button>
                     </div>

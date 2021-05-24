@@ -19,7 +19,6 @@
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
     opacity: 0;
     border-radius: 1rem;
-    z-index: 200;
     padding: 3rem;
     padding-bottom: 0;
     @include minMq($mobileBreak) {
@@ -29,13 +28,14 @@
         animation: 0.5s bounceIn forwards ease-in-out;
     }
     &.remove {
-        animation: 0.2s minimise linear;
+        animation: 0.2s minimise forwards linear;
     }
     &::before {
         @include pseudoContent();
         background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
         opacity: 0.45;
         background-blend-mode: multiply;
+        z-index: -1;
     }
     .modalCloseBtn {
         position: absolute;
@@ -113,6 +113,28 @@
         }
     }
 }
+
+// DELETE USER MODAL
+.deleteUserContainer {
+    padding: 4rem;
+    width: $width90;
+    @include minMq($mobileBreak) {
+        width: $width50;
+    }
+    .h2_headers {
+        color: white;
+        font-weight: 400;
+        margin-bottom: 2rem;
+    }
+    .p_bodyTextMain {
+        @include BodyTextMain;
+        color: white;
+        margin-bottom: 2rem;
+    }
+}
+
+// END DELETE ////////
+
 .uploading {
     @extend .modalContainer;
     color: $primary-color;

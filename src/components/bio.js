@@ -1,6 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import axios from "../axios";
 import { Link } from "react-router-dom";
+import LeavingUs from "./LeavingUs";
 
 const Bio = ({
     showEditMode,
@@ -10,10 +11,11 @@ const Bio = ({
     first,
     last,
     id,
-    email
+    email,
+    showDeleteModal,
+    setShowDeleteModal
 }) => {
     const handleInput = ({ target }) => {
-        console.log("text in handleinput", target.value);
         setBio(target.value);
     };
 
@@ -35,17 +37,19 @@ const Bio = ({
                 if (data.success) {
                     // console.log("Handlesubmit log", data);
                     // console.log("data.bioinfo", data.bioinfo);
-                    // setState function passes bioinfo to setBio in app.js
                     setBio(data.bioinfo);
-                    // console.log("this.props", this.props);
                 }
             })
             .catch(err => console.log("error - post bio", err));
     };
-    // const { first, last, bioinfo } = this.props;
-
     return (
         <Fragment>
+            {showDeleteModal && (
+                <LeavingUs
+                    showDeleteModal={showDeleteModal}
+                    setShowDeleteModal={setShowDeleteModal}
+                />
+            )}
             <h3 className="h3_headers infoHeader">Personal Information</h3>
             <h5 className="bioSubHead">
                 User:
@@ -101,16 +105,20 @@ const Bio = ({
             </div>
             <div className="btnContainerRow deleteBtns">
                 <button onClick={() => showEditMode()} className="editAccount">
-                    <i class="far fa-edit"></i>
+                    <i className="far fa-edit"></i>
                 </button>
-                <Link className="deleteAccount" to="/deleteaccount">
-                    <i
-                        className="far fa-trash-alt"
-                        onClick={() => showEditMode()}
-                    ></i>
-                </Link>
+                <button
+                    onClick={() => setShowDeleteModal(true)}
+                    className="deleteAccount"
+                >
+                    <i className="far fa-trash-alt"></i>
+                </button>
             </div>
         </Fragment>
     );
 };
 export default Bio;
+
+// <Link className="deleteAccount" to="/deleteaccount">
+// 	<i className="far fa-trash-alt"></i>
+// </Link>

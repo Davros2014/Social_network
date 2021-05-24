@@ -195,7 +195,7 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
     }
 }
 @mixin BodyTextMain(
-    $size: 1.6rem,
+    $size: clamp(1.35rem, 2vw 1.5rem),
     $colour: $complimentary-color,
     $weight: 100,
     $lh: 1.15,
@@ -218,6 +218,7 @@ $mainFont: "Montserrat", Helvetica, sans-serif;
         letter-spacing: $ls;
     }
 }
+
 @mixin bodysmall(
     $size: clamp(1.4rem, 2vw, 1.6rem),
     $colour: $complimentary-color,

@@ -8,7 +8,6 @@ import PageWrapper from "./PageWrapper";
 
 export default class Otherprofile extends React.Component {
     constructor(props) {
-        // console.log("OTHER PROFILE > PROPS", props);
         super(props);
         this.state = {};
     }
@@ -27,36 +26,41 @@ export default class Otherprofile extends React.Component {
         console.log("success: false");
     }
     render() {
-        const { profilepicture } = this.state;
-        console.log("state in friends profiles", this.state);
+        const { profilepicture, first, last, id, bioinfo } = this.state;
         return (
             <PageContainer>
                 <PageWrapper>
                     <h2 className="h2_headers">Friend Profiles</h2>
-                    <div className="otherprofileContainer">
-                        <div className="mainImageProfile">
+
+                    <div className="profileContainer">
+                        <div className="generalProfileImage">
                             <Profilepicture
                                 profilepictureurl={
                                     profilepicture || "/images/default.svg"
                                 }
                             />
                         </div>
-                        <h3 className="userName p_bodyText otherprofileHeader">
-                            <strong>User &#x23;{this.state.id - 1} </strong>
-                            <span>
-                                {this.state.first} {this.state.last}
-                            </span>
-                            <div className="mainLine" />
-                        </h3>
-                        <div className="bioInfo">
-                            <h3 className="Personal_header">BRIEF BIO</h3>
-                            <p className="p_bodyText bioTextHolder">
-                                {this.state.bioinfo}
-                            </p>
+                        <div className="bioContainer">
+                            <h3 className="h3_headers infoHeader">
+                                Personal Information
+                            </h3>
+                            <h5 className="bioSubHead">
+                                User &#x23;{id - 1}
+                                <br />
+                                <span>
+                                    {first} {last}
+                                </span>
+                            </h5>
+                            <div className="bioInfo">
+                                <h5 className="bioSubHead">Short Bio: </h5>
+                                <p className="p_bodyText bioInfoText">
+                                    {bioinfo}
+                                </p>
 
-                            <Friendbutton
-                                otheruserid={this.props.match.params.id}
-                            />
+                                <Friendbutton
+                                    otheruserid={this.props.match.params.id}
+                                />
+                            </div>
                         </div>
                     </div>
                 </PageWrapper>

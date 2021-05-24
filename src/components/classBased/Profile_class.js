@@ -21,7 +21,7 @@ export default class Profile extends React.Component {
                 <div className="pageContainer">
                     <h5 className="h5_header">Your profile</h5>
                     <div className="profileContainer">
-                        <div className="mainImageProfile">
+                        <div className="generalProfileImage">
                             {profilepic || "/images/default.svg"}
                         </div>
                         <div className="bioContainer">{bio}</div>

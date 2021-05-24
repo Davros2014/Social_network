@@ -59,7 +59,7 @@
 .btnContainerRow {
     @include flexbox();
     @include justify-content(center);
-    #stayBtn,
+    .leavingBtn,
     .submitButton {
         margin-right: 1rem;
         background: $light-accent-color;

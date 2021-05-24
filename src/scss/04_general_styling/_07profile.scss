@@ -18,77 +18,56 @@
     @include minMq($mobileBreak) {
         width: $width30;
     }
+    .generalProfileImage {
+        position: absolute;
+        left: 50%;
+        top: 0;
+        transform: translate(-50%, -50%);
+        transition: all 0.25s ease-in-out;
+        overflow: hidden;
+        border-radius: 100%;
+        .userProfilePic {
+            width: calc(11rem + 4vw);
+            height: calc(11rem + 4vw);
+            border-width: clamp(2px, 2vw, 5px);
+            animation-name: fadeDown;
+            animation-duration: 0.25s;
+            opacity: 1;
+            animation-fill-mode: forwards;
+        }
+    }
+    #personalProfile {
+        &::before {
+            content: "Click to upload new image";
+            position: absolute;
+            left: 0;
+            top: 100%;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            @include flexbox();
+            @include align-items(flex-start);
+            @include justify-content(center);
+            overflow: hidden;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.75);
+            opacity: 0.75;
+            @include BodyTextMain;
+            color: $light-accent-color;
+            z-index: 20;
+            cursor: pointer;
+            font-weight: 300;
+            opacity: 0;
+            padding: 1rem 2rem;
+            transition: all 0.25s ease-in-out;
+        }
+        &:hover::before {
+            opacity: 1;
+            top: 50%;
+        }
+    }
 }
-.mainImageProfile {
-    position: absolute;
-    left: 50%;
-    top: 0;
-    transform: translate(-50%, -50%);
-    transition: all 0.25s ease-in-out;
-}
-.profileWrapper {
-    @include flexbox();
-    @include align-items(center);
-    @include justify-content(center);
-    flex-direction: row;
-    width: 100%;
-    margin-top: 4rem;
-}
-
-.profileInfo {
-    @include flexbox();
-    @include flex-direction(column);
-}
-
-.userName {
-    margin-bottom: 1rem;
-}
-.userName span {
-    color: $primary-color;
-}
-.userName bold {
-    font-size: 2rem;
-    color: $complimentary-color;
-}
-.profileContainer .userProfilePic {
-    width: calc(11rem + 4vw);
-    height: calc(11rem + 4vw);
-    border-width: clamp(2px, 2vw, 5px);
-    animation-name: fadeDown;
-    animation-duration: 0.25s;
-    opacity: 1;
-    animation-fill-mode: forwards;
-}
-// .mainImageProfile:hover::after {
-//     background: red;
-//     border-radius: 100%;c
-// }
-
-// .mainImageProfile::before {
-//     transition: all 0.25s ease-in-out;
-// }
-// .mainImageProfile:hover::before {
-//     content: "Click to upload new profile image";
-//     position: absolute;
-//     left: 50%;
-//     top: 50%;
-//     width: 100%;
-//     height: 100%;
-//     @include flexbox();
-//     @include align-items(center);
-//     @include justify-content(center);
-//     border-radius: 50%;
-//     transform: translate(-50%, -50%);
-//     text-align: center;
-//     background: #000;
-//     opacity: 0.75;
-//     font-size: 1.25rem;
-//     z-index: 20;
-//     cursor: pointer;
-//     font-weight: 700;
-//     padding: 2rem;
-//     transition: all 0.25s ease-in-out;
-// }
 
 @keyframes fadeDown {
     0% {

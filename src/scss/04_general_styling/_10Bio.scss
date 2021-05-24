@@ -29,6 +29,8 @@
         margin: 0 auto;
         width: 100%;
         text-align: center;
+        margin-bottom: 2rem;
+
         // .bioTextHolder {
         //     height: 100px;
         //     padding: 2rem;
@@ -52,7 +54,7 @@
             line-height: 1.6;
             color: $complimentary-color;
             overflow: hidden;
-            margin-bottom: 4rem;
+            margin-bottom: 2rem;
         }
         .bioTextArea {
             width: 100%;
@@ -99,4 +101,14 @@
     margin-bottom: 0.5rem;
     margin-top: 2rem;
     font-weight: 700;
+}
+.userName {
+    margin-bottom: 1rem;
+    span {
+        color: $primary-color;
+    }
+    bold {
+        font-size: 2rem;
+        color: $complimentary-color;
+    }
 }

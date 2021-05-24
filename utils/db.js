@@ -259,7 +259,7 @@ module.exports.addChatMessage = function addChatMessage(messages, user_id) {
 module.exports.accountDeletion = function accountDeletion(user_id) {
     return db.query(
         `
-        DELETE FROM users WHERE id  = $1
+        DELETE FROM users WHERE id = $1
         `,
         [user_id]
     );

@@ -18,14 +18,5 @@
 #findPeopleContainer {
     margin-top: 2rem;
     @include flexColumnCentered;
-    width: 80vw;
-}
-
-.friendsContainer {
-    @include display-grid;
-    grid-template-columns: repeat(16, 4.765625vw);
-    grid-auto-rows: 4.765625vw;
-    grid-gap: 1.25vw;
-    width: 80vw;
-    // border: 1px solid red;
+    width: 90vw;
 }

@@ -81,7 +81,7 @@ const _09sendfriendrequest = require("./routers/_09sendfriendrequest");
 const _10acceptfriendrequest = require("./routers/_10acceptfriendrequest");
 const _11deletefriendrequest = require("./routers/_11deletefriendrequest");
 const _12friendsWannabes = require("./routers/_12friendsWannabes");
-// const _13deleteaccount = require("./routers/_13deleteaccount");
+const _13deleteaccount = require("./routers/_13deleteaccount");
 
 // ROUTES ///////////////////////////////////
 app.use(_01registerRouter);
@@ -96,7 +96,7 @@ app.use(_09sendfriendrequest);
 app.use(_10acceptfriendrequest);
 app.use(_11deletefriendrequest);
 app.use(_12friendsWannabes);
-// app.use(_13deleteaccount);
+app.use(_13deleteaccount);
 
 // GET /WELCOME //////////////////////////////////////
 app.get("/welcome", function(req, res) {
