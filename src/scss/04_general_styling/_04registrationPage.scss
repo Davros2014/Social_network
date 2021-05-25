@@ -11,11 +11,11 @@
     transform: scale(0.9);
     animation: 0.5s bounceInLogin forwards ease-in;
     opacity: 0;
-    @include minMq($mobileBreak) {
+    @include minMq(1200px) {
         width: $width60;
     }
     @include minMq($laptopBreak) {
-        width: $width40;
+        width: $width30;
     }
     &::before {
         @include pseudoContent();
