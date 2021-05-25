@@ -131,9 +131,13 @@
         color: white;
         margin-bottom: 2rem;
     }
+    #deleteIcon {
+        height: 20vh;
+        margin-bottom: 2rem;
+    }
 }
 
-// Logout
+// LOGOUT
 .modalContainer.logoutContainer {
     margin-bottom: 16rem !important;
     .logoutModal {

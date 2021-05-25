@@ -37,72 +37,77 @@ class Chatroom extends React.Component {
         return (
             <PageContainer>
                 <PageWrapper>
-                    <section id="MessageBoardContainer">
+                    <>
                         <h2 className="h2_headers">Message Board</h2>
-                        <div className="chatContainer" ref={this.elemRef}>
-                            {allMessages &&
-                                allMessages.map(chatroom => (
-                                    <div
-                                        className={`chatItem ${
-                                            chatroom.id !== id
-                                                ? "rightAlign"
-                                                : ""
-                                        } `}
-                                        key={chatroom.id}
-                                    >
-                                        <img
-                                            className="userProfilePic"
-                                            src={
-                                                chatroom.profilepictureurl ||
-                                                "/images/default.svg"
-                                            }
-                                            alt=""
-                                        />
-                                        <div className="chatDetails">
-                                            <div className="chatHeader">
-                                                <div className="chatInfo">
-                                                    User&#x23;{" "}
-                                                    {chatroom.user_id}{" "}
-                                                    {chatroom.first}{" "}
-                                                    {chatroom.last} commented @{" "}
-                                                    {chatroom.created_at}
+
+                        <section id="MessageBoardContainer">
+                            <div className="chatContainer" ref={this.elemRef}>
+                                {allMessages &&
+                                    allMessages.map(chatroom => (
+                                        <div
+                                            className={`chatItem ${
+                                                chatroom.id !== id
+                                                    ? "rightAlign"
+                                                    : ""
+                                            } `}
+                                            key={chatroom.id}
+                                        >
+                                            <img
+                                                className="userProfilePic"
+                                                src={
+                                                    chatroom.profilepictureurl ||
+                                                    "/images/default.svg"
+                                                }
+                                                alt=""
+                                            />
+                                            <div className="chatDetails">
+                                                <div className="chatHeader">
+                                                    <div className="chatInfo">
+                                                        User&#x23;{" "}
+                                                        {chatroom.user_id}{" "}
+                                                        {chatroom.first}{" "}
+                                                        {chatroom.last}{" "}
+                                                        commented @{" "}
+                                                        {chatroom.created_at}
+                                                    </div>
+                                                </div>
+                                                <div className="h4_headers">
+                                                    <p className="h4_headers chatMessage">
+                                                        {chatroom.messages}
+                                                    </p>
                                                 </div>
                                             </div>
-                                            <div className="h4_header">
-                                                <p className="h4_header chatMessage">
-                                                    {chatroom.messages}
-                                                </p>
-                                            </div>
                                         </div>
-                                    </div>
-                                ))}
-                        </div>
-                        <div className="messageInputContainer">
-                            <textarea
-                                spellCheck="false"
-                                placholder="We're waiting to hear all about it..."
-                                className="chatInputField"
-                                id="output"
-                                name="chatinfo"
-                                onChange={e => this.handleInput(e)}
-                                type="text"
-                            />
-                            <button
-                                onClick={e => {
-                                    this.handleSubmit(e);
-                                }}
-                                id="clear"
-                                type="reset"
-                                value="Reset"
-                                className={`messagingSubmit ${
-                                    disabled ? "disabled" : ""
-                                } `}
-                                disabled={disabled ? true : false}
-                            >
-                                {disabled ? "Disabled" : "Send"}
-                            </button>
-                        </div>
-                    </section>
+                                    ))}
+                            </div>
+
+                            <div className="messageInputContainer">
+                                <textarea
+                                    spellCheck="false"
+                                    placholder="We're waiting to hear all about it..."
+                                    className="chatInputField"
+                                    id="output"
+                                    name="chatinfo"
+                                    onChange={e => this.handleInput(e)}
+                                    type="text"
+                                />
+                                <button
+                                    onClick={e => {
+                                        this.handleSubmit(e);
+                                    }}
+                                    id="clear"
+                                    type="reset"
+                                    value="Reset"
+                                    className={`messagingSubmit ${
+                                        disabled ? "disabled" : ""
+                                    } `}
+                                    disabled={disabled ? true : false}
+                                >
+                                    {disabled ? "Disabled" : "Send"}
+                                </button>
+                            </div>
+                        </section>
+                    </>
                 </PageWrapper>
             </PageContainer>
         );

@@ -28,9 +28,8 @@ export default class Registration extends Component {
                     location.replace("/");
                 } else if (data.error) {
                     this.setState({
-                        error: true
+                        error: data.error
                     });
-                    console.log("error", data.error);
                 }
             });
     }
@@ -38,11 +37,7 @@ export default class Registration extends Component {
         const { error } = this.state;
         return (
             <div className="authForm">
-                {error && (
-                    <div className="error">
-                        Sorry, an error occured, {error}, please try again!
-                    </div>
-                )}
+                {error && <div className="error">{error}</div>}
                 <input
                     name="first"
                     placeholder="First name"

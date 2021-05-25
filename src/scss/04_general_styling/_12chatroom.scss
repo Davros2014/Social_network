@@ -1,16 +1,22 @@
 #MessageBoardContainer {
-    width: 100%;
+    width: 90vw;
+    height: calc(100vh - 8rem);
     @include minMq($mobileBreak) {
         width: $width60;
     }
     .chatContainer {
         @include flexColumnCentered;
+        align-items: flex-end;
         border-top: 1px solid $light-accent-color;
         border-bottom: 1px solid $light-accent-color;
         text-align: center;
         // flex-wrap: wrap;
         margin: 0 auto;
-        max-height: 60vh;
+        width: 80%;
+        height: 60%;
+        // @include minMq($mobileBreak) {
+        //     height: 80%;
+        // }
         overflow: scroll;
         margin-top: 1rem;
         margin-bottom: 3rem;
@@ -23,11 +29,9 @@
             border-radius: 3px;
             background: $light-grey-color;
             text-align: left;
-            // margin-right: calc(3rem + 2vw);
             &:nth-child(odd) {
                 background: rgba($primary-color, 0.06);
-                // margin-left: calc(3rem + 2vw);
-                .h4_header.chatMessage::before {
+                .h4_headers.chatMessage::before {
                     content: "";
                     position: absolute;
                     width: 0;
@@ -102,13 +106,15 @@
         position: fixed;
         bottom: 0;
         left: 0;
-        margin-top: 3rem;
         width: 100vw;
-        height: 20vh;
+        height: 30%;
+        @include minMq($mobileBreak) {
+            height: 20%;
+        }
         background: rgba($complimentary-color, 0.25);
         border-top: 1px solid rgba($complimentary-color, 0.9);
         z-index: 0;
-        background: rgba($primary-color, 0.25);
+        background: rgba($primary-color, 0.5);
         &::before {
             @include pseudoContent();
             background-image: linear-gradient(
@@ -125,6 +131,7 @@
             width: $width90;
             min-height: 8vh;
             padding: 2rem;
+            padding-bottom: 2rem;
             color: $complimentary-color;
             font-size: clamp(1.1, 2vw, 1.25rem);
             border: 0;

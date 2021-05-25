@@ -22,7 +22,7 @@ router.route("/register").post((req, res) => {
                         res.json({
                             success: true
                         });
-                        console.log("results", results);
+                        // console.log("results", results);
                     })
                     .catch(err => {
                         console.log(err);
@@ -34,6 +34,11 @@ router.route("/register").post((req, res) => {
             })
             .catch(err => {
                 console.log(err);
+                res.json({
+                    success: false,
+                    error:
+                        "Sorry, passowrd must be a minumum of 4 characters in length"
+                });
             });
     } else {
         res.json({

@@ -47,8 +47,8 @@
         background: $light-accent-color;
         @include transition(all, 0.15s, ease-out);
         .userProfilePic {
-            width: clamp(10rem, 6vw, 12rem);
-            height: clamp(10rem, 7vw, 12rem);
+            width: clamp(6rem, 6vw, 12rem);
+            height: clamp(6rem, 7vw, 12rem);
             @include minMq($mobileBreak) {
                 width: clamp(4vw, 6vw, 5.75vw);
                 height: clamp(4vw, 6vw, 5.75vw);
@@ -62,7 +62,7 @@
         .friendsNameHeader {
             text-align: center;
             @include bodysmall;
-            font-size: 1.8rem;
+            font-size: 1.6rem;
             @include minMq($mobileBreak) {
                 font-size: 1.25rem;
             }

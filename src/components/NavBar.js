@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 // components
@@ -6,6 +6,10 @@ import Logo from "./Logo";
 import Profilepicture from "./Profilepicture";
 import Uploader from "./Uploader";
 import Logout from "./Logout";
+
+const showMobileNav = () => {
+    document.getElementById("mobileNav").classList.toggle("active");
+};
 
 const NavBar = ({
     uploaderVisible,
@@ -17,6 +21,18 @@ const NavBar = ({
     setUploaderVisible
 }) => {
     const [logoutVisibility, setLogoutVisibility] = useState(false);
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    // let desktopSize = window.innerWidth > 980;
+    const updateDesktop = () => {
+        setIsDesktop(window.innerWidth > 980);
+    };
+
+    useEffect(() => {
+        // window.innerWidth > 980 ? setIsDesktop(true) : setIsDesktop(false);
+        window.addEventListener("resize", updateDesktop);
+        return () => window.removeEventListener("resize", updateDesktop);
+    }, []);
 
     const handleLogoutVisibility = () => {
         setLogoutVisibility(!logoutVisibility);
@@ -27,27 +43,39 @@ const NavBar = ({
                 <Link to="/">
                     <Logo />
                 </Link>
-                <div className="navDetails">
-                    <nav className="navLinkbar">
-                        <Link className="navLink" to="/">
-                            Profile
-                        </Link>
-                        <Link className="navLink" to="/users">
-                            Find
-                        </Link>
-                        <Link className="navLink" to="/friends">
-                            Friends
-                        </Link>
-                        <Link className="navLink" to="/chatroom">
-                            Chat
-                        </Link>
-                        <p
-                            id="logout"
-                            className="navLink"
-                            onClick={handleLogoutVisibility}
+                <div className="nav mainNav">
+                    <nav
+                        className={`${isDesktop ? "deskTopNav" : "mobileNav"} `}
+                    >
+                        <div
+                            className={isDesktop ? null : "mobile-btn"}
+                            onClick={showMobileNav}
                         >
-                            Logout
-                        </p>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <>
+                            <Link className="navLink" to="/">
+                                Profile
+                            </Link>
+                            <Link className="navLink" to="/users">
+                                Find
+                            </Link>
+                            <Link className="navLink" to="/friends">
+                                Friends
+                            </Link>
+                            <Link className="navLink" to="/chatroom">
+                                Chat
+                            </Link>
+                            <p
+                                id="logout"
+                                className="navLink"
+                                onClick={handleLogoutVisibility}
+                            >
+                                Logout
+                            </p>
+                        </>
                     </nav>
                     <div className="navPicContainer">
                         <Profilepicture

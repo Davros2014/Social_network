@@ -45,6 +45,8 @@ const Login = props => {
                 value={password}
                 spellCheck="false"
                 onChange={e => setPassword(e)}
+                minLength="4"
+                required
             />
             <button
                 className="submitButton"

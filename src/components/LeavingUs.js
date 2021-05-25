@@ -34,8 +34,7 @@ const LeavingUs = ({ showDeleteModal, setShowDeleteModal, first, id }) => {
                         be open to you...
                     </p>
                     <img
-                        style={{ height: "30rem", marginBottom: "2rem" }}
-                        id="delete-icon"
+                        id="deleteIcon"
                         src="/images/the_door.svg"
                         alt="door"
                     />
