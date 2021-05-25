@@ -5,7 +5,7 @@
 .authWrapper {
     background: rgba(0, 0, 0, 0.9);
     border-radius: 8px;
-    width: 90vw;
+    width: 90%;
     padding: 2rem;
     padding-top: 3rem;
     transform: scale(0.9);
@@ -40,6 +40,7 @@
             margin-top: 1rem;
             font-weight: 400;
             text-align: center;
+            font-size: clamp(2.25rem, 2vw, 2.75rem);
             span {
                 font-size: 2.75rem;
                 font-weight: 700;
@@ -69,6 +70,7 @@
             @include LightText;
             margin-top: 2rem;
             color: $light-accent-color;
+            padding: clamp(1rem, 2vw, 1.2rem);
             & span {
                 @include LightText;
                 @include transition(all, 0.2s, ease-out);
