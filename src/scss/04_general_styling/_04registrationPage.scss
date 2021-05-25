@@ -2,99 +2,117 @@
 // REGISTRATION PAGE ///////////////////////
 ////////////////////////////////////////////
 
-.registerLoginScreen {
-    height: 100vh;
-    width: 100vw;
-}
-.mainContent {
-    width: 100vw;
-    height: 100vh;
-    @include flexbox();
-    @include flex-direction(column);
-    @include justify-content(center);
-    @include align-items(center);
-    text-align: center;
-    z-index: 0;
-}
-.mainBG {
-    z-index: -5;
-    object-fit: contain;
-    height: auto;
-}
-.mainContentWrapper {
+.authWrapper {
     background: rgba(0, 0, 0, 0.9);
-    border-radius: 3px;
-    padding: 2rem 3rem 2rem 3rem;
-    animation-name: fadeInbounceIn;
-    animation-duration: 0.35s;
-    animation-fill-mode: forwards;
+    border-radius: 8px;
+    width: 90vw;
+    padding: 2rem;
+    padding-top: 3rem;
+    transform: scale(0.9);
+    animation: 0.5s bounceInLogin forwards ease-in;
+    opacity: 0;
+    @include minMq($mobileBreak) {
+        width: $width60;
+    }
+    @include minMq($laptopBreak) {
+        width: $width40;
+    }
+    &::before {
+        @include pseudoContent();
+        background-image: linear-gradient(to top, #002f4b, #dc4225);
+        opacity: 0.25;
+        background-blend-mode: multiply;
+        z-index: -1;
+        border-radius: 8px;
+    }
+    .logoWrapper {
+        @include flexbox();
+        @include push--auto;
+        @include justify-content(center);
+        @include flex-direction(column);
+        text-align: center;
+        width: 90%;
+        @include minMq($mobileBreak) {
+            width: 60%;
+        }
+        line-height: 1.35;
+        .logoTitle {
+            margin-top: 1rem;
+            font-weight: 400;
+            text-align: center;
+            span {
+                font-size: 2.75rem;
+                font-weight: 700;
+                color: $light-accent-color;
+            }
+        }
+        .logoMain {
+            width: 4rem;
+            @include minMq($mobileBreak) {
+                width: clamp(3rem, 5vw, 4rem);
+            }
+            margin: 0 auto;
+            text-align: center;
+        }
+    }
+    .authForm {
+        @include flexbox();
+        @include flex-direction(column);
+        @include align-items(center);
+        @include justify-content(flex-start);
+        margin: auto;
+        padding: calc(1rem + 0.5vw);
+        .authLink {
+            margin-top: 1rem;
+        }
+        .authText {
+            @include LightText;
+            margin-top: 2rem;
+            color: $light-accent-color;
+            & span {
+                @include LightText;
+                @include transition(all, 0.2s, ease-out);
+                font-weight: 700;
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+        }
+    }
 }
-@keyframes fadeInbounceIn {
+// @keyframes fadeInbounceIn {
+//     0% {
+//         opacity: 0;
+//         transform: scale(0.5);
+//     }
+//     50% {
+//         opacity: 1;
+//         transform: scale(1.1);
+//     }
+//     100% {
+//         opacity: 1;
+//         transform: scale(1);
+//     }
+// }
+@-webkit-keyframes bounceInLogin {
     0% {
         opacity: 0;
-        transform: scale(0.8);
+        transform: scale(0.95);
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0);
     }
-
+    35% {
+        opacity: 1;
+        transform: scale(1.05);
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0);
+    }
+    75% {
+        opacity: 1;
+        transform: scale(0.95);
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0);
+    }
     100% {
         opacity: 1;
         transform: scale(1);
-    }
-}
-
-.mainContentWrapper .logoMain {
-    width: 3rem;
-    height: 3rem;
-    margin: 0 auto;
-    text-align: center;
-    margin-top: 2rem;
-}
-.mainWrapper {
-    @include flexbox();
-    @include flex-direction(column);
-    margin: auto;
-}
-.registrationForm {
-    @include flexbox();
-    @include flex-direction(column);
-    @include align-items(center);
-    width: 30vw;
-    margin: auto;
-    padding: calc(1rem + 0.5vw);
-}
-.logRegWrapper {
-    @include flexbox();
-    @include push--auto;
-    @include justify-content(center);
-    @include flex-direction(column);
-    text-align: center;
-    padding: calc(2rem + 1vw);
-}
-.logoTitle {
-    text-align: center;
-}
-.logoTitle span {
-    font-size: 1.75rem;
-}
-.Link {
-    margin-top: 1rem;
-}
-.registerText {
-    @include LightText;
-    margin-top: 2rem;
-}
-.registerText span {
-    @include LightText;
-    @include transition(all, 0.2s, ease-out);
-}
-.registerText span:hover {
-    @include LightText;
-    color: $primary-color;
-}
-
-/// log in page
-
-@media all and (max-width: 768px) {
-    .registrationForm {
-        width: 90vw;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.75);
     }
 }

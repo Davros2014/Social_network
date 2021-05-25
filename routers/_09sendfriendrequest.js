@@ -24,7 +24,7 @@ router.route("/sendfriendrequest").post((req, res) => {
         .catch(err => {
             // console.log("error > insert friend request", err);
             res.json({
-                error: "An error occurred..."
+                error: err.message
             });
-        }); // end catch
+        });
 });

@@ -7,19 +7,21 @@ export default class Registration extends Component {
         super(props);
         this.state = {};
         this.submit = this.submit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
+        // this.handleChange = this.handleChange.bind(this);
     }
     handleChange({ target }) {
         this.setState({ [target.name]: target.value });
-        console.log("target.name", ([target.name], target.value));
+        // console.log("target.name", ([target.name], target.value));
     }
     submit() {
+        const { first, last, email, password } = this.state;
+
         axios
             .post("/register", {
-                first: this.state.first,
-                last: this.state.last,
-                email: this.state.email,
-                password: this.state.password
+                first: first,
+                last: last,
+                email: email,
+                password: password
             })
             .then(({ data }) => {
                 if (data.success) {
@@ -35,7 +37,7 @@ export default class Registration extends Component {
     render() {
         const { error } = this.state;
         return (
-            <div className="registrationForm">
+            <div className="authForm">
                 {error && (
                     <div className="error">
                         Sorry, an error occured, {error}, please try again!
@@ -81,9 +83,9 @@ export default class Registration extends Component {
                 >
                     Submit
                 </button>
-                <h5 className="Link registerText">
+                <h5 className="authText">
                     Already a member? Log-in
-                    <Link className="Link" to="/login">
+                    <Link className="authLink" to="/login">
                         <span> here</span>
                     </Link>
                 </h5>

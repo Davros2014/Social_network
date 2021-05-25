@@ -25,42 +25,41 @@ const Login = props => {
             .catch(err => console.log(err.message));
     };
     return (
-        <div className="startPage">
-            <div className="inputForm">
-                {error && <div className="error">{error}</div>}
-                <input
-                    name="email"
-                    placeholder="Email address"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    value={email}
-                    spellCheck="false"
-                    onChange={e => setEmail(e)}
-                />
-                <input
-                    name="password"
-                    placeholder="Password"
-                    type="password"
-                    autoComplete="off"
-                    autoCorrect="off"
-                    value={password}
-                    spellCheck="false"
-                    onChange={e => setPassword(e)}
-                />
-                <button
-                    className="submitButton"
-                    type="submit"
-                    onClick={() => submit()}
-                >
-                    Submit
-                </button>
-                <h5 className="registerText">
-                    Registered yet? Register
-                    <Link className="Link" to="/">
-                        <span> here</span>
-                    </Link>
-                </h5>
-            </div>
+        <div className="authForm">
+            {error && <div className="error">{error}</div>}
+            <input
+                name="email"
+                placeholder="Email address"
+                autoComplete="off"
+                autoCorrect="off"
+                value={email}
+                spellCheck="false"
+                onChange={e => setEmail(e)}
+            />
+            <input
+                name="password"
+                placeholder="Password"
+                type="password"
+                autoComplete="off"
+                autoCorrect="off"
+                value={password}
+                spellCheck="false"
+                onChange={e => setPassword(e)}
+            />
+            <button
+                className="submitButton"
+                type="submit"
+                onClick={() => submit()}
+                disabled={!email && !password ? "disabled" : ""}
+            >
+                Submit
+            </button>
+            <h5 className="authText">
+                Registered yet? Register
+                <Link className="authLink" to="/">
+                    <span> here</span>
+                </Link>
+            </h5>
         </div>
     );
 };

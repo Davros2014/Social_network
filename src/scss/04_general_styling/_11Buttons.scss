@@ -7,8 +7,8 @@
     padding: 1rem 1.25rem;
     border-radius: 4px;
     @include transition(all, 0.2s, ease-out);
-    color: $complimentary-color;
-    background: rgba($complimentary-color, 0.2);
+    color: rgba($light-accent-color, 1);
+    background: rgba(0, 0, 0, 0.6);
     font-weight: 400;
     font-size: clamp(1.1rem, 2vw, 1.3rem);
     &:hover {
@@ -60,6 +60,7 @@
     @include flexbox();
     @include justify-content(center);
     .leavingBtn,
+    .logout,
     .submitButton {
         margin-right: 1rem;
         background: $light-accent-color;
@@ -70,4 +71,7 @@
             color: white;
         }
     }
+}
+#logout {
+    cursor: pointer;
 }

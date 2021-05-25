@@ -105,22 +105,37 @@
         margin-top: 3rem;
         width: 100vw;
         height: 20vh;
-        background: $light-grey-color;
-        border-top: 1px solid rgba($complimentary-color, 0.2);
+        background: rgba($complimentary-color, 0.25);
+        border-top: 1px solid rgba($complimentary-color, 0.9);
+        z-index: 0;
+        background: rgba($primary-color, 0.25);
+        &::before {
+            @include pseudoContent();
+            background-image: linear-gradient(
+                to bottom right,
+                #002f4b,
+                #dc4225
+            );
+            opacity: 0.45;
+            background-blend-mode: multiply;
+            z-index: -1;
+        }
         .chatInputField {
+            position: relative;
             width: $width90;
             min-height: 8vh;
             padding: 2rem;
             color: $complimentary-color;
-            font-size: 1rem;
+            font-size: clamp(1.1, 2vw, 1.25rem);
             border: 0;
+            border-radius: 6px;
             outline: 0;
             @include minMq($mobileBreak) {
                 width: $width40;
             }
             &:focus {
                 background: rgba($complimentary-color, 0.35);
-                color: black;
+                color: $accent-color;
             }
         }
     }

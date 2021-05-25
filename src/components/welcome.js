@@ -15,16 +15,16 @@ const Welcome = props => {
     }
     return (
         <PageContainer>
-            <div className="mainContentWrapper">
+            <div className="authWrapper">
                 <HashRouter>
                     <Fragment>
-                        <Link to="/">
-                            <Logo />
-                        </Link>
-                        <div className="logRegWrapper">
+                        <div className="logoWrapper">
+                            <Link to="/">
+                                <Logo />
+                            </Link>
                             <h2 className="h4_header logoTitle">
                                 Welcome to the Zero<span>&#176; </span>
-                                community,
+                                community
                             </h2>
                         </div>
                         <Route exact path="/" component={Registration} />

@@ -12,15 +12,19 @@ const Profile = ({ bio, profilepic, loading }) => {
                 <PageContainer>
                     <PageWrapper>
                         <h2 className="h2_headers">Your profile</h2>
-                        <div className="profileContainer">
-                            <div
-                                id="personalProfile"
-                                className="generalProfileImage "
-                            >
-                                {profilepic}
+                        {profilepic && bio ? (
+                            <div className="profileContainer">
+                                <div
+                                    id="personalProfile"
+                                    className="generalProfileImage "
+                                >
+                                    {profilepic}
+                                </div>
+                                <div className="bioContainer">{bio}</div>
                             </div>
-                            <div className="bioContainer">{bio}</div>
-                        </div>
+                        ) : (
+                            <p>fuck u dave</p>
+                        )}
                     </PageWrapper>
                 </PageContainer>
             )}

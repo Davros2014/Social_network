@@ -133,6 +133,18 @@
     }
 }
 
+// Logout
+.modalContainer.logoutContainer {
+    margin-bottom: 16rem !important;
+    .logoutModal {
+        padding: 3rem;
+        .p_bodyTextMain {
+            color: $light-accent-color;
+            margin-bottom: 3rem;
+        }
+    }
+}
+
 // END DELETE ////////
 
 .uploading {

@@ -52,10 +52,7 @@ const Findpeople = ({ first }) => {
                         <div className="friendsContainer">
                             {user.length &&
                                 user.map(user => (
-                                    <div
-                                        className="friendsCard"
-                                        key={user.id}
-                                    >
+                                    <div className="friendsCard" key={user.id}>
                                         <Link to={`/user/${user.id}`}>
                                             <Profilepicture
                                                 profilepictureurl={
@@ -63,7 +60,7 @@ const Findpeople = ({ first }) => {
                                                 }
                                             />
                                         </Link>
-                                        <p className="h5_header friendsNameHeader">
+                                        <p className="friendsNameHeader">
                                             {user.first} {user.last}
                                         </p>
                                     </div>

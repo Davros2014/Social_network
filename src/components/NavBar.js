@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 // components
 import Logo from "./Logo";
 import Profilepicture from "./Profilepicture";
 import Uploader from "./Uploader";
+import Logout from "./Logout";
 
 const NavBar = ({
     uploaderVisible,
@@ -15,6 +16,11 @@ const NavBar = ({
     handleUploader,
     setUploaderVisible
 }) => {
+    const [logoutVisibility, setLogoutVisibility] = useState(false);
+
+    const handleLogoutVisibility = () => {
+        setLogoutVisibility(!logoutVisibility);
+    };
     return (
         <header className="topNav">
             <div className="topNav__wrapper">
@@ -35,9 +41,13 @@ const NavBar = ({
                         <Link className="navLink" to="/chatroom">
                             Chat
                         </Link>
-                        <a className="navLink" href="/logout">
+                        <p
+                            id="logout"
+                            className="navLink"
+                            onClick={handleLogoutVisibility}
+                        >
                             Logout
-                        </a>
+                        </p>
                     </nav>
                     <div className="navPicContainer">
                         <Profilepicture
@@ -59,6 +69,12 @@ const NavBar = ({
                         viewable={viewable}
                         handleUploader={handleUploader}
                         profilepictureurl={profilepictureurl}
+                    />
+                )}
+                {logoutVisibility && (
+                    <Logout
+                        handleLogoutVisibility={handleLogoutVisibility}
+                        logoutVisibility={logoutVisibility}
                     />
                 )}
             </div>

@@ -59,7 +59,7 @@ class Friends extends Component {
                                                     }}
                                                 />
                                             </Link>
-                                            <p className="h5_header friendsNameHeader">
+                                            <p className="friendsNameHeader">
                                                 {friends.first} {friends.last}
                                             </p>
                                             <button
