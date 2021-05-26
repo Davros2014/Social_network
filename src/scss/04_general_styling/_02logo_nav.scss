@@ -11,6 +11,7 @@
 // NAVBAR //////////////////////////////////
 .topNav {
     background: $complimentary-color;
+    background: rgba(0, 0, 0, 0.9);
     height: 8rem;
     position: fixed;
     top: 0;
@@ -21,9 +22,9 @@
     z-index: 1000;
     &::before {
         @include pseudoContent();
-        background: red;
+        background-image: linear-gradient(to top, #002f4b, #dc4225);
+        opacity: 0.25;
         background-blend-mode: multiply;
-        opacity: 0.15;
         z-index: -1;
     }
     // in logo component
@@ -32,7 +33,7 @@
         height: 4rem;
         text-align: center;
         object-fit: contain;
-        @include maxMq($mobileBreak) {
+        @include maxMq(980px) {
             position: absolute;
             left: 50%;
             top: 20px;
@@ -115,71 +116,84 @@
                 top: 100%;
                 position: fixed;
                 top: 8rem;
-                width: 60vw;
+                width: 100vw;
                 margin: 0 auto;
                 text-align: center;
-                height: 100vh;
-                background: rgba(0, 0, 0, 0.75);
+                background: rgba(0, 0, 0, 0.9);
                 left: -100%;
                 z-index: 500;
+                transition: left 0.15s ease-in-out;
+                &::before {
+                    @include pseudoContent();
+                    background-image: linear-gradient(
+                        to bottom,
+                        #002f4b,
+                        #dc4225
+                    );
+                    opacity: 0.25;
+                    background-blend-mode: multiply;
+                    z-index: -1;
+                }
                 &.active {
                     left: 0;
-                    transition: transform 0.25s ease-in-out;
+                    transition: left 0.25s ease-in;
                 }
                 .navLink {
                     position: relative;
                     @include bodysmall;
                     @include flexbox();
                     @include align-items(flex-end);
-                    margin-right: 3rem;
+                    padding: 4rem;
                     color: white;
                     font-weight: 400;
-                    font-size: clamp(0.8rem, 2vw, 1rem);
+                    font-size: clamp(1.4rem, 2vw, 1.6rem);
                     @include transition(all, 0.2s, ease-out);
+
                     &:hover {
                         color: $primary-color;
+                        background: rgba(270, 270, 270, 0.125);
                         @include transition(all, 0.2s, ease-out);
                         &::before {
                             visibility: visible;
-                            -webkit-transform: translateY(-100%);
-                            transform: translateY(-100%);
+                            -webkit-transform: translateX(0);
+                            transform: translateX(0);
                         }
-                        &::after {
-                            visibility: visible;
-                            -webkit-transform: translateY(100%);
-                            transform: translateY(100%);
-                        }
+                        // &::after {
+                        //     visibility: visible;
+                        //     -webkit-transform: translateX(100%);
+                        //     transform: translateX(100%);
+                        // }
                     }
                     &::before {
                         content: "";
                         position: absolute;
-                        width: 100%;
-                        height: 16px;
-                        bottom: -4rem;
+                        width: 16px;
+                        height: 100%;
+                        bottom: 0;
                         opacity: 1;
                         left: 0;
                         background-color: $primary-color;
                         visibility: hidden;
-                        -webkit-transform: translateY(0);
-                        transform: translateY(0);
+                        -webkit-transform: translateX(-16px);
+                        transform: translateX(-16px);
                         @include transition(all, 0.2s, ease-in-out);
                         z-index: 500;
                     }
-                    &::after {
-                        content: "";
-                        position: absolute;
-                        width: 100%;
-                        height: 5rem;
-                        top: -7rem;
-                        opacity: 0.25;
-                        left: 0;
-                        background-color: $primary-color;
-                        visibility: hidden;
-                        -webkit-transform: translateY(0);
-                        transform: translateY(0);
-                        @include transition(all, 0.2s, ease-in-out);
-                        z-index: 500;
-                    }
+                    // &::after {
+                    //     content: "";
+                    //     position: absolute;
+                    //     width: 100%;
+                    //     height: 5rem;
+                    //     top: -7rem;
+                    //     opacity: 0.25;
+                    //     left: 0;
+                    //     background-color: $primary-color;
+                    //     visibility: hidden;
+                    //     -webkit-transform: translateY(0);
+                    //     transform: translateY(0);
+                    //     @include transition(all, 0.2s, ease-in-out);
+                    //     z-index: 500;
+                    // }
                 }
             }
             .mobile-btn {

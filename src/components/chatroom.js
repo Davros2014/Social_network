@@ -1,17 +1,19 @@
 // FROM HOT OR NOT EG
-import React from "react";
-// import { Link } from "react-router-dom";
+import React, { Component, createRef } from "react";
+
 import { connect } from "react-redux";
 import { allChatMessages, chatMessage } from "../actions/actions";
 import { socket } from "../socket";
+
 import PageContainer from "./PageContainer";
 import PageWrapper from "./PageWrapper";
 
-class Chatroom extends React.Component {
+class Chatroom extends Component {
     constructor(props) {
         super(props);
         this.state = { disabled: true, chatroom: [] };
-        this.elemRef = React.createRef();
+        this.elemRef = createRef();
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleInput({ target }) {
         this.setState({ chatroom: target.value });
@@ -19,8 +21,11 @@ class Chatroom extends React.Component {
             ? this.setState({ disabled: false })
             : this.setState({ disabled: true });
     }
-    handleSubmit() {
-        console.log("bang, bang, click, click: ", this.state.chatroom);
+    handleSubmit(e) {
+        if (e.keyCode == 13) {
+            socket.emit("chatMessage", this.state.chatroom);
+            document.getElementById("output").value = "";
+        }
         socket.emit("chatMessage", this.state.chatroom);
         document.getElementById("output").value = "";
     }
@@ -32,7 +37,6 @@ class Chatroom extends React.Component {
     }
     render() {
         const { allMessages, id } = this.props;
-        console.log("id", id);
         const { disabled } = this.state;
         return (
             <PageContainer>
@@ -45,11 +49,7 @@ class Chatroom extends React.Component {
                                 {allMessages &&
                                     allMessages.map(chatroom => (
                                         <div
-                                            className={`chatItem ${
-                                                chatroom.id !== id
-                                                    ? "rightAlign"
-                                                    : ""
-                                            } `}
+                                            className="chatItem"
                                             key={chatroom.id}
                                         >
                                             <img
@@ -84,7 +84,7 @@ class Chatroom extends React.Component {
                             <div className="messageInputContainer">
                                 <textarea
                                     spellCheck="false"
-                                    placholder="We're waiting to hear all about it..."
+                                    placeholder="Tell us something..."
                                     className="chatInputField"
                                     id="output"
                                     name="chatinfo"
@@ -92,10 +92,8 @@ class Chatroom extends React.Component {
                                     type="text"
                                 />
                                 <button
-                                    onClick={e => {
-                                        this.handleSubmit(e);
-                                    }}
-                                    id="clear"
+                                    onClick={this.handleSubmit}
+                                    id="submitMessage"
                                     type="reset"
                                     value="Reset"
                                     className={`messagingSubmit ${
@@ -103,7 +101,14 @@ class Chatroom extends React.Component {
                                     } `}
                                     disabled={disabled ? true : false}
                                 >
-                                    {disabled ? "Disabled" : "Send"}
+                                    {disabled ? (
+                                        <i className="fas fa-ban"></i>
+                                    ) : (
+                                        <i
+                                            className="fa fa-paper-plane"
+                                            aria-hidden="true"
+                                        ></i>
+                                    )}
                                 </button>
                             </div>
                         </section>

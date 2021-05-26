@@ -43,9 +43,7 @@ html {
     background: black;
     width: 100vw;
     height: 100vh;
-    animation-name: fadeIn;
-    animation-duration: 0.4s;
-    animation-fill-mode: forwards;
+    animation: 0.4s fadeIn forwards;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -103,9 +101,11 @@ body {
     height: 100vh;
     text-align: center;
     overflow: hidden;
-    @include minMq($mobileBreak) {
-        width: $width90;
-    }
+    background: mintcream;
+
+    // @include minMq($mobileBreak) {
+    //     width: $width90;
+    // }
 }
 .PageWrapper {
     margin-top: 80px;

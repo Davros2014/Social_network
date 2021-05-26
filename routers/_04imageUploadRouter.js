@@ -50,10 +50,9 @@ router
                 .catch(err => {
                     res.json({
                         success: false,
-                        message:
+                        error:
                             "Sorry, we could not upload your image, perhaps it is too large, please upload files less than 2mb in size"
                     });
-                    console.log("ERROR: ", err.message);
                 });
         } else {
             res.json({

@@ -1,35 +1,46 @@
 #MessageBoardContainer {
     width: 90vw;
-    height: calc(100vh - 8rem);
+    height: 60%;
     @include minMq($mobileBreak) {
         width: $width60;
     }
     .chatContainer {
+        position: fixed;
+        bottom: 15%;
+        left: 50%;
+        height: 60%;
+        transform: translateX(-50%);
         @include flexColumnCentered;
         align-items: flex-end;
         border-top: 1px solid $light-accent-color;
         border-bottom: 1px solid $light-accent-color;
         text-align: center;
-        // flex-wrap: wrap;
         margin: 0 auto;
-        width: 80%;
-        height: 60%;
-        // @include minMq($mobileBreak) {
-        //     height: 80%;
-        // }
+        width: 90%;
         overflow: scroll;
         margin-top: 1rem;
-        margin-bottom: 3rem;
-        padding-bottom: 1rem;
+        padding-bottom: 2rem;
+        // border: 2px solid red;
+        @include minMq($laptopBreak) {
+            height: 65%;
+            width: 40%;
+        }
         .chatItem {
             position: relative;
             margin: 0 auto;
-            padding: 3rem;
+            padding: 2rem;
+            width: 80%;
             margin-top: 3rem;
-            border-radius: 3px;
+            border-radius: 8px;
             background: $light-grey-color;
             text-align: left;
+            margin-left: 2.5rem;
+            @include minMq($mobileBreak) {
+                padding: 3rem;
+                width: 80%;
+            }
             &:nth-child(odd) {
+                margin-right: 2.5rem;
                 background: rgba($primary-color, 0.06);
                 .h4_headers.chatMessage::before {
                     content: "";
@@ -99,50 +110,69 @@
         }
     }
     .messageInputContainer {
-        @include flexbox();
-        @include justify-content(center);
-        @include align-items(center);
-        @include flex-direction(column);
         position: fixed;
         bottom: 0;
         left: 0;
         width: 100vw;
-        height: 30%;
-        @include minMq($mobileBreak) {
-            height: 20%;
-        }
+        @include flexbox();
+        @include justify-content(center);
+        @include align-items(center);
+        height: 15%;
+        padding: 0 5vw;
         background: rgba($complimentary-color, 0.25);
-        border-top: 1px solid rgba($complimentary-color, 0.9);
         z-index: 0;
         background: rgba($primary-color, 0.5);
         &::before {
             @include pseudoContent();
-            background-image: linear-gradient(
-                to bottom right,
-                #002f4b,
-                #dc4225
-            );
+            background-image: linear-gradient(to top, #002f4b, #dc4225);
             opacity: 0.45;
             background-blend-mode: multiply;
             z-index: -1;
         }
         .chatInputField {
             position: relative;
-            width: $width90;
-            min-height: 8vh;
+            width: 100%;
+            height: 3vh;
             padding: 2rem;
-            padding-bottom: 2rem;
+            padding-top: 1.25rem;
+            padding-bottom: 2.75rem;
             color: $complimentary-color;
-            font-size: clamp(1.1, 2vw, 1.25rem);
+            font-size: clamp(1.25rem, 2vw, 1.4rem);
             border: 0;
-            border-radius: 6px;
+            border-radius: 100px;
             outline: 0;
+            resize: none;
+            overflow: hidden;
             @include minMq($mobileBreak) {
                 width: $width40;
             }
             &:focus {
                 background: rgba($complimentary-color, 0.35);
-                color: $accent-color;
+                font-weight: 400;
+                color: $light-accent-color;
+                &::placeholder {
+                    color: $light-accent-color;
+                }
+            }
+        }
+        #submitMessage {
+            width: 3vh;
+            height: 3vh;
+            border-radius: 100%;
+            padding: 2rem;
+            @include flexbox();
+            @include justify-content(center);
+            @include align-items(center);
+            margin: 2rem 0 2rem 1rem;
+            background: rgba($complimentary-color, 0.35);
+            &:hover {
+                transition: 0.25s all ease-in-out;
+                background: $primary-color;
+                box-shadow: 0px 2px 8px 4px rgba(0, 0, 0, 0.125);
+            }
+            &:clicked {
+                transition: 0.25s all ease-in-out;
+                transform: translateY(-5%);
             }
         }
     }

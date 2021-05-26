@@ -25,11 +25,12 @@ router.route("/login").post((req, res) => {
                                 res.json({
                                     success: false,
                                     error:
-                                        "Sorry, the password you entered appears to be wrong"
+                                        "Sorry, the password you entered appears to be incorrect & should be a minimum of 4 characters in length"
                                 });
                             }
                         })
                         .catch(error => {
+                            console.log("error", error.message);
                             res.json({
                                 success: false,
                                 error: "Sorry, please enter details again"
@@ -44,6 +45,7 @@ router.route("/login").post((req, res) => {
                 }
             })
             .catch(error => {
+                console.log("error", error.message);
                 res.json({
                     success: false,
                     error: "Sorry, please enter details again"

@@ -49,7 +49,7 @@ export default class Uploader extends Component {
             })
             .catch(error => {
                 console.log("error ", error);
-                this.setState({ error: error.message });
+                this.setState({ error: error.error });
             });
     }
     render() {

@@ -7,10 +7,6 @@ import Profilepicture from "./Profilepicture";
 import Uploader from "./Uploader";
 import Logout from "./Logout";
 
-const showMobileNav = () => {
-    document.getElementById("mobileNav").classList.toggle("active");
-};
-
 const NavBar = ({
     uploaderVisible,
     profilepictureurl,
@@ -28,8 +24,12 @@ const NavBar = ({
         setIsDesktop(window.innerWidth > 980);
     };
 
+    const showMobileNav = () => {
+        document.querySelector(".mobileNav").classList.toggle("active");
+    };
+
     useEffect(() => {
-        // window.innerWidth > 980 ? setIsDesktop(true) : setIsDesktop(false);
+        window.innerWidth > 980 ? setIsDesktop(true) : setIsDesktop(false);
         window.addEventListener("resize", updateDesktop);
         return () => window.removeEventListener("resize", updateDesktop);
     }, []);
