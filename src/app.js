@@ -58,7 +58,6 @@ const App = props => {
     const showEditMode = () => {
         setViewable(!viewable);
     };
-    console.log("this id", id);
     return (
         <Fragment>
             {loading ? (

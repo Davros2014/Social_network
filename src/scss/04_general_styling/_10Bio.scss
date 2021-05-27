@@ -7,6 +7,9 @@
     @include justify-content(flex-start);
     @include flex-direction(column);
     margin-top: 7rem;
+    @include minMq($mobileBreak) {
+        margin-top: 9rem;
+    }
     .infoHeader {
         // text-transform: lowercase;
     }
@@ -17,10 +20,9 @@
         text-transform: uppercase;
         font-weight: 700;
         margin-top: 2rem;
-
         & span {
             text-align: left;
-            font-size: clamp(1.2, 2vw, 1.4vw);
+            font-size: clamp(1.4rem, 2vw, 1.6rem);
             color: $complimentary-color;
             text-transform: capitalize;
         }
@@ -50,7 +52,7 @@
             width: 100%;
             text-align: left;
             @include bodysmall;
-            font-size: clamp(1.2rem, 2vw, 1.4rem);
+            font-size: clamp(1.4rem, 2vw, 1.6rem);
             line-height: 1.6;
             color: $complimentary-color;
             overflow: hidden;

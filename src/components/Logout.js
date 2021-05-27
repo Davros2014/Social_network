@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import ModalBackground from "./ModalBackground";
 
 const Logout = ({ logoutVisibility, handleLogoutVisibility }) => {

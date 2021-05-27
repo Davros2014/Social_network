@@ -7,7 +7,7 @@ export default function Friendbutton(props) {
     const submit = () => {
         // send friend request
         if (buttonName === "Send Friend Request") {
-            console.log("FRIEND BUTTON - props.otheruserid", props.otheruserid);
+            // console.log("FRIEND BUTTON - props.otheruserid", props.otheruserid);
             axios
                 .post("/sendfriendrequest", {
                     // to send to post route in req.body
@@ -57,13 +57,12 @@ export default function Friendbutton(props) {
     // when page mounts > checkfriendstatus
     useEffect(() => {
         const { otheruserid } = props;
-        console.log("HERE I AM", otheruserid);
         axios
             .get("/checkFriendStatus/" + otheruserid)
             .then(results => {
-                console.log("//// RESULTS in checkfriendstatus", results);
+                // console.log("//// RESULTS in checkfriendstatus", results);
                 setButtonName(results.data.buttonName);
-                console.log("DATA DATA DATA", results.data.buttonName);
+                // console.log("DATA DATA DATA", results.data.buttonName);
             })
             .catch(err => {
                 console.log(err);
@@ -71,7 +70,7 @@ export default function Friendbutton(props) {
     }, []);
 
     return (
-        <button className="buttonBasic friendButton" onClick={submit}>
+        <button className="smallButtonBasic friendButton" onClick={submit}>
             {buttonName}
         </button>
     );

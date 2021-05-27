@@ -10,6 +10,7 @@ CREATE TABLE friends(
 -- sender = viewer
 -- recipient = owner
 
+-- INSERT IN PSQL ALL THE BELOW CODE TO CREATE RANDOM USERS
 
 create unique index idx_unique_sender
  on friends (least(sender_id, receiver_id),greatest(sender_id, receiver_id));

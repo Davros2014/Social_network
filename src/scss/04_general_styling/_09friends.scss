@@ -13,6 +13,9 @@
         }
     }
 }
+.friendsBodyText {
+    margin-bottom: 3rem;
+}
 .friendsContainer {
     @include display-grid;
     grid-template-columns: repeat(2, 42.5vw);

@@ -18,6 +18,16 @@
         cursor: pointer;
     }
 }
+.smallButtonBasic {
+    @extend .buttonBasic;
+    font-size: clamp(0.9rem, 2vw, 1.1rem);
+}
+.prevBtn {
+    margin-right: 1rem;
+}
+.nextBtn {
+    margin-left: 1rem;
+}
 .bioInfoBtn {
     @extend .buttonBasic;
     margin: 2rem 1rem 1rem 1rem;
@@ -57,6 +67,7 @@
     }
 }
 .btnContainerRow {
+    margin-top: 2rem;
     @include flexbox();
     @include justify-content(center);
     .leavingBtn,
@@ -74,4 +85,7 @@
 }
 #logout {
     cursor: pointer;
+}
+.backBtn {
+    margin-top: 2rem;
 }

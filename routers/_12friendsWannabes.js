@@ -7,10 +7,9 @@ module.exports = router;
 router.route("/friendsWannabes").get((req, res) => {
     // console.log("/////// FRIENDS WANNABES");
     let loggedinUserId = req.session.userId;
-    // console.log("loggedinUserId", loggedinUserId);
     db.friendsTable(loggedinUserId)
         .then(results => {
-            console.log("///////results", results);
+            // console.log("///////results", results);
             res.json({
                 users: results.rows
             });

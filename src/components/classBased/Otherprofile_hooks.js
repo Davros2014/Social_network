@@ -32,10 +32,8 @@ const Otherprofile = props => {
                 }
             })
             .catch(err => console.log(err));
-        console.log("success: false");
     });
     const { profilepicture } = props;
-    // console.log("state in friendiess profiles", this.state);
     return (
         <PageContainer>
             <h1 className="h5_header">Friend Profiles</h1>

@@ -15,9 +15,8 @@ router.route("/checkFriendStatus/:ownerid").get((req, res) => {
     if (ownerId != loggedinUserId) {
         db.checkStatus(loggedinUserId, ownerId)
             .then(results => {
-                // let receiverId = results.rows[0].receiver_id;
-                console.log("///// results.rows", results.rows);
-                console.log("results in check friends request", results);
+                // console.log("///// results.rows", results.rows);
+                // console.log("results in check friends request", results);
                 // no friend request
                 if (results.rows.length == 0) {
                     res.json({
@@ -46,12 +45,12 @@ router.route("/checkFriendStatus/:ownerid").get((req, res) => {
                         });
                     }
                 }
-            }) // end then
+            })
             .catch(err => {
                 console.log("error in checkstatus", err);
                 res.json({
                     error: "Sorry, please try again"
                 });
-            }); // end catch
+            });
     }
 });

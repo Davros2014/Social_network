@@ -3,7 +3,7 @@
     height: $height90;
     @include flexRowCentered;
     @include push--auto;
-    @media (max-width: 768px) {
+    @include maxMq(768px) {
         width: $width90;
     }
 }
@@ -220,6 +220,29 @@
                     background: #000;
                 }
             }
+            .mobileNav > .mobile-btn span:nth-child(1) {
+                @include transition(all, 0.2s, ease-in-out);
+                transform: translate(0, 0) rotate(0deg);
+            }
+            .mobileNav.active > .mobile-btn span:nth-child(1) {
+                transform: translate(0, 9px) rotate(45deg);
+                background: $light-accent-color;
+            }
+            .mobileNav > .mobile-btn span:nth-child(2) {
+                @include transition(all, 0.2s, ease-in-out);
+                opacity: 1;
+            }
+            .mobileNav.active > .mobile-btn span:nth-child(2) {
+                opacity: 0;
+            }
+            .mobileNav > .mobile-btn span:nth-child(3) {
+                @include transition(all, 0.2s, ease-in-out);
+                transform: translate(0, 0) rotate(0deg);
+            }
+            .mobileNav.active > .mobile-btn span:nth-child(3) {
+                transform: translate(0, -8px) rotate(-45deg);
+                background: $light-accent-color;
+            }
         }
     }
 }
@@ -248,7 +271,7 @@
 // for all profile images
 
 .userProfilePic {
-    border: 3px solid $primary-color;
+    border: clamp(1px, 2px, 3px) solid $primary-color;
     width: 4rem;
     height: 4rem;
     text-align: center;

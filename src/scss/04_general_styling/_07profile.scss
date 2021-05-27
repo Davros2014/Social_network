@@ -39,7 +39,7 @@
     }
     #personalProfile {
         &::before {
-            content: "Click to upload new image";
+            content: "Upload new image";
             position: absolute;
             left: 0;
             top: 100%;
@@ -53,7 +53,6 @@
             overflow: hidden;
             text-align: center;
             background: rgba(0, 0, 0, 0.75);
-            opacity: 0.75;
             @include BodyTextMain;
             color: $light-accent-color;
             z-index: 20;

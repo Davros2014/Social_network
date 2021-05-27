@@ -1,37 +1,56 @@
 //otherprofile.js
-import React from "react";
+import React, { Component } from "react";
 import axios from "../axios";
+
+//component
 import Profilepicture from "./Profilepicture";
 import Friendbutton from "./Friendbutton";
 import PageContainer from "./PageContainer";
 import PageWrapper from "./PageWrapper";
 
-export default class Otherprofile extends React.Component {
+import { Link } from "react-router-dom";
+
+export default class Otherprofile extends Component {
     constructor(props) {
         super(props);
         this.state = {};
     }
+
+    previous = () => {
+        let params = this.props.match.params.id;
+        let previousparams = Number(params) - 1;
+        previousparams < 0
+            ? this.props.history.push(`/user/205`)
+            : this.props.history.push(`/user/${previousparams}`);
+    };
+    next = () => {
+        let params = this.props.match.params.id;
+        let nextparams = Number(params) + 1;
+        nextparams > 205
+            ? this.props.history.push(`/user/1`)
+            : this.props.history.push(`/user/${nextparams}`);
+    };
+
     componentDidMount() {
         axios
             .get(`/otheruser/${this.props.match.params.id}`)
             .then(({ data }) => {
                 if (data.success) {
                     this.setState(data);
-                    console.log("state ", this.state);
                 } else {
                     this.props.history.push("/");
                 }
             })
             .catch(err => console.log(err));
-        console.log("success: false");
     }
     render() {
+        console.log("this.state.id", this.state.id);
+        console.log("this.state", this.state);
         const { profilepicture, first, last, id, bioinfo } = this.state;
         return (
             <PageContainer>
                 <PageWrapper>
                     <h2 className="h2_headers">Friend Profiles</h2>
-
                     <div className="profileContainer">
                         <div className="generalProfileImage">
                             <Profilepicture
@@ -62,6 +81,23 @@ export default class Otherprofile extends React.Component {
                                 />
                             </div>
                         </div>
+                    </div>
+                    <div className="btnContainerRow">
+                        <button
+                            className="smallButtonBasic backBtn prevBtn"
+                            onClick={this.previous}
+                        >
+                            <i className="fas fa-angle-left"></i>
+                        </button>
+                        <Link className="smallButtonBasic backBtn" to="/users">
+                            Go back
+                        </Link>
+                        <button
+                            className="smallButtonBasic backBtn nextBtn"
+                            onClick={this.next}
+                        >
+                            <i className="fas fa-angle-right"></i>
+                        </button>
                     </div>
                 </PageWrapper>
             </PageContainer>

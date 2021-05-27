@@ -6,6 +6,8 @@ import {
     unfriend
 } from "../actions/actions";
 import { Link } from "react-router-dom";
+
+//components
 import PageContainer from "./PageContainer";
 import PageWrapper from "./PageWrapper";
 import Loader from "./Loader";
@@ -33,7 +35,7 @@ class Friends extends Component {
                                 </p>
                             )}
                             {friends.length > 0 && (
-                                <p>
+                                <p className="p_bodyTextMain friendsBodyText">
                                     You have {friends.length} friend
                                     {friends.length === 1 ? "" : "s"} listed
                                     here. Add more in Find friends section
@@ -62,16 +64,6 @@ class Friends extends Component {
                                             <p className="friendsNameHeader">
                                                 {friends.first} {friends.last}
                                             </p>
-                                            <button
-                                                className="buttonBasic friendButton"
-                                                onClick={e =>
-                                                    this.props.dispatch(
-                                                        unfriend(friends.id)
-                                                    )
-                                                }
-                                            >
-                                                Unfriend User
-                                            </button>
                                         </div>
                                     ))}
                             </div>
@@ -79,7 +71,7 @@ class Friends extends Component {
                                 {" "}
                                 Friends pending
                             </h2>
-                            {!pending.length > 0 && (
+                            {pending.length === 0 && (
                                 <p>
                                     You don&apos;t have any pending friend
                                     requests as yet, try connecting with someone
@@ -109,18 +101,6 @@ class Friends extends Component {
                                             <p className="h4_header friendsNameHeader">
                                                 {pending.first} {pending.last}
                                             </p>
-                                            <button
-                                                className="friendButton buttonBasic"
-                                                onClick={e =>
-                                                    this.props.dispatch(
-                                                        acceptFriendRequest(
-                                                            pending.id
-                                                        )
-                                                    )
-                                                }
-                                            >
-                                                Accept User Invite
-                                            </button>
                                         </div>
                                     ))}
                             </div>
@@ -133,7 +113,7 @@ class Friends extends Component {
 }
 
 const mapStateToProps = function(state) {
-    console.log("state", state);
+    // console.log("state", state);
     return {
         friends:
             state.friendsWannabes &&
@@ -150,4 +130,28 @@ const mapStateToProps = function(state) {
 
 export default connect(mapStateToProps)(Friends);
 
-/////////////////////
+//Unfriend User
+// <button
+// 	className="buttonBasic friendButton"
+// 	onClick={() =>
+// 		this.props.dispatch(
+// 			unfriend(friends.id)
+// 		)
+// 	}
+// >
+// 	Unfriend User
+// </button>
+
+//accept user button
+// <button
+// 	className="friendButton buttonBasic"
+// 	onClick={() =>
+// 		this.props.dispatch(
+// 			acceptFriendRequest(
+// 				pending.id
+// 			)
+// 		)
+// 	}
+// >
+// 	Accept User Invite
+// </button>

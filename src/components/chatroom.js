@@ -120,7 +120,7 @@ class Chatroom extends Component {
 }
 
 const mapStateToProps = function(state) {
-    console.log("state", state);
+    // console.log("state", state);
     return {
         allMessages:
             state.allChatMessages &&
