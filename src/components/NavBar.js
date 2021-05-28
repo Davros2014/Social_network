@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import { Link } from "react-router-dom";
 
 // components
@@ -38,75 +38,79 @@ const NavBar = ({
         setLogoutVisibility(!logoutVisibility);
     };
     return (
-        <header className="topNav">
-            <div className="topNav__wrapper">
-                <Link to="/">
-                    <Logo />
-                </Link>
-                <div className="nav mainNav">
-                    <nav
-                        className={`${isDesktop ? "deskTopNav" : "mobileNav"} `}
-                    >
-                        <div
-                            className={isDesktop ? null : "mobile-btn"}
-                            onClick={showMobileNav}
+        <Fragment>
+            {uploaderVisible && (
+                <Uploader
+                    upDateImage={img => {
+                        setProfilepictureurl(img);
+                        setUploaderVisible(false);
+                    }}
+                    viewable={viewable}
+                    handleUploader={handleUploader}
+                    profilepictureurl={profilepictureurl}
+                />
+            )}
+            {logoutVisibility && (
+                <Logout
+                    handleLogoutVisibility={handleLogoutVisibility}
+                    logoutVisibility={logoutVisibility}
+                />
+            )}
+            <header className="topNav">
+                <div className="topNav__wrapper">
+                    <Link to="/">
+                        <Logo />
+                    </Link>
+                    <div className="nav mainNav">
+                        <nav
+                            className={`${
+                                isDesktop ? "deskTopNav" : "mobileNav"
+                            } `}
                         >
-                            <span></span>
-                            <span></span>
-                            <span></span>
-                        </div>
-                        <>
-                            <Link className="navLink" to="/">
-                                Profile
-                            </Link>
-                            <Link className="navLink" to="/users">
-                                Find
-                            </Link>
-                            <Link className="navLink" to="/friends">
-                                Friends
-                            </Link>
-                            <Link className="navLink" to="/chatroom">
-                                Chat
-                            </Link>
-                            <p
-                                id="logout"
-                                className="navLink"
-                                onClick={handleLogoutVisibility}
+                            <div
+                                className={isDesktop ? null : "mobile-btn"}
+                                onClick={showMobileNav}
                             >
-                                Logout
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <>
+                                <Link className="navLink" to="/">
+                                    Profile
+                                </Link>
+                                <Link className="navLink" to="/users">
+                                    Find
+                                </Link>
+                                <Link className="navLink" to="/friends">
+                                    Friends
+                                </Link>
+                                <Link className="navLink" to="/chatroom">
+                                    Chat
+                                </Link>
+                                <p
+                                    id="logout"
+                                    className="navLink"
+                                    onClick={handleLogoutVisibility}
+                                >
+                                    Logout
+                                </p>
+                            </>
+                        </nav>
+                        <div className="navPicContainer">
+                            <Profilepicture
+                                handleUploader={handleUploader}
+                                className="profilePic"
+                                profilepictureurl={profilepictureurl}
+                            />
+                            <p className="welcome">
+                                Welcome, <span>{first}</span>
                             </p>
-                        </>
-                    </nav>
-                    <div className="navPicContainer">
-                        <Profilepicture
-                            handleUploader={handleUploader}
-                            className="profilePic"
-                            profilepictureurl={profilepictureurl}
-                        />
-                        <p className="welcome">
-                            Welcome, <span>{first}</span>
-                        </p>
+                        </div>
                     </div>
                 </div>
-                {uploaderVisible && (
-                    <Uploader
-                        upDateImage={img => {
-                            setProfilepictureurl(img);
-                            setUploaderVisible(false);
-                        }}
-                        viewable={viewable}
-                        handleUploader={handleUploader}
-                        profilepictureurl={profilepictureurl}
-                    />
-                )}
-                {logoutVisibility && (
-                    <Logout
-                        handleLogoutVisibility={handleLogoutVisibility}
-                        logoutVisibility={logoutVisibility}
-                    />
-                )}
-            </div>
-        </header>
+            </header>
+        </Fragment>
     );
 };
 export default NavBar;

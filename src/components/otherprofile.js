@@ -82,7 +82,7 @@ export default class Otherprofile extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="btnContainerRow">
+                    <div className="btnContainerRow friendProfilesBtn">
                         <button
                             className="smallButtonBasic backBtn prevBtn"
                             onClick={this.previous}

@@ -85,6 +85,15 @@
             color: white;
         }
     }
+    &.friendProfilesBtn {
+        position: absolute;
+        bottom: 3rem;
+        left: 50%;
+        transform: translateX(-50%);
+        @include minMq($mobileBreak) {
+            bottom: 10rem;
+        }
+    }
 }
 #logout {
     cursor: pointer;

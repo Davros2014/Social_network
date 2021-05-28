@@ -28,13 +28,13 @@
         overflow: hidden;
         border-radius: 100%;
         .userProfilePic {
+            // position: relative;
             width: calc(11rem + 4vw);
             height: calc(11rem + 4vw);
             border-width: clamp(2px, 2vw, 5px);
-            animation-name: fadeDown;
-            animation-duration: 0.25s;
+            transform: translateY(-20%);
+            animation: 0.25s fadeDown forwards ease-in;
             opacity: 1;
-            animation-fill-mode: forwards;
         }
     }
     #personalProfile {
@@ -72,7 +72,7 @@
 @keyframes fadeDown {
     0% {
         opacity: 0;
-        transform: translateY(-10%);
+        transform: translateY(-20%);
     }
     100% {
         opacity: 1;
@@ -95,6 +95,11 @@
     border-radius: 10px;
     margin-top: 8rem;
     box-shadow: 0px 4px 12px 8px rgba(0, 0, 0, 0.15);
+    transition: 0.25s all ease-in;
+
+    .bioContainer {
+        transition: 0.25s all ease-in;
+    }
 }
 .otherprofileHeader {
     margin-top: 8rem;

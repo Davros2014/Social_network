@@ -1,10 +1,13 @@
 // UPLOADER ///////////////////////////////
 
 .modalBackground {
+    display: block;
     background: rgba(0, 0, 0, 0.85);
     position: fixed;
     top: 0;
     left: 0;
+    bottom: 0;
+    right: 0;
     width: 100vw;
     height: 100vh;
     @include flexbox();
@@ -14,10 +17,11 @@
     z-index: 5000;
 }
 .modalContainer {
+    display: block;
     width: $width90;
     background: $primary-color-50;
     box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
-    opacity: 0;
+    opacity: 1;
     border-radius: 1rem;
     padding: 3rem;
     padding-bottom: 0;
@@ -26,9 +30,12 @@
     }
     &.active {
         animation: 0.5s bounceIn forwards ease-in-out;
+        opacity: 1;
+        z-index: 5001;
     }
     &.remove {
         animation: 0.2s minimise forwards linear;
+        opacity: 0;
     }
     &::before {
         @include pseudoContent();
@@ -81,6 +88,7 @@
             }
             .inputFileWrapper {
                 padding: 1rem;
+                text-align: center;
                 figure {
                     margin-bottom: 2rem;
                 }
@@ -139,6 +147,7 @@
 
 // LOGOUT
 .modalContainer.logoutContainer {
+    text-align: center;
     margin-bottom: 16rem !important;
     .logoutModal {
         padding: 3rem;
@@ -154,19 +163,9 @@
 .uploading {
     @extend .modalContainer;
     color: $primary-color;
+    opacity: 1;
 }
 
-@keyframes loading {
-    0% {
-        content: "Loading.";
-    }
-    50% {
-        content: "Loading..";
-    }
-    100% {
-        content: "Loading...";
-    }
-}
 .inputField {
     position: relative;
     width: 100%;
@@ -186,18 +185,22 @@
     0% {
         transform: scale(0.9);
         box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+        opacity: 1;
     }
     55% {
         transform: scale(1.08);
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0);
+        opacity: 1;
     }
     75% {
         transform: scale(0.95);
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.9);
+        opacity: 1;
     }
     100% {
         transform: scale(1);
         box-shadow: 0 3px 20px rgba(0, 0, 0, 0.9);
+        opacity: 1;
     }
 }
 @-webkit-keyframes minimise {
@@ -207,6 +210,11 @@
     }
     100% {
         transform: scale(0.7);
-        opacity: 0;
+        opacity: 1;
     }
 }
+
+// .modalContainer,
+// .uploading {
+//     opacity: 1 !important;
+// }
