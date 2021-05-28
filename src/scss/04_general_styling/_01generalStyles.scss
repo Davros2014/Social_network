@@ -73,7 +73,6 @@ html {
 
 body {
     /* Sets the width of the body */
-    font-size: 1.6rem;
     @include BodyTextMain;
     background: $backgroundColour;
     color: $primary-font-color;

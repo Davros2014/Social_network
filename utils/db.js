@@ -116,7 +116,7 @@ module.exports.recentUsers = function recentUsers(id) {
         `SELECT id, first, last, profilepictureurl FROM users
         WHERE id!=$1
         ORDER BY id DESC
-        LIMIT 15`,
+        LIMIT 25`,
         [id]
     );
 };

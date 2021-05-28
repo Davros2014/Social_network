@@ -7,7 +7,8 @@ module.exports = router;
 router.route("/findusers").get((req, res) => {
     // console.log("/////// FIND USERS GET REQUEST");
     let name = req.query.name;
-    if (!name || name == "") {
+    console.log("name", name);
+    if (!name || name === "") {
         db.recentUsers(req.session.userId)
             .then(recentUsersResults => {
                 res.json({
@@ -39,6 +40,7 @@ router.route("/findusers").get((req, res) => {
             })
             .catch(err => {
                 res.json({
+                    user: [],
                     success: false,
                     error:
                         "Sorry, your find recent users search went wrong, please try again"

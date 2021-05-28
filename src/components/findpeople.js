@@ -12,7 +12,11 @@ import Loader from "./Loader";
 const Findpeople = ({ first }) => {
     const [user, setUser] = useState([]);
     const [name, setName] = useState("");
+    const [findPeopleError, setFindPeopleError] = useState(false);
 
+    const findPeopleRegex = e => {
+        setName(e.target.value);
+    };
     useEffect(() => {
         let abort;
         axios
@@ -29,26 +33,44 @@ const Findpeople = ({ first }) => {
                     };
                 }
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                setFindPeopleError(true);
+
+                console.log("what is the error", err);
+            });
     }, [name]);
     return (
         <PageContainer>
-            {!user.length < 0 ? (
-                <Loader />
-            ) : (
-                <PageWrapper>
-                    <h2 className="h2_headers">Find People</h2>
-                    <p className="p_bodyTextMain subheader">
-                        Hello, <span>{first}</span> find other Zero° users
-                    </p>
-                    <input
-                        type="text"
-                        name="name"
-                        className="findPeople"
-                        onChange={e => setName(e.target.value)}
-                        placeholder="Search for friends"
-                    />
-                    <div id="findPeopleContainer">
+            <PageWrapper>
+                <h2 className="h2_headers">Find People</h2>
+                <p className="p_bodyTextMain subheader">
+                    Hello, <span>{first}</span> find other Zero° users
+                </p>
+                <input
+                    type="text"
+                    name="name"
+                    className="findPeople"
+                    value={name}
+                    onChange={findPeopleRegex}
+                    placeholder="Search for friends"
+                />
+
+                <div id="findPeopleContainer">
+                    {!name && <h2 className="h2_headers">Some recent users</h2>}
+                    {!user.length && name ? (
+                        <>
+                            <p className="nofriends">
+                                No users founds by those search parameters,
+                                please try with different search results
+                            </p>
+                            <button
+                                className="smallButtonBasic clearBtn"
+                                onClick={() => setName("")}
+                            >
+                                Clear
+                            </button>
+                        </>
+                    ) : (
                         <div className="friendsContainer">
                             {user.length &&
                                 user.map(user => (
@@ -66,9 +88,9 @@ const Findpeople = ({ first }) => {
                                     </div>
                                 ))}
                         </div>
-                    </div>
-                </PageWrapper>
-            )}
+                    )}
+                </div>
+            </PageWrapper>
         </PageContainer>
     );
 };

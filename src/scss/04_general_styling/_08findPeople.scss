@@ -14,6 +14,16 @@
     @include minMq($mobileBreak) {
         width: $width30;
     }
+    &:focus {
+        color: $light-accent-color;
+    }
+}
+.nofriends {
+    @include BodyTextMain;
+    color: $primary-color;
+    margin-top: 2rem;
+    text-align: center;
+    margin: 0 auto;
 }
 #findPeopleContainer {
     margin-top: 2rem;

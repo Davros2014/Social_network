@@ -23,6 +23,7 @@
     grid-gap: 5vw;
     overflow: visible;
     width: 90vw;
+    margin-bottom: 5rem;
     @include minMq($mobileBreak) {
         grid-template-columns: repeat(16, 4.21875vw);
         grid-auto-rows: 4.21875vw;

@@ -37,15 +37,21 @@ class Chatroom extends Component {
     }
     render() {
         const { allMessages, id } = this.props;
-        const { disabled } = this.state;
+        const { disabled, chatroom } = this.state;
+        console.log("allMessages", allMessages);
         return (
             <PageContainer>
                 <PageWrapper>
                     <>
                         <h2 className="h2_headers">Message Board</h2>
-
                         <section id="MessageBoardContainer">
                             <div className="chatContainer" ref={this.elemRef}>
+                                {!chatroom.length && (
+                                    <p className="h2_headers">
+                                        Be the first to send a message to
+                                        everyone here
+                                    </p>
+                                )}
                                 {allMessages &&
                                     allMessages.map(chatroom => (
                                         <div
@@ -80,7 +86,6 @@ class Chatroom extends Component {
                                         </div>
                                     ))}
                             </div>
-
                             <div className="messageInputContainer">
                                 <textarea
                                     spellCheck="false"

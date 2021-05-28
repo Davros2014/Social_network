@@ -44,9 +44,9 @@ const App = props => {
                 setProfilepictureurl(profilepictureurl);
                 setEmail(email);
                 setBioinfo(bioinfo);
+                setLoading(false);
             })
             .catch(err => console.log(err));
-        setLoading(false);
     }, []);
     // see Bio.js for update info
     const setBio = newBio => {

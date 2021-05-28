@@ -32,6 +32,9 @@
     @extend .buttonBasic;
     margin: 2rem 1rem 1rem 1rem;
 }
+.clearBtn {
+    margin-top: 2rem;
+}
 .submitButton {
     @extend .buttonBasic;
     margin-top: 2rem;

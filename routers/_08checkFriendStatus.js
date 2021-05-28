@@ -6,17 +6,11 @@ module.exports = router;
 
 router.route("/checkFriendStatus/:ownerid").get((req, res) => {
     // console.log("/////// CHECK FRIENDS GET REQUEST");
-    // //
-    // console.log("req.params.ownerid", req.params.ownerid);
-    // console.log("req.session.userId", req.session.userId);
-
     let loggedinUserId = req.session.userId;
     let ownerId = req.params.ownerid;
     if (ownerId != loggedinUserId) {
         db.checkStatus(loggedinUserId, ownerId)
             .then(results => {
-                // console.log("///// results.rows", results.rows);
-                // console.log("results in check friends request", results);
                 // no friend request
                 if (results.rows.length == 0) {
                     res.json({
