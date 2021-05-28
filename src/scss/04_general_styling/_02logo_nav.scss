@@ -8,6 +8,39 @@
     }
 }
 
+@keyframes rotateLogo {
+    0% {
+        transform: rotate(0);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.logoMain {
+    width: 5rem;
+    height: 5rem;
+    text-align: center;
+    transform-origin: center;
+    object-fit: contain;
+    transform: rotate(0);
+    animation: 1.25s rotateLogo forwards ease-in-out;
+    overflow: visible;
+
+    #logoId {
+        background: rgba(0, 0, 0, 0.000001);
+    }
+    .smallCircle {
+        fill: $primary-color;
+    }
+    .largeCircle {
+        fill: white;
+    }
+    .outerCircle {
+        fill: blue;
+    }
+}
+
 // NAVBAR //////////////////////////////////
 .topNav {
     background: $complimentary-color;
@@ -27,25 +60,20 @@
         background-blend-mode: multiply;
         z-index: -1;
     }
-    // in logo component
-    img.logoMain {
-        width: 4rem;
-        height: 4rem;
-        text-align: center;
-        object-fit: contain;
-        @include maxMq(980px) {
-            position: absolute;
-            left: 50%;
-            top: 20px;
-            transform: translateX(-50%);
-        }
-    }
     &__wrapper {
         width: $width95;
         text-align: center;
         @include flexbox();
         @include align-items(center);
         @include justify-content(space-between);
+        .logoMain {
+            position: absolute;
+            left: 2.5rem;
+            top: 15px;
+            @include maxMq($laptopBreak) {
+                left: calc(50% - 2.5rem);
+            }
+        }
         .mainNav {
             position: relative;
             @include flexbox();
@@ -179,21 +207,6 @@
                         @include transition(all, 0.2s, ease-in-out);
                         z-index: 500;
                     }
-                    // &::after {
-                    //     content: "";
-                    //     position: absolute;
-                    //     width: 100%;
-                    //     height: 5rem;
-                    //     top: -7rem;
-                    //     opacity: 0.25;
-                    //     left: 0;
-                    //     background-color: $primary-color;
-                    //     visibility: hidden;
-                    //     -webkit-transform: translateY(0);
-                    //     transform: translateY(0);
-                    //     @include transition(all, 0.2s, ease-in-out);
-                    //     z-index: 500;
-                    // }
                 }
             }
             .mobile-btn {
@@ -203,6 +216,7 @@
                 width: 25px;
                 height: 20px;
                 z-index: 9999;
+                opacity: 1;
                 @include transition(all, 0.2s, ease-in-out);
                 @include flexbox();
                 @include align-content(space-between);

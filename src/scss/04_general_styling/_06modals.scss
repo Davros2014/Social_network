@@ -75,6 +75,7 @@
         @include flex-direction(column);
         @include justify-content(center);
         @include align-items(center);
+        text-align: center;
         .h5_header {
             color: $light-accent-color;
         }
@@ -83,7 +84,7 @@
             .userProfilePic {
                 width: 15rem;
                 height: 15rem;
-                text-align: center;
+
                 margin: 0 auto;
             }
             .inputFileWrapper {
