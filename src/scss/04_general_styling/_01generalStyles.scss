@@ -50,8 +50,12 @@ html {
     margin: auto;
     z-index: 2000;
     &__logo {
-        width: clamp(25vw, 5vw, 10rem);
-        height: clamp(25vw, 5vw, 10rem);
+        width: 25vw;
+        height: 25vw;
+        @include minMq($mobileBreak) {
+            width: 10rem;
+            height: 10rem;
+        }
     }
 }
 //////////////////////////
