@@ -102,7 +102,7 @@
                     color: $light-accent-color;
                 }
                 .uploadFile {
-                    width: 15%;
+                    width: 25%;
                     height: auto;
                     vertical-align: middle;
                     display: block;
@@ -113,6 +113,12 @@
                     margin-bottom: 1rem;
                     &:hover {
                         opacity: 1;
+                    }
+                    .uploadFile {
+                        fill: rgba(270, 270, 270, 0.2);
+                    }
+                    .uploadIcon {
+                        fill: $primary-color;
                     }
                 }
             }

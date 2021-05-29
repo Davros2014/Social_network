@@ -57,8 +57,14 @@ html {
             height: 10rem;
         }
     }
+    .logoBody {
+        fill: white;
+    }
+    .logoCircle {
+        fill: $primary-color;
+    }
 }
-//////////////////////////
+
 .error {
     font-size: 1rem;
     color: $primary-color;

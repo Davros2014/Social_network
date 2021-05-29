@@ -4,6 +4,7 @@ import axios from "../axios";
 //components
 import ModalBackground from "./ModalBackground";
 import Profilepicture from "./Profilepicture";
+import UploadSVG from "./UploadSVG";
 
 export default class Uploader extends Component {
     constructor(props) {
@@ -90,13 +91,7 @@ export default class Uploader extends Component {
                                             onChange={e => this.handleInput(e)}
                                         />
                                         <label htmlFor="file">
-                                            <figure>
-                                                <img
-                                                    className="uploadFile"
-                                                    src="/images/file_upload.png"
-                                                    alt="upload image"
-                                                />
-                                            </figure>
+                                            <UploadSVG />
                                             Click icon to upload&hellip;
                                         </label>
                                     </div>
