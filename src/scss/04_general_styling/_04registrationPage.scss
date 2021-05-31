@@ -25,6 +25,13 @@
         z-index: -1;
         border-radius: 8px;
     }
+    &::after {
+        @include pseudoContent();
+        background-color: black;
+        background-blend-mode: multiply;
+        z-index: -2;
+        border-radius: 8px;
+    }
     .logoWrapper {
         @include flexbox();
         @include push--auto;

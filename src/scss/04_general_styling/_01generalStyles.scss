@@ -50,11 +50,11 @@ html {
     margin: auto;
     z-index: 2000;
     &__logo {
-        width: 25vw;
-        height: 25vw;
+        width: 50vw;
+        height: 50vw;
         @include minMq($mobileBreak) {
-            width: 10rem;
-            height: 10rem;
+            width: 15rem;
+            height: 15rem;
         }
     }
     .logoBody {
@@ -110,7 +110,9 @@ body {
     height: 100vh;
     text-align: center;
     overflow: hidden;
-    // background: mintcream;
+    background: url("/images/social-media-doodles.svg") repeat, center center;
+    // background-color: mintcream;
+    background-size: 500px auto;
 
     // @include minMq($mobileBreak) {
     //     width: $width90;

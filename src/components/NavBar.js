@@ -29,10 +29,10 @@ const NavBar = ({
     };
 
     useEffect(() => {
-        window.innerWidth > 980 ? setIsDesktop(true) : setIsDesktop(false);
+        updateDesktop();
         window.addEventListener("resize", updateDesktop);
         return () => window.removeEventListener("resize", updateDesktop);
-    }, []);
+    }, [updateDesktop]);
 
     const handleLogoutVisibility = () => {
         setLogoutVisibility(!logoutVisibility);
