@@ -29,4 +29,7 @@
     margin-top: 2rem;
     @include flexColumnCentered;
     width: 90vw;
+    .h2_headers {
+        margin: 3rem 0 2rem 0;
+    }
 }

@@ -38,18 +38,19 @@
         grid-row: span 1;
         border-radius: 4px;
         margin: 0.5rem;
+        padding-top: 2rem;
+        background: $cardColour;
+        box-shadow: 0px 2px 4px 2px rgba(0, 0, 0, 0.15);
+        @include transition(all, 0.15s, ease-out);
         @include minMq($mobileBreak) {
-            justify-content: flex-start;
             grid-column: span 4;
             grid-row: span 3;
         }
         @include minMq(1400px) {
+            justify-content: flex-start;
             grid-column: span 2;
             grid-row: span 2;
         }
-        padding-top: 2rem;
-        background: $light-accent-color;
-        @include transition(all, 0.15s, ease-out);
         .userProfilePic {
             width: clamp(6rem, 6vw, 12rem);
             height: clamp(6rem, 7vw, 12rem);
@@ -60,13 +61,14 @@
         }
         &:hover {
             // transform: scale(1.015);
-            background: rgba($primary-color, 0.25);
+            background: rgba($primary-color, 0.15);
             box-shadow: 0px 4px 12px 2px rgba(0, 0, 0, 0.25);
         }
         .friendsNameHeader {
             text-align: center;
             @include bodysmall;
             font-size: 1.6rem;
+            font-weight: 400;
             @include minMq($mobileBreak) {
                 font-size: 1.25rem;
             }

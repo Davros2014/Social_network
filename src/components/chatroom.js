@@ -22,10 +22,6 @@ class Chatroom extends Component {
             : this.setState({ disabled: true });
     }
     handleSubmit(e) {
-        if (e.keyCode == 13) {
-            socket.emit("chatMessage", this.state.chatroom);
-            document.getElementById("output").value = "";
-        }
         socket.emit("chatMessage", this.state.chatroom);
         document.getElementById("output").value = "";
     }
@@ -46,7 +42,7 @@ class Chatroom extends Component {
                         <h2 className="h2_headers">Message Board</h2>
                         <section id="MessageBoardContainer">
                             <div className="chatContainer" ref={this.elemRef}>
-                                {!chatroom.length && (
+                                {!chatroom.length && !allMessages && (
                                     <p className="h2_headers">
                                         Be the first to send a message to
                                         everyone here
@@ -69,10 +65,12 @@ class Chatroom extends Component {
                                             <div className="chatDetails">
                                                 <div className="chatHeader">
                                                     <div className="chatInfo">
-                                                        User&#x23;{" "}
+                                                        User&#x23;
                                                         {chatroom.user_id}{" "}
-                                                        {chatroom.first}{" "}
-                                                        {chatroom.last}{" "}
+                                                        <strong>
+                                                            {chatroom.first}{" "}
+                                                            {chatroom.last}{" "}
+                                                        </strong>
                                                         commented @{" "}
                                                         {chatroom.created_at}
                                                     </div>

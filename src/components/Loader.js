@@ -9,7 +9,7 @@ const Loader = () => {
                 xmlns="http://www.w3.org/2000/svg"
                 x="0px"
                 y="0px"
-                width="20vw"
+                width="25vw"
                 height="auto"
                 viewBox="30.284 1.057 81.861 21.866"
                 enableBackground="new 30.284 1.057 81.861 21.866"

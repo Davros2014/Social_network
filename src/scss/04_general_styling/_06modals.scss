@@ -39,7 +39,11 @@
     }
     &::before {
         @include pseudoContent();
-        background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+        background-image: linear-gradient(
+            to bottom right,
+            #002f4b,
+            $primary-color
+        );
         opacity: 0.45;
         background-blend-mode: multiply;
         z-index: -1;
@@ -55,8 +59,7 @@
         @include flexbox();
         @include align-items(center);
         @include justify-content(center);
-        background: $light-accent-color;
-        color: $accent-color;
+        color: $primary-color;
         font-size: 1.15rem;
         font-weight: 700;
         padding: 0.5vw;
@@ -65,7 +68,7 @@
         &:hover {
             transition: all 0.25s ease-in-out;
             color: $light-accent-color;
-            background: $accent-color;
+            background: $primary-color;
             cursor: pointer;
         }
     }
@@ -84,7 +87,6 @@
             .userProfilePic {
                 width: 15rem;
                 height: 15rem;
-
                 margin: 0 auto;
             }
             .inputFileWrapper {
@@ -108,14 +110,15 @@
                     display: block;
                     margin: 0 auto;
                     cursor: pointer;
-                    opacity: 0.5;
+                    opacity: 0.75;
                     @include transition(all, 0.2s, ease-out);
                     margin-bottom: 1rem;
                     &:hover {
                         opacity: 1;
+                        box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.25);
                     }
                     .uploadFile {
-                        fill: rgba(270, 270, 270, 0.2);
+                        fill: rgba(270, 270, 270, 1);
                     }
                     .uploadIcon {
                         fill: $primary-color;
