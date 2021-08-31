@@ -7,15 +7,13 @@ export default class Registration extends Component {
         super(props);
         this.state = {};
         this.submit = this.submit.bind(this);
-        // this.handleChange = this.handleChange.bind(this);
     }
     handleChange({ target }) {
+        console.log("{ target }", { target });
         this.setState({ [target.name]: target.value });
-        // console.log("target.name", ([target.name], target.value));
     }
     submit() {
         const { first, last, email, password } = this.state;
-
         axios
             .post("/register", {
                 first: first,

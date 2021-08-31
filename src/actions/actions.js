@@ -3,7 +3,6 @@ import axios from "../axios";
 
 // FOR CHATROOM
 export function allChatMessages(messages) {
-    // console.log("chatroom messages", messages);
     return {
         type: "ALL_CHAT_MESSAGES",
         allChatMessages: messages

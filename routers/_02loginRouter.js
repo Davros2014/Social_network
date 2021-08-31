@@ -21,7 +21,6 @@ router.route("/login").post((req, res) => {
                                     success: true
                                 });
                             } else {
-                                // console.log("Password status is", pwCheck);
                                 res.json({
                                     success: false,
                                     error:
@@ -37,7 +36,6 @@ router.route("/login").post((req, res) => {
                             });
                         });
                 } else {
-                    // console.log("not a valid email");
                     res.json({
                         success: false,
                         error: "Sorry, this is not a valid email"

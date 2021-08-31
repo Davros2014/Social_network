@@ -9,7 +9,7 @@ module.exports = router;
 
 router.route("/bio").post((req, res) => {
     // console.log("POST REQUEST BIO - req.session:", req.session);
-    // console.log("req.session.bioinfo: ", req.body);
+    console.log("req.session.bioinfo: ", req.body);
     db.addUserbioinfo(req.session.userId, req.body.bioinfo)
         .then(results => {
             // console.log("req.body: ", req.body);

@@ -14,18 +14,20 @@ import Friends from "./components/Friends";
 import Chatroom from "./components/Chatroom";
 import Loader from "./components/Loader";
 
-const App = props => {
+const App = () => {
     const [loading, setLoading] = useState(true);
     const [viewable, setViewable] = useState(false);
     const [uploaderVisible, setUploaderVisible] = useState(false);
-    const [first, setFirst] = useState("");
-    const [last, setLast] = useState("");
-    const [id, setId] = useState("");
-    const [profilepictureurl, setProfilepictureurl] = useState("");
-    const [email, setEmail] = useState("");
-    const [bioinfo, setBioinfo] = useState("");
     const [showDeleteModal, setShowDeleteModal] = useState(false);
-
+    const [userInfo, setUserInfo] = useState({
+        first: "",
+        last: "",
+        id: "",
+        profilepictureurl: "",
+        email: "",
+        bioinfo: ""
+    });
+    const { first, last, id, profilepictureurl, email, bioinfo } = userInfo;
     useEffect(() => {
         axios
             .get("/user")
@@ -38,19 +40,29 @@ const App = props => {
                     email,
                     bioinfo
                 } = data;
-                setFirst(first);
-                setLast(last);
-                setId(id);
-                setProfilepictureurl(profilepictureurl);
-                setEmail(email);
-                setBioinfo(bioinfo);
+                setUserInfo({
+                    first,
+                    last,
+                    id,
+                    profilepictureurl,
+                    email,
+                    bioinfo
+                });
                 setLoading(false);
             })
             .catch(err => console.log(err));
     }, []);
-    // see Bio.js for update info
-    const setBio = newBio => {
-        setBioinfo(newBio);
+
+    const setBio = newInfo =>
+        setUserInfo(userInfo => ({
+            ...userInfo,
+            bioinfo: newInfo
+        }));
+    const setProfilepictureurl = profilepictureurl => {
+        setUserInfo(userInfo => ({
+            ...userInfo,
+            profilepictureurl: profilepictureurl
+        }));
     };
     const handleUploader = () => {
         setUploaderVisible(!uploaderVisible);
@@ -66,12 +78,10 @@ const App = props => {
                 <Router class="mainHtmlContainer">
                     <Fragment>
                         <NavBar
+                            userInfo={userInfo}
                             first={first}
                             last={last}
-                            id={id}
                             profilepictureurl={profilepictureurl}
-                            email={email}
-                            bioinfo={bioinfo}
                             showEditMode={showEditMode}
                             handleUploader={handleUploader}
                             uploaderVisible={uploaderVisible}
@@ -87,22 +97,20 @@ const App = props => {
                                         loading={loading}
                                         profilepic={
                                             <Profilepicture
-                                                id={id}
-                                                first={first}
-                                                last={last}
                                                 profilepictureurl={
                                                     profilepictureurl
                                                 }
+                                                userInfo={userInfo}
                                                 handleUploader={handleUploader}
                                             />
                                         }
                                         bio={
                                             <Bio
+                                                userInfo={userInfo}
                                                 bioinfo={bioinfo}
                                                 setBio={setBio}
                                                 first={first}
                                                 last={last}
-                                                email={email}
                                                 viewable={viewable}
                                                 showEditMode={showEditMode}
                                                 setShowDeleteModal={

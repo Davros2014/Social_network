@@ -23,7 +23,7 @@ const Profile = ({ bio, profilepic, loading }) => {
                                 <div className="bioContainer">{bio}</div>
                             </div>
                         ) : (
-                            <p>fuck u dave</p>
+                            <p>Nothing here</p>
                         )}
                     </PageWrapper>
                 </PageContainer>

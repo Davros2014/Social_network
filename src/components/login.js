@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 import useStateInputs from "../hooks/useStateInputs";
 
-const Login = props => {
+const Login = () => {
     const [email, setEmail] = useStateInputs("");
     const [password, setPassword] = useStateInputs("");
     const [error, setError] = useState("");

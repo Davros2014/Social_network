@@ -125,18 +125,15 @@ app.get("*", function(req, res) {
 
 // change from app to server for socket.io
 server.listen(PORT, function() {
-    console.log(
-        `Hello, is it me you're looking for...listening on PORT: ${PORT}`
-    );
+    console.log(`Hello...listening on PORT: ${PORT}`);
 });
 
 io.on("connection", socket => {
     var socketId = socket.id;
-    console.log("socketId", socketId);
     if (!socket.request.session.userId) {
         return socket.disconnect(true);
     }
-    console.log(`Socket with id ${socket.id} just connected`);
+    console.log(`Socket with id ${socketId} just connected`);
 
     // socket.on("disconnect", () => {
     //     console.log(`Socket with id ${socket.id} just disconnected`);
@@ -146,7 +143,6 @@ io.on("connection", socket => {
     db.getRecentChatMessages()
         .then(results => {
             if (!results.rows.length == 0) {
-                // console.log("+++++ results.rows", results.rows);
                 socket.emit("allChatMessages", results.rows.reverse());
             }
         })
@@ -160,10 +156,6 @@ io.on("connection", socket => {
                 db.getRecentChatMessages()
                     .then(results => {
                         if (!results.rows.length == 0) {
-                            // console.log(
-                            //     "after add message+++++ results.rows",
-                            //     results.rows
-                            // );
                             io.sockets.emit(
                                 "allChatMessages",
                                 results.rows.reverse()
@@ -173,10 +165,6 @@ io.on("connection", socket => {
                     .catch(err => {
                         console.log(err);
                     });
-                // console.log("Results are...", results);
-                // io.sockets.emit({
-                //     data: results.rows
-                // });
             })
             .catch(err => {
                 console.log("ERROR: ", err);

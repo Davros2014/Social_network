@@ -1,12 +1,4 @@
-// import React from "react";
-//
-// const Logo = () => {
-//     return <img className="logoMain" src="/images/zero_0deg.svg" alt="" />;
-// };
-// export default Logo;
-
 import React from "react";
-// import { HashLink } from "react-router-hash-link";
 
 const Background = () => {
     return (
@@ -17,7 +9,7 @@ const Background = () => {
             x="0px"
             y="0px"
             width="500px"
-            height="auto"
+            height="100%"
             viewBox="0 0 1717.734 1537.5"
             enableBackground="new 0 0 1717.734 1537.5"
             xmlSpace="preserve"

@@ -12,16 +12,19 @@ const Bio = ({
     last,
     id,
     email,
+    userInfo,
     showDeleteModal,
     setShowDeleteModal
 }) => {
     const handleInput = ({ target }) => {
         setBio(target.value);
     };
-
     const closeSubmit = e => {
         showEditMode();
         handleSubmit(e);
+    };
+    const close = () => {
+        showEditMode();
     };
     // saves bio on submit
     const handleSubmit = ({ target }) => {
@@ -35,8 +38,6 @@ const Bio = ({
             })
             .then(({ data }) => {
                 if (data.success) {
-                    // console.log("Handlesubmit log", data);
-                    // console.log("data.bioinfo", data.bioinfo);
                     setBio(data.bioinfo);
                 }
             })
@@ -55,11 +56,9 @@ const Bio = ({
                 User:
                 <br />
                 <span>
-                    {" "}
                     {first} {last}
                 </span>
             </h5>
-
             <div className="bioInfo">
                 {bioinfo && !viewable && (
                     <>
@@ -85,28 +84,24 @@ const Bio = ({
                             name="bioinfo"
                             onChange={e => handleInput(e)}
                         />
-
-                        <button
-                            onClick={e => {
-                                closeSubmit(e);
-                            }}
-                            className="bioInfoBtn"
-                        >
+                        <button onClick={closeSubmit} className="bioInfoBtn">
                             Save and close
                         </button>
-                        <button
-                            onClick={() => showEditMode()}
-                            className="bioInfoBtn"
-                        >
+                        <button onClick={close} className="bioInfoBtn">
                             Close
                         </button>
                     </div>
                 )}
             </div>
             <div className="btnContainerRow deleteBtns">
-                <button onClick={() => showEditMode()} className="editAccount">
-                    <i className="far fa-edit"></i>
-                </button>
+                {bioinfo && (
+                    <button
+                        onClick={() => showEditMode()}
+                        className="editAccount"
+                    >
+                        <i className="far fa-edit"></i>
+                    </button>
+                )}
                 <button
                     onClick={() => setShowDeleteModal(true)}
                     className="deleteAccount"
@@ -118,7 +113,3 @@ const Bio = ({
     );
 };
 export default Bio;
-
-// <Link className="deleteAccount" to="/deleteaccount">
-// 	<i className="far fa-trash-alt"></i>
-// </Link>

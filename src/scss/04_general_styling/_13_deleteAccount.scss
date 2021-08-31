@@ -1,0 +1,21 @@
+.deleteContainer {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    p {
+        width: 50vw;
+        margin: 0 auto;
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        text-align: center;
+        line-height: 1.5;
+    }
+    #delete-icon {
+        height: 30rem;
+        margin-bottom: 2rem;
+    }
+}

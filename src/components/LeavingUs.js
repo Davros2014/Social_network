@@ -8,7 +8,6 @@ const LeavingUs = ({ showDeleteModal, setShowDeleteModal, first, id }) => {
         axios
             .post("/deleteaccount", id)
             .then(() => {
-                // console.log("error", response.error);
                 location.replace("/welcome");
             })
             .catch(error => {
@@ -59,10 +58,3 @@ const LeavingUs = ({ showDeleteModal, setShowDeleteModal, first, id }) => {
     );
 };
 export default LeavingUs;
-
-// <Link id="stayBtn" className="buttonBasic" to="/">
-// 	Stay
-// </Link>
-// <Link className="buttonBasic" to="/deleteaccount">
-// 	Leave
-// </Link>

@@ -8,20 +8,20 @@ import Uploader from "./Uploader";
 import Logout from "./Logout";
 
 const NavBar = ({
+    userInfo,
     uploaderVisible,
-    profilepictureurl,
-    first,
     viewable,
     setProfilepictureurl,
     handleUploader,
-    setUploaderVisible
+    setUploaderVisible,
+    profilepictureurl,
+    first
 }) => {
     const [logoutVisibility, setLogoutVisibility] = useState(false);
     const [isDesktop, setIsDesktop] = useState(false);
-
-    // let desktopSize = window.innerWidth > 980;
     const updateDesktop = () => {
-        setIsDesktop(window.innerWidth > 980);
+        let desktopSize = window.innerWidth > 980;
+        setIsDesktop(desktopSize);
     };
 
     const showMobileNav = () => {

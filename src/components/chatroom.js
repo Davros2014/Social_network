@@ -1,4 +1,3 @@
-// FROM HOT OR NOT EG
 import React, { Component, createRef } from "react";
 
 import { connect } from "react-redux";
@@ -34,7 +33,6 @@ class Chatroom extends Component {
     render() {
         const { allMessages, id } = this.props;
         const { disabled, chatroom } = this.state;
-        console.log("allMessages", allMessages);
         return (
             <PageContainer>
                 <PageWrapper>
@@ -66,12 +64,12 @@ class Chatroom extends Component {
                                                 <div className="chatHeader">
                                                     <div className="chatInfo">
                                                         User&#x23;
-                                                        {chatroom.user_id}{" "}
+                                                        {chatroom.user_id}
                                                         <strong>
-                                                            {chatroom.first}{" "}
-                                                            {chatroom.last}{" "}
+                                                            {chatroom.first}
+                                                            {chatroom.last}
                                                         </strong>
-                                                        commented @{" "}
+                                                        commented @
                                                         {chatroom.created_at}
                                                     </div>
                                                 </div>
@@ -123,7 +121,6 @@ class Chatroom extends Component {
 }
 
 const mapStateToProps = function(state) {
-    // console.log("state", state);
     return {
         allMessages:
             state.allChatMessages &&
