@@ -35,7 +35,7 @@ export default class Registration extends Component {
         const { error } = this.state;
         return (
             <div className="authForm">
-                {error && <div className="error">{error}</div>}
+                {error && <p className="error">{error}</p>}
                 <input
                     name="first"
                     placeholder="First name"
