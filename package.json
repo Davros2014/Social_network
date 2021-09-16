@@ -57,7 +57,7 @@
         "redux-devtools-extension": "^2.13.2",
         "redux-promise": "^0.5.3",
         "serialize-javascript": ">=3.1.0",
-        "set-value": "^3.0.2",
+        "set-value": "^4.0.1",
         "socket.io": "^2.4.1",
         "spiced-pg": "^1.0.0",
         "uid-safe": "^2.1.4",
