@@ -23,7 +23,6 @@ const socketURL =
     process.env.NODE_ENV === "production"
         ? "http://zero-socialnetwork.herokuapp.com/"
         : "http://localhost:8080";
-// console.log("socketURL", socketURL);
 export const init = store => {
     if (!socket) {
         socket = io.connect(socketURL, { secure: true });

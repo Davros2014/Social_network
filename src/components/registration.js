@@ -9,7 +9,6 @@ export default class Registration extends Component {
         this.submit = this.submit.bind(this);
     }
     handleChange({ target }) {
-        console.log("{ target }", { target });
         this.setState({ [target.name]: target.value });
     }
     submit() {

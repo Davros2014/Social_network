@@ -10,7 +10,7 @@ export function allChatMessages(messages) {
 }
 
 export function chatMessage(message) {
-    console.log("///////////CHAT MESSAGE", message);
+    //CHAT MESSAGE
     return {
         type: "CHAT_MESSAGE",
         chatMessage: message
@@ -22,14 +22,14 @@ export function friendsWannabes() {
     return axios
         .get("/friendsWannabes")
         .then(({ data }) => {
-            console.log("///////////data in friendsWannabes Test", data);
+            // data in friendsWannabes
             return {
                 type: "RECEIVE_FRIENDS_WANNABES",
                 friendsWannabes: data.users
             };
         })
         .catch(err => {
-            console.log("error", err);
+            console.log(err);
         });
 }
 
@@ -40,14 +40,14 @@ export function acceptFriendRequest(id) {
             buttonName: "Accept Friend Request"
         })
         .then(({ data }) => {
-            console.log("data in acceptfriendship Test", data);
+            // data in acceptfriendship
             return {
                 type: "ACCEPT_FRIEND_REQUEST",
                 acceptedUserId: id
             };
         })
         .catch(err => {
-            console.log("error", err);
+            console.log(err);
         });
 }
 
@@ -58,13 +58,13 @@ export function unfriend(id) {
             buttonName: "Unfriend User"
         })
         .then(({ data }) => {
-            console.log("data in deleteFriends Test", data);
+            // data in deleteFriends Test
             return {
                 type: "UNFRIEND",
                 endUserId: id
             };
         })
         .catch(err => {
-            console.log("error", err);
+            console.log(err);
         });
 }

@@ -44,8 +44,6 @@ export default class Otherprofile extends Component {
             .catch(err => console.log(err));
     }
     render() {
-        console.log("this.state.id", this.state.id);
-        console.log("this.state", this.state);
         const { profilepicture, first, last, id, bioinfo } = this.state;
         return (
             <PageContainer>

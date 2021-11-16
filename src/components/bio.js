@@ -41,7 +41,7 @@ const Bio = ({
                     setBio(data.bioinfo);
                 }
             })
-            .catch(err => console.log("error - post bio", err));
+            .catch(err => console.log(err));
     };
     return (
         <Fragment>

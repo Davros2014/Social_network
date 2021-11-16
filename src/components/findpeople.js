@@ -35,8 +35,7 @@ const Findpeople = ({ first }) => {
             })
             .catch(err => {
                 setFindPeopleError(true);
-
-                console.log("what is the error", err);
+                console.log(err);
             });
     }, [name]);
     return (

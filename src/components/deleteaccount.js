@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 const DeleteAccount = ({ first }) => {
     const deleteUser = () => {
         axios.post("/deleteaccount").then(response => {
-            console.log("error", response.error);
+            console.log(response.error);
             location.replace("/welcome");
         });
     };

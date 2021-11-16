@@ -2,12 +2,12 @@
 
 export default function reducer(state = {}, action) {
     if (action.type === "RECEIVE_FRIENDS_WANNABES") {
-        // console.log("reducer action - friends wannabees", action);
+        // reducer action - friends wannabees
         return { ...state, friendsWannabes: action.friendsWannabes };
     }
 
     if (action.type === "ACCEPT_FRIEND_REQUEST") {
-        // console.log("reducer action - accept friends wannabees", action);
+        // reducer action - accept friends wannabees
         return {
             ...state,
             friendsWannabes: state.friendsWannabes.map(user => {
@@ -20,7 +20,7 @@ export default function reducer(state = {}, action) {
         };
     }
     if (action.type === "UNFRIEND") {
-        // console.log("reducer action - unfriend wannabees", action);
+        // reducer action - unfriend wannabees
         return {
             ...state,
             friendsWannabes: state.friendsWannabes.filter(
@@ -32,7 +32,7 @@ export default function reducer(state = {}, action) {
         return { ...state, allChatMessages: action.allChatMessages };
     }
     if (action.type === "CHAT_MESSAGE") {
-        // console.log("reducer action - CHAT_MESSAGE", action);
+        // reducer action - CHAT_MESSAGE
         return {
             ...state,
             chatMessage: state.chatMessage
